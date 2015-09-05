@@ -46,14 +46,6 @@ void draw() {
 
 void mouseWheel(MouseEvent event) {
   float e = event.getCount();
-  println(e);
-  
-  if (e < 0){
-    println("Scrolling down");
-  }
-  if (e > 0){
-    println("Scrolling up");
-  }
   
   if (mouseX<xV[0]+wV[0] && mouseX>xV[0]){
      if ((mouseY<=yV[0]+hV[0]+150) && (mouseY>=yV[0]-150)) {
