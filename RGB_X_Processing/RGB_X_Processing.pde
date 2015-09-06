@@ -190,6 +190,13 @@ void mouseReleased() {
   }
 }
 
+int[] getRGB(color _cor) {
+  return new int[]{ (_cor >> 16) & 0xFF,
+                    (_cor >> 8) & 0xFF,
+                    (_cor & 0xFF)
+                  };
+}
+
 class printbtn {
   int x, y, w, h;
   color cor = color(255, 255, 255);
@@ -270,14 +277,19 @@ class clrbtn {
   }
   
   void release() {
+    println("Color:");
     int clk = millis();
     if (clk-lclk > 500) {
       cor = color(sV1.p, sV2.p, sV3.p);
+      int[] rgb = getRGB(cor);
+      println(rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ",");
     }
     else {
-      sV1.p = (cor >> 16) & 0xFF;
-      sV2.p = (cor >> 8) & 0xFF;
-      sV3.p = cor & 0xFF;
+      int[] rgb = getRGB(cor);
+      sV1.p = rgb[0];
+      sV2.p = rgb[1];
+      sV3.p = rgb[2];
+      println(rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ",");
     }
   }
 }
