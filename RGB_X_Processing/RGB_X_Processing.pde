@@ -3,19 +3,94 @@ Serial port;
 
 sliderV sV1, sV2, sV3, sInc;
 
-int left = -25;
-button[] bFav = { new button(left += 35,  465, color(255, 0, 0)),
-                  new button(left += 35,  465, color(0, 255, 0)),
-                  new button(left += 35,  465, color(0, 0, 255)),
-                  new button(left += 35,  465, color(255, 255, 0)),
-                  new button(left += 35,  465, color(0, 255, 255)),
-                  new button(left += 35,  465, color(255, 0, 255)),
-                  new button(left += 35,  465, color(255, 255, 255)),
-                  new button(left += 35,  465, color(0, 220, 100)),
-                  new button(left += 35,  465, color(30, 120, 200)),
-                  new button(left += 35,  465, color(50, 50, 200)),
-                  new button(left += 35,  465, color(90, 10, 200)),
-                  new button(left += 35,  465, color(0, 0, 200)),
+int[] color_palette  =
+{
+    0, 0 , 0,    // Color # 0
+
+    255 , 0 , 0,   //  Color #1
+    255 , 63 , 0,   //  Color #2
+    255 , 127 , 0,   //  Color #3
+    255 , 191 , 0,   //  Color #4
+    255 , 255 , 0,   //  Color #5
+    191 , 255 , 0,   //  Color #6
+    127 , 255 , 0,   //  Color #7
+    63 , 255 , 0,   //  Color #8
+
+
+    0 , 255 , 0,   //  Color #9
+    0 , 255 , 63,   //  Color #10
+    0 , 255 , 127,   //  Color #11
+    0 , 255 , 191,   //  Color #12
+    0 , 255 , 255,   //  Color #13
+    0 , 191 , 255,   //  Color #14
+    0 , 127 , 255,   //  Color #15
+    0 , 63 , 255,   //  Color #16
+
+
+    0 , 0 , 255,   //  Color #17
+    63 , 0 , 255,   //  Color #18
+    127 , 0 , 255,   //  Color #19
+    191 , 0 , 255,   //  Color #20
+    255 , 0 , 255,   //  Color #21
+    255 , 0 , 191,   //  Color #22
+    255 , 0 , 127,   //  Color #23
+    255 , 0 , 63,   //  Color #24
+
+    255 , 255 , 255,   //  Color #25
+    170 , 255 , 255,    //  Color #26
+    172 , 241 , 255,   //  Color #27
+    85 , 96 , 241,   //  Color #28
+    57 , 0, 23,   //  Color #29
+    0 , 0 , 6,   //  Color #30
+    0 , 6 , 0,   //  Color #31
+    6 , 0 , 0   //  Color #32
+
+};
+
+int left = 0;
+int top = 400;
+button[] bFav = { // Row #1
+                  new button(left = 10,  top += 0, color(100, 0, 0)),
+                  new button(left += 35,  top += 0, color(100, 25, 0)),
+                  new button(left += 35,  top += 0, color(100, 50, 0)),
+                  new button(left += 35,  top += 0, color(100, 75, 0)),
+                  new button(left += 35,  top += 0, color(100, 100, 0)),
+                  new button(left += 35,  top += 0, color(20, 100, 0)),
+                  new button(left += 35,  top += 0, color(0, 100, 10)),
+                  new button(left += 35,  top += 0, color(18, 100, 18)),
+                  new button(left += 35,  top += 0, color(30, 120, 200)),
+                  new button(left += 35,  top += 0, color(50, 50, 200)),
+                  new button(left += 35,  top += 0, color(90, 10, 200)),
+                  new button(left += 35,  top += 0, color(0, 0, 200)),
+                  
+                  // Row #2
+                  new button(left = 10,  top += 35, color(100, 0, 0)),
+                  new button(left += 35,  top += 0, color(100, 25, 0)),
+                  new button(left += 35,  top += 0, color(100, 50, 0)),
+                  new button(left += 35,  top += 0, color(100, 75, 0)),
+                  new button(left += 35,  top += 0, color(100, 100, 0)),
+                  new button(left += 35,  top += 0, color(20, 100, 0)),
+                  new button(left += 35,  top += 0, color(0, 100, 10)),
+                  
+                  new button(left += 35,  top += 0, color(18, 100, 18)),
+                  new button(left += 35,  top += 0, color(30, 120, 200)),
+                  new button(left += 35,  top += 0, color(50, 50, 200)),
+                  new button(left += 35,  top += 0, color(90, 10, 200)),
+                  new button(left += 35,  top += 0, color(0, 0, 200)),
+                  
+                  // Row #3
+                  new button(left = 10,  top += 35, color(100, 0, 0)),
+                  new button(left += 35,  top += 0, color(100, 25, 0)),
+                  new button(left += 35,  top += 0, color(100, 50, 0)),
+                  new button(left += 35,  top += 0, color(100, 75, 0)),
+                  new button(left += 35,  top += 0, color(100, 100, 0)),
+                  new button(left += 35,  top += 0, color(20, 100, 0)),
+                  new button(left += 35,  top += 0, color(0, 100, 10)),
+                  new button(left += 35,  top += 0, color(18, 100, 18)),
+                  new button(left += 35,  top += 0, color(30, 120, 200))
+                  
+                  // Don't add more buttons unless you add more colors
+                  // to the color_palette or you get index out of bounds
                 };
 
 int xV[]  = {100, 200, 300, 10};
@@ -26,6 +101,14 @@ int pV[]  = {90, 90, 90, 5};
 color corV[] = {#FF0000, #03FF00, #009BFF, #FFFFFF};
 
 color cor;
+
+void initialize_color_palette() {
+  for (int i = 0; i < bFav.length; i++) {
+    bFav[i].cor = color(color_palette[i*3],
+                        color_palette[i*3 + 1],
+                        color_palette[i*3 + 2]);
+  }
+}
 
 void setup() {
   size(500, 500);
@@ -43,6 +126,8 @@ void setup() {
   
   // create scroll wheel increment slider (yeah.. I know)
   sInc = new sliderV(xV[3], yV[3], wV[3], hV[3], pV[3], corV[3], 3, "Scroll");
+  
+  initialize_color_palette();
 }
 
 void draw() {
