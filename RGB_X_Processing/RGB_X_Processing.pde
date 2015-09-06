@@ -1,7 +1,7 @@
 import processing.serial.*;
 Serial port;
 
-sliderV sV1, sV2, sV3, sInc;
+String com_port = "COM5";
 
 int[] color_palette  =
 {
@@ -49,62 +49,63 @@ int[] color_palette  =
 
 int left = 0;
 int top = 400;
-button[] bFav = { // Row #1
-                  new button(left = 10,  top += 0, color(100, 0, 0)),
-                  new button(left += 35,  top += 0, color(100, 25, 0)),
-                  new button(left += 35,  top += 0, color(100, 50, 0)),
-                  new button(left += 35,  top += 0, color(100, 75, 0)),
-                  new button(left += 35,  top += 0, color(100, 100, 0)),
-                  new button(left += 35,  top += 0, color(20, 100, 0)),
-                  new button(left += 35,  top += 0, color(0, 100, 10)),
-                  new button(left += 35,  top += 0, color(18, 100, 18)),
-                  new button(left += 35,  top += 0, color(30, 120, 200)),
-                  new button(left += 35,  top += 0, color(50, 50, 200)),
-                  new button(left += 35,  top += 0, color(90, 10, 200)),
-                  new button(left += 35,  top += 0, color(0, 0, 200)),
+clrbtn[] bcp = { // Row #1
+                  new clrbtn(left = 10,  top += 0, color(100, 0, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 25, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 50, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 75, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 100, 0)),
+                  new clrbtn(left += 35,  top += 0, color(20, 100, 0)),
+                  new clrbtn(left += 35,  top += 0, color(0, 100, 10)),
+                  new clrbtn(left += 35,  top += 0, color(18, 100, 18)),
+                  new clrbtn(left += 35,  top += 0, color(30, 120, 200)),
+                  new clrbtn(left += 35,  top += 0, color(50, 50, 200)),
+                  new clrbtn(left += 35,  top += 0, color(90, 10, 200)),
+                  new clrbtn(left += 35,  top += 0, color(0, 0, 200)),
                   
                   // Row #2
-                  new button(left = 10,  top += 35, color(100, 0, 0)),
-                  new button(left += 35,  top += 0, color(100, 25, 0)),
-                  new button(left += 35,  top += 0, color(100, 50, 0)),
-                  new button(left += 35,  top += 0, color(100, 75, 0)),
-                  new button(left += 35,  top += 0, color(100, 100, 0)),
-                  new button(left += 35,  top += 0, color(20, 100, 0)),
-                  new button(left += 35,  top += 0, color(0, 100, 10)),
+                  new clrbtn(left = 10,  top += 35, color(100, 0, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 25, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 50, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 75, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 100, 0)),
+                  new clrbtn(left += 35,  top += 0, color(20, 100, 0)),
+                  new clrbtn(left += 35,  top += 0, color(0, 100, 10)),
                   
-                  new button(left += 35,  top += 0, color(18, 100, 18)),
-                  new button(left += 35,  top += 0, color(30, 120, 200)),
-                  new button(left += 35,  top += 0, color(50, 50, 200)),
-                  new button(left += 35,  top += 0, color(90, 10, 200)),
-                  new button(left += 35,  top += 0, color(0, 0, 200)),
+                  new clrbtn(left += 35,  top += 0, color(18, 100, 18)),
+                  new clrbtn(left += 35,  top += 0, color(30, 120, 200)),
+                  new clrbtn(left += 35,  top += 0, color(50, 50, 200)),
+                  new clrbtn(left += 35,  top += 0, color(90, 10, 200)),
+                  new clrbtn(left += 35,  top += 0, color(0, 0, 200)),
                   
                   // Row #3
-                  new button(left = 10,  top += 35, color(100, 0, 0)),
-                  new button(left += 35,  top += 0, color(100, 25, 0)),
-                  new button(left += 35,  top += 0, color(100, 50, 0)),
-                  new button(left += 35,  top += 0, color(100, 75, 0)),
-                  new button(left += 35,  top += 0, color(100, 100, 0)),
-                  new button(left += 35,  top += 0, color(20, 100, 0)),
-                  new button(left += 35,  top += 0, color(0, 100, 10)),
-                  new button(left += 35,  top += 0, color(18, 100, 18)),
-                  new button(left += 35,  top += 0, color(30, 120, 200))
+                  new clrbtn(left = 10,  top += 35, color(100, 0, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 25, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 50, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 75, 0)),
+                  new clrbtn(left += 35,  top += 0, color(100, 100, 0)),
+                  new clrbtn(left += 35,  top += 0, color(20, 100, 0)),
+                  new clrbtn(left += 35,  top += 0, color(0, 100, 10)),
+                  new clrbtn(left += 35,  top += 0, color(18, 100, 18)),
+                  new clrbtn(left += 35,  top += 0, color(30, 120, 200))
                   
-                  // Don't add more buttons unless you add more colors
+                  // Don't add more clrbtns unless you add more colors
                   // to the color_palette or you get index out of bounds
                 };
 
+color cor;
 int xV[]  = {100, 200, 300, 10};
 int yV[]  = {100, 100, 100, 10};
 int wV[]  = {90, 90, 90, 50};
 int hV[]  = {255, 255, 255, 10};
-int pV[]  = {90, 90, 90, 5};
+int pV[]  = {90, 90, 90, 1};
 color corV[] = {#FF0000, #03FF00, #009BFF, #FFFFFF};
-
-color cor;
+sliderV sV1, sV2, sV3, sInc;
+printbtn export_cp = new printbtn(330, 10);
 
 void initialize_color_palette() {
-  for (int i = 0; i < bFav.length; i++) {
-    bFav[i].cor = color(color_palette[i*3],
+  for (int i = 0; i < bcp.length; i++) {
+    bcp[i].cor = color(color_palette[i*3],
                         color_palette[i*3 + 1],
                         color_palette[i*3 + 2]);
   }
@@ -117,7 +118,7 @@ void setup() {
   println(Serial.list());
 
   // check on the output monitor wich port is available on your machine
-  port = new Serial(this, "COM5", 9600);
+  port = new Serial(this, com_port, 9600);
 
   // create 3 instances of the sliderV class
   sV1 = new sliderV(xV[0], yV[0], wV[0], hV[0], pV[0], corV[0], 0, "Red");
@@ -137,11 +138,12 @@ void draw() {
   sV2.render();
   sV3.render();
   
-  sInc.render();
+  // sInc.render();
+  export_cp.render();
   
-  // render favorites buttons
-  for (int i = 0; i < bFav.length; i++) {
-    bFav[i].render();
+  // render favorites clrbtns
+  for (int i = 0; i < bcp.length; i++) {
+    bcp[i].render();
   }
 
   // send sync character
@@ -169,28 +171,76 @@ void mouseWheel(MouseEvent event) {
 }
 
 void mousePressed() {
-  for (int i = 0; i < bFav.length; i++) {
-    if (bFav[i].isOver()) {
-      bFav[i].click();
+  for (int i = 0; i < bcp.length; i++) {
+    if (bcp[i].isOver()) {
+      bcp[i].click();
     }
+  }
+  
+  if (export_cp.isOver()) {
+    export_cp.click();
   }
 }
 
 void mouseReleased() {
-  for (int i = 0; i < bFav.length; i++) {
-    if (bFav[i].isOver()) {
-      bFav[i].release();
+  for (int i = 0; i < bcp.length; i++) {
+    if (bcp[i].isOver()) {
+      bcp[i].release();
     }
   }
 }
 
-class button {
+class printbtn {
+  int x, y, w, h;
+  color cor = color(255, 255, 255);
+  int lclk = -1;
+  
+  printbtn (int _x, int _y) {
+    x = _x;
+    y = _y;
+    w = 160;
+    h = 25;
+  }
+  
+  void render() {
+    noStroke();
+    fill(cor);
+    rect(x, y, w, h);
+    
+    fill(0);
+    text("Click here to print your colors!", x+1, 25);
+  }
+  
+  boolean isOver() {
+    if ((mouseX<x+w) && (mouseX>x) && (mouseY<=y+h) && (mouseY>=y)) {
+      return true;
+    }
+    return false;
+  }
+  
+  void click() {
+    println("Copy and paste to customize your color palette in NEO!");
+    for(int i = 0; i < bcp.length; i++) {
+      int red = (bcp[i].cor >> 16) & 0xFF;
+      int green = (bcp[i].cor >> 8) & 0xFF;
+      int blue = (bcp[i].cor & 0xFF);
+      
+      if (i != bcp.length - 1) {
+        println(red + ", " + green + ", " + blue + ",  // Color #" + i);
+      }
+      else {
+        println(red + ", " + green + ", " + blue + "   // Color #" + i);
+      }
+    }
+  }
+}
+
+class clrbtn {
   int x, y, w, h;
   color cor;
   int lclk = -1;
   
-  
-  button (int _x, int _y, color _cor) {
+  clrbtn (int _x, int _y, color _cor) {
     x = _x;
     y = _y;
     w = 25;
@@ -199,6 +249,7 @@ class button {
   }
   
   void render() {
+    noStroke();
     fill(cor);
     rect(x, y, w, h);
   }
@@ -211,13 +262,16 @@ class button {
   }
   
   void click() {
-    lclk = millis();
+    int clk = millis();
+    if(clk-lclk < 150) {
+      cor = color(255, 255, 255);
+    }
+    lclk = clk;
   }
   
   void release() {
     int clk = millis();
-    int clk_int = clk-lclk;
-    if (clk_int > 500) {
+    if (clk-lclk > 500) {
       cor = color(sV1.p, sV2.p, sV3.p);
     }
     else {
@@ -249,11 +303,33 @@ class sliderV {
   }
 
   void render() {
+    noStroke();
+    
+    // MIN AREA
+    fill(color(55, 55, 55));
+    rect(x-1, y+h+4, w, 15);
+    
+    // MIN AREA TEXT
+    fill(255);
+    text("MIN", x+30, y+h+17);
+    
+    // BAR
     fill(cor);
     rect(x-1, y-4, w, h+10);
-    noStroke();
+    
+    // MAX AREA
+    fill(color(55, 55, 55));
+    rect(x-1, y-19, w, 15);
+    
+    // MAX AREA TEXT
+    fill(255);
+    text("MAX", x+30, y-7);
+    
+    // SLIDER
     fill(0);
     rect(x, h-p+y-5, w-2, 13);
+    
+    // SLIDER TEXT
     fill(255);
     text(p + " " + name, x+2, h-p+y+6);
     
