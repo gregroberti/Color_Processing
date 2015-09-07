@@ -136,10 +136,12 @@ clrbtn[] bcp = { // Row #1
                   // to the color_palette or you get index out of bounds
                 };
 
-color cor;
+color main_cor;
 int cor_index = 0;
 sliderV sV1, sV2, sV3, sInc;
 printbtn export_cp = new printbtn(410, 10);
+navbtn navrgt = new navbtn(442, 398, 1, ">");
+navbtn navlft = new navbtn(22, 398, -1, "<");
 
 void initialize_color_palette() {
   for (int i = 0; i < bcp.length; i++) {
@@ -186,6 +188,9 @@ void draw() {
   for (int i = 0; i < bcp.length; i++) {
     bcp[i].render();
   }
+  
+  navrgt.render();
+  navlft.render();
 
   // send sync character
   // send the desired value

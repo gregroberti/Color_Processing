@@ -21,11 +21,18 @@ void mousePressed() {
     if (bcp[i].isOver()) {
       bcp[i].click();
       cor_index = i;
+      return;
     }
   }
   
   if (export_cp.isOver()) {
     export_cp.click();
+  }
+  else if (navrgt.isOver()) {
+    navrgt.click();
+  }
+  else if (navlft.isOver()) {
+    navlft.click();
   }
 }
 

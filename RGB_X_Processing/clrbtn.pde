@@ -62,6 +62,7 @@ class clrbtn {
   void sel() {
     unselect_all();
     sel = true;
+    main_cor = cor;
   }
   
   void unsel() {
@@ -77,11 +78,7 @@ class clrbtn {
       println(rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ",");
     }
     else {
-      int[] rgb = getRGB(cor);
-      sV1.p = rgb[0];
-      sV2.p = rgb[1];
-      sV3.p = rgb[2];
-      println(rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ",");
+      update_sliders();
     }
   }
 }

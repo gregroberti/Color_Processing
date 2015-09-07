@@ -31,3 +31,24 @@ String print_palette() {
   }
   return retval;
 }
+
+void increment_index(int stp) {
+  int new_cor_index = cor_index + stp;
+  if (new_cor_index < 0) {
+    cor_index = 32;
+  }
+  else if (new_cor_index > 32) {
+    cor_index = 0;
+  }
+  else {
+    cor_index = new_cor_index;
+  }
+}
+
+void update_sliders() {
+  int[] rgb = getRGB(main_cor);
+    sV1.p = rgb[0];
+    sV2.p = rgb[1];
+    sV3.p = rgb[2];
+    println(rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ",");
+}
