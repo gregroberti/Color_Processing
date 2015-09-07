@@ -42,12 +42,8 @@ void load_palette() {
       String[] row = rows[i].split("//")[0].split(",");
       if(row.length == 3 || row.length == 4) {
         new_palette[(i*3)+0] = int(row[0]);
-        println("row[0] = " + row[0]);
         new_palette[(i*3)+1] = int(row[1]);
-        println("row[1] = " + row[1]);
         new_palette[(i*3)+2] = int(row[2]);
-        println("row[2] = " + row[2]);
-        //println("(i*3)+2 = " + (i*3)+2);
       }
       //else {
       //  println("Invalid row: " + row);
