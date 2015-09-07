@@ -7,56 +7,23 @@ Serial port;
 String com_port = "COM5";
 
 
-int[] color_palette  =
-{
-    /////////////////////////////
-    // PASTE COLOR LINES BELOW //
-    /////////////////////////////
-    
-    0, 0 , 0,    // Color #0
-
-    255 , 0 , 0,   //  Color #1
-    255 , 63 , 0,   //  Color #2
-    255 , 127 , 0,   //  Color #3
-    255 , 191 , 0,   //  Color #4
-    255 , 255 , 0,   //  Color #5
-    191 , 255 , 0,   //  Color #6
-    127 , 255 , 0,   //  Color #7
-    63 , 255 , 0,   //  Color #8
+/////////////////////////////////////////////
+// Open palette tab to paste Color Palette //
+/////////////////////////////////////////////
+int[] color_palette = get_palette();
 
 
-    0 , 255 , 0,   //  Color #9
-    0 , 255 , 63,   //  Color #10
-    0 , 255 , 127,   //  Color #11
-    0 , 255 , 191,   //  Color #12
-    0 , 255 , 255,   //  Color #13
-    0 , 191 , 255,   //  Color #14
-    0 , 127 , 255,   //  Color #15
-    0 , 63 , 255,   //  Color #16
 
 
-    0 , 0 , 255,   //  Color #17
-    63 , 0 , 255,   //  Color #18
-    127 , 0 , 255,   //  Color #19
-    191 , 0 , 255,   //  Color #20
-    255 , 0 , 255,   //  Color #21
-    255 , 0 , 191,   //  Color #22
-    255 , 0 , 127,   //  Color #23
-    255 , 0 , 63,   //  Color #24
 
-    255 , 255 , 255,   //  Color #25
-    170 , 255 , 255,    //  Color #26
-    172 , 241 , 255,   //  Color #27
-    85 , 96 , 241,   //  Color #28
-    57 , 0, 23,   //  Color #29
-    0 , 0 , 6,   //  Color #30
-    0 , 6 , 0,   //  Color #31
-    6 , 0 , 0   //  Color #32
-    
-    /////////////////////////////
-    // PASTE COLOR LINES ABOVE //
-    /////////////////////////////
-};
+
+
+
+
+
+
+
+
 
 
 
@@ -74,6 +41,8 @@ int[] color_palette  =
 ///////////////////////////////////////
 // BEWARE: DRAGONS BEYOND THIS POINT //
 ///////////////////////////////////////
+
+
 
 
 
@@ -107,21 +76,20 @@ int[] color_palette  =
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 ///////////////////////////////////////////
 // OK, BUT DON'T SAY I DIDN'T WARN YOU.. //
 ///////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
 
 int left = 0;
 int top = 395;
@@ -227,39 +195,4 @@ void draw() {
   port.write(sV2.p);
   port.write('B');
   port.write(sV3.p);
-}
-
-void mouseWheel(MouseEvent event) {
-  float e = event.getCount();
-  
-  if (sV1.isOver()){
-     sV1.p -= sInc.p*e;
-  }
-  else if (sV2.isOver()){
-     sV2.p -= sInc.p*e;
-  }
-  else if (sV3.isOver()) {
-     sV3.p -= sInc.p*e;
-  }
-}
-
-void mousePressed() {
-  for (int i = 0; i < bcp.length; i++) {
-    if (bcp[i].isOver()) {
-      bcp[i].click();
-      cor_index = i;
-    }
-  }
-  
-  if (export_cp.isOver()) {
-    export_cp.click();
-  }
-}
-
-void mouseReleased() {
-  for (int i = 0; i < bcp.length; i++) {
-    if (bcp[i].isOver()) {
-      bcp[i].release();
-    }
-  }
 }

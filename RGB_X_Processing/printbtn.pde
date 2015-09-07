@@ -46,9 +46,3 @@ class printbtn {
     }
   }
 }
-
-void unselect_all() {
-  for (int i = 0; i < bcp.length; i++) {
-    bcp[i].unsel();
-  }
-}
