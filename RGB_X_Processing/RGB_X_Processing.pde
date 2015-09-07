@@ -139,7 +139,7 @@ clrbtn[] bcp = { // Row #1
 color cor;
 int cor_index = 0;
 sliderV sV1, sV2, sV3, sInc;
-printbtn export_cp = new printbtn(330, 10);
+printbtn export_cp = new printbtn(410, 10);
 
 void initialize_color_palette() {
   for (int i = 0; i < bcp.length; i++) {
