@@ -46,3 +46,21 @@ void mouseReleased() {
     }
   }
 }
+
+public void keyPressed(KeyEvent e) {
+  if (e.getKeyCode() == 37) {  // LEFT ARROW
+    update_clrsel(-1);
+  }
+  else if (e.getKeyCode() == 39) { // RIGHT ARROW
+    update_clrsel(1);
+  }
+  else if (e.getKeyCode() == 38) { // UP ARROW
+    update_clrsel(-11);
+  }
+  else if (e.getKeyCode() == 40) { // DOWN ARROW
+    update_clrsel(11);
+  }
+  else {
+    println("Unbound KeyCode: " + e.getKeyCode());
+  }
+}

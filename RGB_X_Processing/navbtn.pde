@@ -47,9 +47,6 @@ class navbtn {
   }
   
   void click() {
-    bcp[cor_index].unsel();
-    increment_index(stp);
-    bcp[cor_index].sel();
-    update_sliders();
+    update_clrsel(stp);
   }
 }

@@ -34,15 +34,15 @@ String print_palette() {
 
 void increment_index(int stp) {
   int new_cor_index = cor_index + stp;
-  if (new_cor_index < 0) {
-    cor_index = 32;
+  while (new_cor_index < 0 || new_cor_index > 32) {
+    if (new_cor_index < 0) {
+      new_cor_index = new_cor_index + 33;
+    }
+    else if (new_cor_index > 32) {
+      new_cor_index = new_cor_index - 33;
+    }
   }
-  else if (new_cor_index > 32) {
-    cor_index = 0;
-  }
-  else {
-    cor_index = new_cor_index;
-  }
+  cor_index = new_cor_index;
 }
 
 void update_sliders() {
@@ -75,4 +75,11 @@ void update_palette(int[] new_palette) {
   //  println("new_palette.length = " + new_palette.length);
   //  println("ERROR: The new color palette is the wrong size!");
   //}
+}
+
+void update_clrsel(int stp) {
+  bcp[cor_index].unsel();
+  increment_index(stp);
+  bcp[cor_index].sel();
+  update_sliders();
 }
