@@ -28,6 +28,9 @@ void mousePressed() {
   if (export_cp.isOver()) {
     export_cp.click();
   }
+  else if (import_cp.isOver()) {
+    import_cp.click();
+  }
   else if (navrgt.isOver()) {
     navrgt.click();
   }

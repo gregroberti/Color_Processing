@@ -139,20 +139,10 @@ clrbtn[] bcp = { // Row #1
 color main_cor;
 int cor_index = 0;
 sliderV sV1, sV2, sV3, sInc;
-printbtn export_cp = new printbtn(410, 10);
+importbtn import_cp = new importbtn(15, 15);
+exportbtn export_cp = new exportbtn(410, 15);
 navbtn navrgt = new navbtn(442, 398, 1, ">");
 navbtn navlft = new navbtn(22, 398, -1, "<");
-
-void initialize_color_palette() {
-  for (int i = 0; i < bcp.length; i++) {
-    bcp[i].cor = color(color_palette[i*3],
-                        color_palette[i*3 + 1],
-                        color_palette[i*3 + 2]);
-  }
-  
-  // Set selection to Color #0
-  bcp[0].sel();
-}
 
 void setup() {
   size(500, 500);
@@ -182,6 +172,7 @@ void draw() {
   sV3.render();
   
   // sInc.render();
+  import_cp.render();
   export_cp.render();
   
   // render favorites clrbtns

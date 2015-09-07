@@ -52,3 +52,27 @@ void update_sliders() {
     sV3.p = rgb[2];
     println(rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ",");
 }
+
+void initialize_color_palette() {
+  for (int i = 0; i < bcp.length; i++) {
+    bcp[i].cor = color(color_palette[i*3],
+                        color_palette[i*3 + 1],
+                        color_palette[i*3 + 2]);
+  }
+  
+  // Set selection to Color #0
+  bcp[0].sel();
+}
+
+void update_palette(int[] new_palette) {
+  if (new_palette.length == color_palette.length) {
+    color_palette = new_palette;
+    initialize_color_palette();
+    //println("Sucessfully updated the color_palette");
+  }
+  //else {
+  //  println("color_palette.length = " + color_palette.length);
+  //  println("new_palette.length = " + new_palette.length);
+  //  println("ERROR: The new color palette is the wrong size!");
+  //}
+}
