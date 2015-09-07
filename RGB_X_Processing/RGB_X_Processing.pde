@@ -91,46 +91,47 @@ int[] color_palette = get_palette();
 // OK, BUT DON'T SAY I DIDN'T WARN YOU.. //
 ///////////////////////////////////////////
 
+int id = 0;
 int left = 0;
 int top = 395;
 clrbtn[] bcp = { // Row #1
-                  new clrbtn(left = 57,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left = 57,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
                   
                   // Row #2
-                  new clrbtn(left = 57,  top += 35, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left = 57,  top += 35, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
                   
                   // Row #3
-                  new clrbtn(left = 57,  top += 35, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
-                  new clrbtn(left += 35,  top += 0, color(255, 255, 255))
+                  new clrbtn(left = 57,  top += 35, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++),
+                  new clrbtn(left += 35,  top += 0, id++)
                   
                   // Don't add more clrbtns unless you add more colors
                   // to the color_palette or you get index out of bounds

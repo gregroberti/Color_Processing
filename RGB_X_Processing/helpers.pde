@@ -50,7 +50,6 @@ void update_sliders() {
     sV1.p = rgb[0];
     sV2.p = rgb[1];
     sV3.p = rgb[2];
-    println(rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ",");
 }
 
 void initialize_color_palette() {
@@ -82,4 +81,8 @@ void update_clrsel(int stp) {
   increment_index(stp);
   bcp[cor_index].sel();
   update_sliders();
+}
+
+void update_brightness(int stp) {
+  
 }

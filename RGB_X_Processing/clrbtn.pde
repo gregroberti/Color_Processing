@@ -3,17 +3,19 @@
 //////////////////
 
 class clrbtn {
-  int x, y, w, h;
-  color cor;
+  int x, y, id;
+  color cor = color(255, 255, 255);
+  int w = 25;
+  int h = 25;
   int lclk = -1;
   boolean sel = false;
   
-  clrbtn (int _x, int _y, color _cor) {
+  clrbtn (int _x, int _y, int _id) {
     x = _x;
     y = _y;
     w = 25;
     h = 25;
-    cor = _cor;
+    id = _id;
   }
   
   void render_border() {
@@ -49,14 +51,19 @@ class clrbtn {
     int clk = millis();
     if(clk-lclk < 150) {
       if (cor == color(255, 255, 255)) {
-        cor = color(0, 0, 0);
+        update_color(0, 0, 0);
       }
       else {
-        cor = color(255, 255, 255);
+        update_color(255, 255, 255);
       }
     }
     sel();
     lclk = clk;
+  }
+  
+  void update_color(int _r, int _g, int _b) {
+    cor = color(_r, _g, _b);
+    println(_r + ", " + _g + ", " + _b + " // Color #" + id);
   }
   
   void sel() {
@@ -70,12 +77,9 @@ class clrbtn {
   }
   
   void release() {
-    println("The color you just clicked on was:");
     int clk = millis();
     if (clk-lclk > 500) {
-      cor = color(sV1.p, sV2.p, sV3.p);
-      int[] rgb = getRGB(cor);
-      println(rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ",");
+      update_color(sV1.p, sV2.p, sV3.p);
     }
     else {
       update_sliders();

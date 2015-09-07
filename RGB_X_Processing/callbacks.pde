@@ -60,6 +60,12 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 40) { // DOWN ARROW
     update_clrsel(11);
   }
+  else if (e.getKeyCode() == 107) { // PLUS
+    update_brightness(10);
+  }
+  else if (e.getKeyCode() == 109) { // MINUS
+    update_brightness(-10);
+  }
   else {
     println("Unbound KeyCode: " + e.getKeyCode());
   }
