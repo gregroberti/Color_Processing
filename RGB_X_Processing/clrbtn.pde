@@ -4,11 +4,13 @@
 
 class clrbtn {
   int x, y, id;
+  color lcor = color(255, 255, 255);
   color cor = color(255, 255, 255);
   int w = 25;
   int h = 25;
   int lclk = -1;
   boolean sel = false;
+  boolean rst = false;
   
   clrbtn (int _x, int _y, int _id) {
     x = _x;
@@ -47,21 +49,36 @@ class clrbtn {
     return false;
   }
   
+  void reset() {
+    if (cor == color(255, 255, 255)) {
+      update_color(0, 0, 0);
+    }
+    else {
+      update_color(255, 255, 255);
+    }
+    rst = true;
+  }
+  
+  void undo() {
+    color tmp = cor;
+    cor = lcor;
+    lcor = tmp;
+    rst = false;
+  }
+  
   void click() {
     int clk = millis();
     if(clk-lclk < 150) {
-      if (cor == color(255, 255, 255)) {
-        update_color(0, 0, 0);
-      }
-      else {
-        update_color(255, 255, 255);
-      }
+      reset();
     }
     sel();
     lclk = clk;
   }
   
   void update_color(int _r, int _g, int _b) {
+    if (!rst) {
+      lcor = cor;
+    }
     cor = color(_r, _g, _b);
     println(_r + ", " + _g + ", " + _b + " // Color #" + id);
   }

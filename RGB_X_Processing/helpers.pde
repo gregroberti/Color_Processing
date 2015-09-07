@@ -32,8 +32,7 @@ String print_palette() {
   return retval;
 }
 
-void increment_index(int stp) {
-  int new_cor_index = cor_index + stp;
+void set_index(int new_cor_index) {
   while (new_cor_index < 0 || new_cor_index > 32) {
     if (new_cor_index < 0) {
       new_cor_index = new_cor_index + 33;
@@ -43,13 +42,21 @@ void increment_index(int stp) {
     }
   }
   cor_index = new_cor_index;
+  bcp[cor_index].sel();
+  main_cor = bcp[cor_index].cor;
+  update_sliders();
+}
+
+void increment_index(int stp) {
+  int new_cor_index = cor_index + stp;
+  set_index(new_cor_index);
 }
 
 void update_sliders() {
   int[] rgb = getRGB(main_cor);
-    sV1.p = rgb[0];
-    sV2.p = rgb[1];
-    sV3.p = rgb[2];
+  sV1.p = rgb[0];
+  sV2.p = rgb[1];
+  sV3.p = rgb[2];
 }
 
 void initialize_color_palette() {
@@ -58,9 +65,7 @@ void initialize_color_palette() {
                         color_palette[i*3 + 1],
                         color_palette[i*3 + 2]);
   }
-  
-  // Set selection to Color #0
-  bcp[0].sel();
+  set_index(0);
 }
 
 void update_palette(int[] new_palette) {

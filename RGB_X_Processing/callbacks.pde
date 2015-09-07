@@ -68,6 +68,12 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 109) { // MINUS
     update_brightness(-10);
   }
+  else if (e.getKeyCode() == 127) { // DELETE
+    bcp[cor_index].reset();
+  }
+  else if (e.getKeyCode() == 8) { // BACKSPACE
+    bcp[cor_index].undo();
+  }
   else {
     println("Unbound KeyCode: " + e.getKeyCode());
   }
