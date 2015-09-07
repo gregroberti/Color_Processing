@@ -37,7 +37,12 @@ class clrbtn {
   }
   
   void render_text() {
-    fill(255);
+    if (cor == color(255, 255, 255)) {
+      fill(0);
+    }
+    else {
+      fill(255);
+    }
     text(id, x+1, y+10);
   }
   
@@ -87,13 +92,17 @@ class clrbtn {
   }
   
   void update_color(int _r, int _g, int _b) {
+    color _cor = color(_r, _g, _b);
+    if (cor == _cor) {
+      return;
+    }
     if (!rst) {
       lcor = cor;
     }
-    cor = color(_r, _g, _b);
+    cor = _cor;
     main_cor = cor;
     update_sliders();
-    println(_r + ", " + _g + ", " + _b + " // Color #" + id);
+    println("Updated: " + _r + ", " + _g + ", " + _b + " // Color #" + id);
   }
   
   void sel() {

@@ -74,6 +74,9 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 8) { // BACKSPACE
     bcp[cor_index].undo();
   }
+  else if (e.getKeyCode() == 10) { // ENTER
+    bcp[cor_index].update_color(sV1.p, sV2.p, sV3.p);
+  }
   else {
     println("Unbound KeyCode: " + e.getKeyCode());
   }
