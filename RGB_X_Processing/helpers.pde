@@ -61,9 +61,11 @@ void update_sliders() {
 
 void initialize_color_palette() {
   for (int i = 0; i < bcp.length; i++) {
-    bcp[i].cor = color(color_palette[i*3],
-                        color_palette[i*3 + 1],
-                        color_palette[i*3 + 2]);
+    color pset = color(color_palette[i*3],
+                       color_palette[i*3 + 1],
+                       color_palette[i*3 + 2]);
+                        
+    bcp[i].cor = bcp[i].lcor = pset;
   }
   set_index(0);
 }
