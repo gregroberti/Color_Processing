@@ -4,16 +4,18 @@
 
 void mouseWheel(MouseEvent event) {
   float e = event.getCount();
-  
+  int[] rgb = getRGB(main_cor);
   if (sV1.isOver()){
-     sV1.p -= sInc.p*e;
+     rgb[0] -= sInc.p*e;
   }
   else if (sV2.isOver()){
-     sV2.p -= sInc.p*e;
+     rgb[1] -= sInc.p*e;
   }
   else if (sV3.isOver()) {
-     sV3.p -= sInc.p*e;
+     rgb[2] -= sInc.p*e;
   }
+  main_cor = color(rgb[0], rgb[1], rgb[2]);
+  update_sliders();
 }
 
 void mousePressed() {
