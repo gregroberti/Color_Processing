@@ -53,8 +53,6 @@ class sliderV {
 
   void render() {
     noStroke();
-    
-    // MIN AREA
     render_min();
     render_max();
     render_bar();
