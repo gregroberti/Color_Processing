@@ -1,11 +1,19 @@
 import processing.serial.*;
 Serial port;
 
+///////////////////////
+// Set your COM Port //
+///////////////////////
 String com_port = "COM5";
+
 
 int[] color_palette  =
 {
-    0, 0 , 0,    // Color # 0
+    /////////////////////////////
+    // PASTE COLOR LINES BELOW //
+    /////////////////////////////
+    
+    0, 0 , 0,    // Color #0
 
     255 , 0 , 0,   //  Color #1
     255 , 63 , 0,   //  Color #2
@@ -44,62 +52,124 @@ int[] color_palette  =
     0 , 0 , 6,   //  Color #30
     0 , 6 , 0,   //  Color #31
     6 , 0 , 0   //  Color #32
-
+    
+    /////////////////////////////
+    // PASTE COLOR LINES ABOVE //
+    /////////////////////////////
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////
+// BEWARE: DRAGONS BEYOND THIS POINT //
+///////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////
+// LAST CHANCE, TURN BACK NOW //
+////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////
+// OK, BUT DON'T SAY I DIDN'T WARN YOU.. //
+///////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
 int left = 0;
-int top = 400;
+int top = 395;
 clrbtn[] bcp = { // Row #1
-                  new clrbtn(left = 10,  top += 0, color(100, 0, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 25, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 50, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 75, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 100, 0)),
-                  new clrbtn(left += 35,  top += 0, color(20, 100, 0)),
-                  new clrbtn(left += 35,  top += 0, color(0, 100, 10)),
-                  new clrbtn(left += 35,  top += 0, color(18, 100, 18)),
-                  new clrbtn(left += 35,  top += 0, color(30, 120, 200)),
-                  new clrbtn(left += 35,  top += 0, color(50, 50, 200)),
-                  new clrbtn(left += 35,  top += 0, color(90, 10, 200)),
-                  new clrbtn(left += 35,  top += 0, color(0, 0, 200)),
+                  new clrbtn(left = 57,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
                   
                   // Row #2
-                  new clrbtn(left = 10,  top += 35, color(100, 0, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 25, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 50, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 75, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 100, 0)),
-                  new clrbtn(left += 35,  top += 0, color(20, 100, 0)),
-                  new clrbtn(left += 35,  top += 0, color(0, 100, 10)),
-                  
-                  new clrbtn(left += 35,  top += 0, color(18, 100, 18)),
-                  new clrbtn(left += 35,  top += 0, color(30, 120, 200)),
-                  new clrbtn(left += 35,  top += 0, color(50, 50, 200)),
-                  new clrbtn(left += 35,  top += 0, color(90, 10, 200)),
-                  new clrbtn(left += 35,  top += 0, color(0, 0, 200)),
+                  new clrbtn(left = 57,  top += 35, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
                   
                   // Row #3
-                  new clrbtn(left = 10,  top += 35, color(100, 0, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 25, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 50, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 75, 0)),
-                  new clrbtn(left += 35,  top += 0, color(100, 100, 0)),
-                  new clrbtn(left += 35,  top += 0, color(20, 100, 0)),
-                  new clrbtn(left += 35,  top += 0, color(0, 100, 10)),
-                  new clrbtn(left += 35,  top += 0, color(18, 100, 18)),
-                  new clrbtn(left += 35,  top += 0, color(30, 120, 200))
+                  new clrbtn(left = 57,  top += 35, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255)),
+                  new clrbtn(left += 35,  top += 0, color(255, 255, 255))
                   
                   // Don't add more clrbtns unless you add more colors
                   // to the color_palette or you get index out of bounds
                 };
 
 color cor;
-int xV[]  = {100, 200, 300, 10};
-int yV[]  = {100, 100, 100, 10};
-int wV[]  = {90, 90, 90, 50};
-int hV[]  = {255, 255, 255, 10};
-int pV[]  = {90, 90, 90, 1};
-color corV[] = {#FF0000, #03FF00, #009BFF, #FFFFFF};
+int cor_index = 0;
 sliderV sV1, sV2, sV3, sInc;
 printbtn export_cp = new printbtn(330, 10);
 
@@ -109,6 +179,9 @@ void initialize_color_palette() {
                         color_palette[i*3 + 1],
                         color_palette[i*3 + 2]);
   }
+  
+  // Set selection to Color #0
+  bcp[0].sel();
 }
 
 void setup() {
@@ -121,12 +194,12 @@ void setup() {
   port = new Serial(this, com_port, 9600);
 
   // create 3 instances of the sliderV class
-  sV1 = new sliderV(xV[0], yV[0], wV[0], hV[0], pV[0], corV[0], 0, "Red");
-  sV2 = new sliderV(xV[1], yV[1], wV[1], hV[1], pV[1], corV[1], 1, "Green");
-  sV3 = new sliderV(xV[2], yV[2], wV[2], hV[2], pV[2], corV[2], 2, "Blue");
+  sV1 = new sliderV(100, 100, 90, 255, 0, #FF0000, 0, "Red");
+  sV2 = new sliderV(200, 100, 90, 255, 0, #03FF00, 1, "Green");
+  sV3 = new sliderV(300, 100, 90, 255, 0, #009BFF, 2, "Blue");
   
   // create scroll wheel increment slider (yeah.. I know)
-  sInc = new sliderV(xV[3], yV[3], wV[3], hV[3], pV[3], corV[3], 3, "Scroll");
+  sInc = new sliderV(10, 10, 50, 10, 1, #FFFFFF, 3, "Scroll");
   
   initialize_color_palette();
 }
@@ -242,10 +315,17 @@ class printbtn {
   }
 }
 
+void unselect_all() {
+  for (int i = 0; i < bcp.length; i++) {
+    bcp[i].unsel();
+  }
+}
+
 class clrbtn {
   int x, y, w, h;
   color cor;
   int lclk = -1;
+  boolean sel = false;
   
   clrbtn (int _x, int _y, color _cor) {
     x = _x;
@@ -255,10 +335,26 @@ class clrbtn {
     cor = _cor;
   }
   
-  void render() {
-    noStroke();
+  void render_border() {
+    if (sel) {
+      fill(color(200, 0, 0)); // RED
+      rect(x-2, y-2, w+4, h+4);
+    }
+    else {
+      fill(color(255, 255, 255)); // WHITE
+      rect(x-1, y-1, w+2, h+2);
+    }
+  }
+  
+  void render_fill() {
     fill(cor);
     rect(x, y, w, h);
+  }
+  
+  void render() {
+    noStroke();
+    render_border();
+    render_fill();
   }
   
   boolean isOver() {
@@ -273,11 +369,21 @@ class clrbtn {
     if(clk-lclk < 150) {
       cor = color(255, 255, 255);
     }
+    sel();
     lclk = clk;
   }
   
+  void sel() {
+    unselect_all();
+    sel = true;
+  }
+  
+  void unsel() {
+    sel = false;
+  }
+  
   void release() {
-    println("Color:");
+    println("The color you just clicked on was:");
     int clk = millis();
     if (clk-lclk > 500) {
       cor = color(sV1.p, sV2.p, sV3.p);
