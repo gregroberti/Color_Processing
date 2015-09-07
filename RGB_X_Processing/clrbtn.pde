@@ -36,10 +36,16 @@ class clrbtn {
     rect(x, y, w, h);
   }
   
+  void render_text() {
+    fill(255);
+    text(id, x+1, y+10);
+  }
+  
   void render() {
     noStroke();
     render_border();
     render_fill();
+    render_text();
   }
   
   boolean isOver() {
@@ -50,6 +56,7 @@ class clrbtn {
   }
   
   void reset() {
+    println("Reset Color #" + id);
     if (cor == color(255, 255, 255)) {
       update_color(0, 0, 0);
     }
@@ -60,6 +67,7 @@ class clrbtn {
   }
   
   void undo() {
+    println("Undo Color #" + id);
     update_color(lcor);
     rst = false;
   }
