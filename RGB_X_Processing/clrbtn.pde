@@ -48,7 +48,12 @@ class clrbtn {
   void click() {
     int clk = millis();
     if(clk-lclk < 150) {
-      cor = color(255, 255, 255);
+      if (cor == color(255, 255, 255)) {
+        cor = color(0, 0, 0);
+      }
+      else {
+        cor = color(255, 255, 255);
+      }
     }
     sel();
     lclk = clk;
