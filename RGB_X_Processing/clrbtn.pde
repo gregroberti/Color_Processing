@@ -60,9 +60,7 @@ class clrbtn {
   }
   
   void undo() {
-    color tmp = cor;
-    cor = lcor;
-    lcor = tmp;
+    update_color(lcor);
     rst = false;
   }
   
@@ -75,11 +73,18 @@ class clrbtn {
     lclk = clk;
   }
   
+  void update_color(color _cor) {
+    int[] rgb = getRGB(_cor);
+    update_color(rgb[0], rgb[1], rgb[2]);
+  }
+  
   void update_color(int _r, int _g, int _b) {
     if (!rst) {
       lcor = cor;
     }
     cor = color(_r, _g, _b);
+    main_cor = cor;
+    update_sliders();
     println(_r + ", " + _g + ", " + _b + " // Color #" + id);
   }
   
