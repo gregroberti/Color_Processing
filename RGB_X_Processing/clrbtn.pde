@@ -122,9 +122,7 @@ class clrbtn {
     if (cor == _cor) {
       return;
     }
-    println("psh_hst="+psh_hst);
     if (!rst && psh_hst) {
-      println("pushing history");
       history.push(new mycor(cor));
     }
     cor = _cor;
