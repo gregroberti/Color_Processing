@@ -69,6 +69,10 @@ class sliderV {
       else if (p>h) {
         p=h;
       }
+      
+      int[] rgb = getRGB(main_cor);
+      rgb[id] = p;
+      main_cor = color(rgb[0], rgb[1], rgb[2]);
     }
   }
   
