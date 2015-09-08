@@ -38,11 +38,14 @@ class clrbtn {
   
   void render_text() {
     fill(255);
+    int total = 0;
     int[] rgb = getRGB(cor);
     for (int i=0; i<rgb.length; i++) {
-      if (rgb[i] > 200){
-        fill(0);
-      }
+      total += rgb[i];
+    }
+    
+    if (total > 600) {
+      fill(0);
     }
     text(id, x+1, y+10);
   }
