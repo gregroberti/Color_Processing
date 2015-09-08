@@ -65,7 +65,8 @@ void initialize_color_palette() {
                        color_palette[i*3 + 1],
                        color_palette[i*3 + 2]);
                         
-    bcp[i].cor = bcp[i].lcor = pset;
+    bcp[i].cor = pset;
+    bcp[i].clear_history();
   }
   set_index(0);
 }
@@ -91,7 +92,6 @@ void update_clrsel(int stp) {
 }
 
 void update_brightness(int stp) {
-  println("Brightness " + stp);
   int[] rgb = getRGB(main_cor);
   int[] new_rgb = new int[rgb.length];
   

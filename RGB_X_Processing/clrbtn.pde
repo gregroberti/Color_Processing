@@ -2,9 +2,19 @@
 // Color Button //
 //////////////////
 
+import java.util.*;
+
+class mycor {
+  color cor = color(255, 255, 255);
+  
+  mycor (color _cor) {
+    cor = _cor;
+  }
+}
+
 class clrbtn {
   int x, y, id;
-  color lcor = color(255, 255, 255);
+  Stack<mycor> history = new Stack();
   color cor = color(255, 255, 255);
   int w = 25;
   int h = 25;
@@ -64,21 +74,33 @@ class clrbtn {
     return false;
   }
   
+  void clear_history() {
+    while(!history.empty()) {
+      history.pop();
+    }
+    //println("Reset history for Color #" + id);
+  }
+  
   void reset() {
     println("Reset Color #" + id);
     if (cor == color(255, 255, 255)) {
-      update_color(0, 0, 0);
+      update_color(0, 0, 0, true);
     }
     else {
-      update_color(255, 255, 255);
+      update_color(255, 255, 255, true);
     }
     rst = true;
   }
   
   void undo() {
-    println("Undo Color #" + id);
-    update_color(lcor);
-    rst = false;
+    if(!history.empty()) {
+      println("Undo Color #" + id);
+      update_color(history.pop().cor, false);
+      rst = false;
+    }
+    else {
+      println("No changes to undo!");
+    }
   }
   
   void click() {
@@ -90,18 +112,20 @@ class clrbtn {
     lclk = clk;
   }
   
-  void update_color(color _cor) {
+  void update_color(color _cor, boolean psh_hst) {
     int[] rgb = getRGB(_cor);
-    update_color(rgb[0], rgb[1], rgb[2]);
+    update_color(rgb[0], rgb[1], rgb[2], psh_hst);
   }
   
-  void update_color(int _r, int _g, int _b) {
+  void update_color(int _r, int _g, int _b, boolean psh_hst) {
     color _cor = color(_r, _g, _b);
     if (cor == _cor) {
       return;
     }
-    if (!rst) {
-      lcor = cor;
+    println("psh_hst="+psh_hst);
+    if (!rst && psh_hst) {
+      println("pushing history");
+      history.push(new mycor(cor));
     }
     cor = _cor;
     main_cor = cor;
@@ -122,7 +146,7 @@ class clrbtn {
   void release() {
     int clk = millis();
     if (clk-lclk > 500) {
-      update_color(sV1.p, sV2.p, sV3.p);
+      update_color(sV1.p, sV2.p, sV3.p, true);
     }
     else {
       update_sliders();
