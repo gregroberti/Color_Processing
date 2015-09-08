@@ -94,13 +94,12 @@ class clrbtn {
   
   void undo() {
     if(!history.empty()) {
+      rst = false;
       println("Undo Color #" + id);
       update_color(history.pop().cor, false);
-      rst = false;
+      
     }
-    else {
-      println("No changes to undo!");
-    }
+    println(history.size() + " changes left to undo");
   }
   
   void click() {
