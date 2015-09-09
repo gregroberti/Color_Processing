@@ -6,13 +6,13 @@ void mouseWheel(MouseEvent event) {
   float e = event.getCount();
   int[] rgb = getRGB(main_cor);
   if (sV1.isOver()){
-     rgb[0] -= sInc.p*e;
+     rgb[0] -= MOUSE_WHEEL_INC*e;
   }
   else if (sV2.isOver()){
-     rgb[1] -= sInc.p*e;
+     rgb[1] -= MOUSE_WHEEL_INC*e;
   }
   else if (sV3.isOver()) {
-     rgb[2] -= sInc.p*e;
+     rgb[2] -= MOUSE_WHEEL_INC*e;
   }
   main_cor = color(rgb[0], rgb[1], rgb[2]);
   update_sliders();
@@ -32,12 +32,6 @@ void mousePressed() {
   }
   else if (import_cp.isOver()) {
     import_cp.click();
-  }
-  else if (navrgt.isOver()) {
-    navrgt.click();
-  }
-  else if (navlft.isOver()) {
-    navlft.click();
   }
 }
 

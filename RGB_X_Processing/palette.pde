@@ -2,11 +2,12 @@
 // Color Palette //
 ///////////////////
 
-int[] get_palette() { // Don't touch this line
-  return new int[] { // Don't touch this line
-    /////////////////////////////
-    // PASTE COLOR LINES BELOW //
-    /////////////////////////////
+int[] get_palette() {
+  return new int[] {
+     
+    //////////////////////////////////////////////
+    // PASTE YOUR COLOR PALETTE BELOW THIS LINE //
+    //////////////////////////////////////////////
     
     0, 0, 0,     //  Color #0 Blank
     100, 0, 0,   //  Color #1 Red
@@ -42,8 +43,24 @@ int[] get_palette() { // Don't touch this line
     13, 120, 100,//  Color #31 Polar   
     34, 99, 120  //  Color #32 Moonstone
     
-    /////////////////////////////
-    // PASTE COLOR LINES ABOVE //
-    /////////////////////////////
-  }; // Don't touch this line
-} // Don't touch this line
+    //////////////////////////////////////////////
+    // PASTE YOUR COLOR PALETTE ABOVE THIS LINE //
+    //////////////////////////////////////////////
+  };
+  
+  // Fill remaining color slots (if any) with 0's
+  //int[] new_palette = new int[COLOR_PALETTE_SIZE];
+  //println(new_palette.length);
+  //for(int i=0; i<COLOR_PALETTE_SIZE; i++)
+  //{
+  //  println(i);
+  //  if(i<tmp.length) {
+  //    new_palette[i] = tmp[i];
+  //  }
+  //  else {
+  //    new_palette[i] = 0;
+  //  }
+  //}
+  //return new_palette;
+  
+}

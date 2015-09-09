@@ -59,12 +59,23 @@ void update_sliders() {
   sV3.p = rgb[2];
 }
 
-void initialize_color_palette() {
+void initialize_color_buttons() {
+  int id = 0;
+  int left = 0;
+  int top = 360;
   for (int i = 0; i < bcp.length; i++) {
-    color pset = color(color_palette[i*3],
-                       color_palette[i*3 + 1],
-                       color_palette[i*3 + 2]);
-                        
+    println(i);
+    if (i%NUM_BUTTONS_ACROSS==0) {
+      bcp[i] = new clrbtn(left = 57,  top += 35, id++);
+    }
+    else
+    {
+      bcp[i] = new clrbtn(left += 35,  top += 0, id++);
+    }
+    println(color_palette.length);
+    color pset = color(color_palette[i*3 + 0],   // Red
+                       color_palette[i*3 + 1],   // Green
+                       color_palette[i*3 + 2]);  // Blue
     bcp[i].cor = pset;
     bcp[i].clear_history();
   }
@@ -74,7 +85,7 @@ void initialize_color_palette() {
 void update_palette(int[] new_palette) {
   if (new_palette.length == color_palette.length) {
     color_palette = new_palette;
-    initialize_color_palette();
+    initialize_color_buttons();
     //println("Sucessfully updated the color_palette");
   }
   //else {

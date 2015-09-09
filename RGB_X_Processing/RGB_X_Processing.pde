@@ -91,61 +91,22 @@ int[] color_palette = get_palette();
 // OK, BUT DON'T SAY I DIDN'T WARN YOU.. //
 ///////////////////////////////////////////
 
-int id = 0;
-int left = 0;
-int top = 395;
-clrbtn[] bcp = { // Row #1
-                  new clrbtn(left = 57,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  
-                  // Row #2
-                  new clrbtn(left = 57,  top += 35, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  
-                  // Row #3
-                  new clrbtn(left = 57,  top += 35, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++),
-                  new clrbtn(left += 35,  top += 0, id++)
-                  
-                  // Don't add more clrbtns unless you add more colors
-                  // to the color_palette or you get index out of bounds
-                };
+int MOUSE_WHEEL_INC = 1;
+int FORM_WIDTH = 500;
+int FORM_HEIGHT = 500;
+int COLOR_PALETTE_SIZE = 33; // Don't forget about 0
+int NUM_BUTTONS_ACROSS = 11;
+clrbtn[] bcp = new clrbtn[COLOR_PALETTE_SIZE];
 
-color main_cor;
 int cor_index = 0;
+color main_cor = color(0, 0, 0);
 sliderV sV1, sV2, sV3, sInc;
 importbtn import_cp = new importbtn(15, 15);
 exportbtn export_cp = new exportbtn(410, 15);
-navbtn navrgt = new navbtn(442, 398, 1, ">");
-navbtn navlft = new navbtn(22, 398, -1, "<");
 
 void setup() {
+  // FORM_WIDTH = 500
+  // FORM_HEIGHT = 500
   size(500, 500);
   
   println("Available serial ports:");
@@ -159,10 +120,7 @@ void setup() {
   sV2 = new sliderV(200, 100, 90, 255, 0, #03FF00, 1, "Green");
   sV3 = new sliderV(300, 100, 90, 255, 0, #009BFF, 2, "Blue");
   
-  // create scroll wheel increment slider (yeah.. I know)
-  sInc = new sliderV(10, 10, 50, 10, 1, #FFFFFF, 3, "Scroll");
-  
-  initialize_color_palette();
+  initialize_color_buttons();
 }
 
 void draw() {
@@ -172,7 +130,6 @@ void draw() {
   sV2.render();
   sV3.render();
   
-  // sInc.render();
   import_cp.render();
   export_cp.render();
   
@@ -180,9 +137,6 @@ void draw() {
   for (int i = 0; i < bcp.length; i++) {
     bcp[i].render();
   }
-  
-  navrgt.render();
-  navlft.render();
 
   // send sync character
   // send the desired value
