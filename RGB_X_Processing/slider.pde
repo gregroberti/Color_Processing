@@ -78,7 +78,7 @@ class sliderV {
   
   boolean isOver() {
     if ((mouseX>x) && (mouseX<x+w) &&
-        (mouseY>=y-150) && (mouseY<=y+h+150)) {
+        (mouseY>=y-20) && (mouseY<=y+h+20)) {
       return true;
     }
     return false;
