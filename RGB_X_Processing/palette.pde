@@ -50,7 +50,7 @@ class palette {
   
   void initialize_color_buttons() {
     int id = 0;
-    int top_start = 360;
+    int top_start = 340;
     int next_top = top_start;
     
     int left_start = (FORM_WIDTH-((COLOR_BTN_WIDTH+COLOR_BTN_SPACE)*NUM_BUTTONS_ACROSS))/2;

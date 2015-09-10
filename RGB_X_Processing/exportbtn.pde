@@ -9,7 +9,7 @@ class exportbtn {
   exportbtn (int _x, int _y) {
     x = _x;
     y = _y;
-    w = 80;
+    w = 40;
     h = 18;
   }
   
@@ -25,7 +25,7 @@ class exportbtn {
   
   void render_text() {
     fill(255);
-    text("Export Palette", x+2, y+13);
+    text("Export", x+2, y+13);
   }
  
   void render() {

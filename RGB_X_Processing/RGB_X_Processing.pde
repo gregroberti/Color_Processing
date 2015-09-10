@@ -89,24 +89,28 @@ String com_port = "COM5";
 
 int MOUSE_WHEEL_INC = 1;
 int FORM_WIDTH = 500;
-int FORM_HEIGHT = 600;
+int FORM_HEIGHT = 550;
+int SLIDER_TOP = 75;
+int SLIDER_SPACE = 10;
+int SLIDER_WIDTH = 90;
+int SLIDER_HEIGHT = 255;
 int COLOR_BTN_WIDTH = 25;
 int COLOR_BTN_HEIGHT = 25;
 int COLOR_BTN_SPACE = 10;
 //int COLOR_PALETTE_SIZE = 33; // Don't forget about 0
-int NUM_BUTTONS_ACROSS = 11;
+int NUM_BUTTONS_ACROSS = 13;
 palette entire_palette = new palette(33);
 
 int cor_index = 0;
 color main_cor = color(0, 0, 0);
 sliderV sV1, sV2, sV3, sInc;
-importbtn import_cp = new importbtn(15, 15);
-exportbtn export_cp = new exportbtn(410, 15);
+importbtn import_cp = new importbtn(10, 10);
+exportbtn export_cp = new exportbtn(450, 10);
 
 void setup() {
   // FORM_WIDTH = 500
   // FORM_HEIGHT = 500
-  size(500, 600);
+  size(500, 550);
   
   println("Available serial ports:");
   println(Serial.list());
@@ -115,9 +119,12 @@ void setup() {
   port = new Serial(this, com_port, 9600);
 
   // create 3 instances of the sliderV class
-  sV1 = new sliderV(100, 100, 90, 255, 0, #FF0000, 0, "Red");
-  sV2 = new sliderV(200, 100, 90, 255, 0, #03FF00, 1, "Green");
-  sV3 = new sliderV(300, 100, 90, 255, 0, #009BFF, 2, "Blue");
+  sV1 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,
+                      SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #FF0000, 0, "Red");
+  sV2 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*1,
+                      SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #03FF00, 1, "Green");
+  sV3 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*2,
+                      SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #009BFF, 2, "Blue");
   
   entire_palette.initialize_color_buttons();
 }
