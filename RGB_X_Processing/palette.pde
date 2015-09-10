@@ -2,6 +2,10 @@
 // Color Palette //
 ///////////////////
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+
 class palette {
   clrbtn[] bcp;
   int[] color_palette;
@@ -35,7 +39,7 @@ class palette {
       return;
     }
     else {
-      println("Color Palette Size: " + num_btns_new);
+      println("Updated Color Palette Size: " + num_btns_new);
     }
     
     
@@ -87,10 +91,8 @@ class palette {
   }
   
   void update_palette(int[] new_palette) {
-    if (new_palette.length == color_palette.length) {
-      color_palette = new_palette;
-      initialize_color_buttons();
-    }
+    color_palette = new_palette;
+    initialize_color_buttons();
   }
   
   void update_clrsel(int stp) {
@@ -197,13 +199,21 @@ class palette {
       int red = (bcp[i].cor >> 16) & 0xFF;
       int green = (bcp[i].cor >> 8) & 0xFF;
       int blue = (bcp[i].cor & 0xFF);
+      String line = "";
       
       if (i != bcp.length - 1) {
-        retval += red + ", " + green + ", " + blue + ",  // Color #" + i + "\r\n";
+        line = red + ", " + green + ", " + blue + ",";
       }
       else {
-        retval += red + ", " + green + ", " + blue + "   // Color #" + i + "\r\n";
+        line = red + ", " + green + ", " + blue;
       }
+      
+      while (line.length() < 16) {
+        line += " ";
+      }
+      
+      retval += line + "// Color #" + i + "\r\n";
+      
     }
     return retval;
   }
@@ -241,5 +251,71 @@ class palette {
   
   int get_size() {
     return num_btns;
+  }
+  
+  void save_palette() {
+    try {
+      String fname = System.getProperty("user.home") + "\\Desktop\\color_palette.txt";
+      PrintWriter writer = new PrintWriter(fname, "UTF-8");
+      writer.print(print_palette());
+      writer.close();
+      println("Saved color palette to: " + fname);
+    }
+    catch (FileNotFoundException e) {
+      println("FileNotFoundException: " + e);
+    }
+    catch (UnsupportedEncodingException e) {
+      println("UnsupportedEncodingException: " + e);
+    }
+  }
+  
+  void load_palette() {
+    StringBuilder sb = new StringBuilder();
+    String fname = System.getProperty("user.home") + "\\Desktop\\color_palette.txt";
+    try {
+      InputStream input = new FileInputStream(fname);
+      int data = input.read();
+      while(data != -1) {
+       sb.append((char)data);
+       data = input.read();
+      }
+      sb.append((char)data);
+      input.close();
+      
+      int size = 0;
+      String[] rows = sb.toString().replace(" ", "").split("\r\n");
+      for(int i=0; i<rows.length; i++) {
+        String[] row = rows[i].split("//")[0].split(",");
+        if(row.length == 3 || row.length == 4) {
+          for(int j=0; j<row.length; j++) {
+            size++;
+          }
+        }
+      }
+      int[] new_palette = new int[size];
+      for(int i=0; i<rows.length; i++) {
+        String[] row = rows[i].split("//")[0].split(",");
+        if(row.length == 3 || row.length == 4) {
+          new_palette[(i*3)+0] = int(row[0]);
+          new_palette[(i*3)+1] = int(row[1]);
+          new_palette[(i*3)+2] = int(row[2]);
+        }
+        //else {
+        //  println("Invalid row: " + row);
+        //}
+      }
+      
+      entire_palette.update_palette(new_palette);
+      println("Successfully loaded color palette from: " + fname);
+    }
+    catch (FileNotFoundException e) {
+      println("FileNotFoundException: " + e);
+    }
+    catch (IOException e) {
+     println("IOException: " + e);
+    }
+    catch (Exception e) {
+     println("Exception: " + e);
+    }
   }
 }

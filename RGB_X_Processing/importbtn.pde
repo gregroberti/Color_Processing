@@ -44,6 +44,6 @@ class importbtn {
   }
   
   void click() {
-    load_palette();
+    entire_palette.load_palette();
   }
 }
