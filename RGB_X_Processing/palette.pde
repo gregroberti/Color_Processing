@@ -150,13 +150,15 @@ class palette {
  }
 
   void render() {
-    for (int i = 0; i < num_btns; i++) {
+    println("num_btns="+num_btns);
+    println("bcp.length="+bcp.length);
+    for (int i = 0; i < bcp.length; i++) {
       bcp[i].render();
     }
   }
   
   void check_for_btn_clicks() {
-    for (int i = 0; i < num_btns; i++) {
+    for (int i = 0; i < bcp.length; i++) {
       if (bcp[i].isOver()) {
         bcp[i].click();
         cor_index = i;
@@ -166,7 +168,7 @@ class palette {
   }
   
   void check_for_btn_release() {
-    for (int i = 0; i < num_btns; i++) {
+    for (int i = 0; i < bcp.length; i++) {
       if (bcp[i].isOver()) {
         bcp[i].release();
       }
@@ -189,13 +191,13 @@ class palette {
   }
   
   void unselect_all() {
-    for (int i=0; i<num_btns; i++) {
+    for (int i=0; i<bcp.length; i++) {
       bcp[i].unsel();
     }
   }
   String print_palette() {
     String retval = "";
-    for(int i = 0; i < num_btns; i++) {
+    for(int i = 0; i < bcp.length; i++) {
       int red = (bcp[i].cor >> 16) & 0xFF;
       int green = (bcp[i].cor >> 8) & 0xFF;
       int blue = (bcp[i].cor & 0xFF);
@@ -219,15 +221,6 @@ class palette {
   }
   
   void set_index(int new_cor_index) {
-    //while (new_cor_index < 0 || new_cor_index >= num_btns) {
-    //  if (new_cor_index < 0) {
-    //    new_cor_index = new_cor_index + num_btns;
-    //  }
-    //  else if (new_cor_index >= num_btns) {
-    //    new_cor_index = new_cor_index - num_btns;
-    //  }
-    //}
-    
     if (new_cor_index == -1) {
       new_cor_index = num_btns -1;
     }
