@@ -29,6 +29,16 @@ class palette {
 
   void adjust_size(int amnt) {
     int num_btns_new = num_btns + amnt;
+    
+    if (num_btns_new < 1) {
+      println("Unable to reduce the size of the color palette below 1");
+      return;
+    }
+    else {
+      println("Color Palette Size: " + num_btns_new);
+    }
+    
+    
     int rgb_arr_size_new = rgb_arr_size + amnt*3;
     int[] color_palette_new = new int[rgb_arr_size_new];
     
@@ -77,17 +87,10 @@ class palette {
   }
   
   void update_palette(int[] new_palette) {
-    println("update_palette");
     if (new_palette.length == color_palette.length) {
       color_palette = new_palette;
       initialize_color_buttons();
-      //println("Sucessfully updated the color_palette");
     }
-    //else {
-    //  println("color_palette.length = " + color_palette.length);
-    //  println("new_palette.length = " + new_palette.length);
-    //  println("ERROR: The new color palette is the wrong size!");
-    //}
   }
   
   void update_clrsel(int stp) {
@@ -206,15 +209,25 @@ class palette {
   }
   
   void set_index(int new_cor_index) {
-    println(num_btns);
-    while (new_cor_index < 0 || new_cor_index >= num_btns) {
-      if (new_cor_index < 0) {
-        new_cor_index = new_cor_index + num_btns;
-      }
-      else if (new_cor_index >= num_btns) {
-        new_cor_index = new_cor_index - num_btns;
-      }
+    //while (new_cor_index < 0 || new_cor_index >= num_btns) {
+    //  if (new_cor_index < 0) {
+    //    new_cor_index = new_cor_index + num_btns;
+    //  }
+    //  else if (new_cor_index >= num_btns) {
+    //    new_cor_index = new_cor_index - num_btns;
+    //  }
+    //}
+    
+    if (new_cor_index == -1) {
+      new_cor_index = num_btns -1;
     }
+    else if (new_cor_index < 0) {
+      new_cor_index = num_btns - 1;
+    }
+    else if (new_cor_index >= num_btns) {
+      new_cor_index = 0;
+    }
+    
     cor_index = new_cor_index;
     bcp[cor_index].sel();
     main_cor = bcp[cor_index].cor;

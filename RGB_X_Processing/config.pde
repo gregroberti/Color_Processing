@@ -37,7 +37,6 @@ void load_palette() {
     
     String[] rows = sb.toString().replace(" ", "").split("\r\n");
     int[] new_palette = new int[rows.length*3];
-    println(rows.length);
     
     for(int i = 0; i < rows.length; i++) {
       String[] row = rows[i].split("//")[0].split(",");

@@ -74,7 +74,6 @@ class clrbtn {
     while(!history.empty()) {
       history.pop();
     }
-    //println("Reset history for Color #" + id);
   }
   
   void reset() {
