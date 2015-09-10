@@ -42,10 +42,10 @@ public void keyPressed(KeyEvent e) {
     entire_palette.update_clrsel(1);
   }
   else if (e.getKeyCode() == 38) { // UP ARROW
-    entire_palette.update_clrsel(-11);
+    entire_palette.update_clrsel(-NUM_BUTTONS_ACROSS);
   }
   else if (e.getKeyCode() == 40) { // DOWN ARROW
-    entire_palette.update_clrsel(11);
+    entire_palette.update_clrsel(NUM_BUTTONS_ACROSS);
   }
   else if (e.getKeyCode() == 107) { // PLUS
     update_brightness(10);

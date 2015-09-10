@@ -89,13 +89,13 @@ String com_port = "COM5";
 
 int MOUSE_WHEEL_INC = 1;
 int FORM_WIDTH = 500;
-int FORM_HEIGHT = 500;
+int FORM_HEIGHT = 600;
 int COLOR_BTN_WIDTH = 25;
 int COLOR_BTN_HEIGHT = 25;
 int COLOR_BTN_SPACE = 10;
-int COLOR_PALETTE_SIZE = 33; // Don't forget about 0
+//int COLOR_PALETTE_SIZE = 33; // Don't forget about 0
 int NUM_BUTTONS_ACROSS = 11;
-palette entire_palette = new palette(COLOR_PALETTE_SIZE);
+palette entire_palette = new palette(33);
 
 int cor_index = 0;
 color main_cor = color(0, 0, 0);
@@ -106,7 +106,7 @@ exportbtn export_cp = new exportbtn(410, 15);
 void setup() {
   // FORM_WIDTH = 500
   // FORM_HEIGHT = 500
-  size(500, 500);
+  size(500, 600);
   
   println("Available serial ports:");
   println(Serial.list());

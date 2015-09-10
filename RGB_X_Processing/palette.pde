@@ -14,7 +14,6 @@ class palette {
   }
   
   void initialize(int[] new_color_palette) {
-    bcp = new clrbtn[num_btns];
     color_palette = new int[rgb_arr_size];
     
     for(int i=0; i<rgb_arr_size; i++)
@@ -29,6 +28,24 @@ class palette {
   }
 
   void adjust_size(int amnt) {
+    int num_btns_new = num_btns + amnt;
+    int rgb_arr_size_new = rgb_arr_size + amnt*3;
+    int[] color_palette_new = new int[rgb_arr_size_new];
+    
+    // Fit the old array into the new one and pad if necessary
+    for(int i=0; i<rgb_arr_size_new; i++) {
+      if(i<rgb_arr_size) {
+        color_palette_new[i] = color_palette[i];
+      }
+      else {
+        color_palette_new[i] = 0;
+      }
+    }
+    
+    num_btns = num_btns_new;
+    rgb_arr_size = rgb_arr_size_new;
+    color_palette = color_palette_new;
+    initialize_color_buttons();
   }
   
   void initialize_color_buttons() {
@@ -42,6 +59,7 @@ class palette {
     int top_inc = COLOR_BTN_HEIGHT+COLOR_BTN_SPACE;
     int left_inc = COLOR_BTN_WIDTH+COLOR_BTN_SPACE;
     
+    bcp = new clrbtn[num_btns];
     for (int i=0; i<num_btns; i++) {
       if (i%NUM_BUTTONS_ACROSS==0) {
         bcp[i] = new clrbtn(next_left = left_start,  next_top += top_inc, id++);
@@ -59,6 +77,7 @@ class palette {
   }
   
   void update_palette(int[] new_palette) {
+    println("update_palette");
     if (new_palette.length == color_palette.length) {
       color_palette = new_palette;
       initialize_color_buttons();
@@ -126,13 +145,13 @@ class palette {
  }
 
   void render() {
-    for (int i = 0; i < bcp.length; i++) {
+    for (int i = 0; i < num_btns; i++) {
       bcp[i].render();
     }
   }
   
   void check_for_btn_clicks() {
-    for (int i = 0; i < bcp.length; i++) {
+    for (int i = 0; i < num_btns; i++) {
       if (bcp[i].isOver()) {
         bcp[i].click();
         cor_index = i;
@@ -142,7 +161,7 @@ class palette {
   }
   
   void check_for_btn_release() {
-    for (int i = 0; i < bcp.length; i++) {
+    for (int i = 0; i < num_btns; i++) {
       if (bcp[i].isOver()) {
         bcp[i].release();
       }
@@ -158,17 +177,20 @@ class palette {
   }
   
   void update_color(int cor_index) {
+    color_palette[cor_index*3+0] = sV1.p;
+    color_palette[cor_index*3+1] = sV2.p;
+    color_palette[cor_index*3+2] = sV3.p;
     bcp[cor_index].update_color(sV1.p, sV2.p, sV3.p, true);
   }
   
   void unselect_all() {
-    for (int i=0; i<bcp.length; i++) {
+    for (int i=0; i<num_btns; i++) {
       bcp[i].unsel();
     }
   }
   String print_palette() {
     String retval = "";
-    for(int i = 0; i < bcp.length; i++) {
+    for(int i = 0; i < num_btns; i++) {
       int red = (bcp[i].cor >> 16) & 0xFF;
       int green = (bcp[i].cor >> 8) & 0xFF;
       int blue = (bcp[i].cor & 0xFF);
@@ -184,12 +206,13 @@ class palette {
   }
   
   void set_index(int new_cor_index) {
-    while (new_cor_index < 0 || new_cor_index > 32) {
+    println(num_btns);
+    while (new_cor_index < 0 || new_cor_index >= num_btns) {
       if (new_cor_index < 0) {
-        new_cor_index = new_cor_index + 33;
+        new_cor_index = new_cor_index + num_btns;
       }
-      else if (new_cor_index > 32) {
-        new_cor_index = new_cor_index - 33;
+      else if (new_cor_index >= num_btns) {
+        new_cor_index = new_cor_index - num_btns;
       }
     }
     cor_index = new_cor_index;
@@ -202,6 +225,8 @@ class palette {
     int new_cor_index = cor_index + stp;
     set_index(new_cor_index);
   }
-
-
+  
+  int get_size() {
+    return num_btns;
+  }
 }
