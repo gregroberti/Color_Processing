@@ -19,13 +19,8 @@ void mouseWheel(MouseEvent event) {
 }
 
 void mousePressed() {
-  for (int i = 0; i < bcp.length; i++) {
-    if (bcp[i].isOver()) {
-      bcp[i].click();
-      cor_index = i;
-      return;
-    }
-  }
+  entire_palette.check_for_btn_clicks();
+
   
   if (export_cp.isOver()) {
     export_cp.click();
@@ -36,25 +31,21 @@ void mousePressed() {
 }
 
 void mouseReleased() {
-  for (int i = 0; i < bcp.length; i++) {
-    if (bcp[i].isOver()) {
-      bcp[i].release();
-    }
-  }
+  entire_palette.check_for_btn_release();
 }
 
 public void keyPressed(KeyEvent e) {
   if (e.getKeyCode() == 37) {  // LEFT ARROW
-    update_clrsel(-1);
+    entire_palette.update_clrsel(-1);
   }
   else if (e.getKeyCode() == 39) { // RIGHT ARROW
-    update_clrsel(1);
+    entire_palette.update_clrsel(1);
   }
   else if (e.getKeyCode() == 38) { // UP ARROW
-    update_clrsel(-11);
+    entire_palette.update_clrsel(-11);
   }
   else if (e.getKeyCode() == 40) { // DOWN ARROW
-    update_clrsel(11);
+    entire_palette.update_clrsel(11);
   }
   else if (e.getKeyCode() == 107) { // PLUS
     update_brightness(10);
@@ -63,13 +54,20 @@ public void keyPressed(KeyEvent e) {
     update_brightness(-10);
   }
   else if (e.getKeyCode() == 127) { // DELETE
-    bcp[cor_index].reset();
+    entire_palette.reset_btn(cor_index);
   }
   else if (e.getKeyCode() == 8) { // BACKSPACE
-    bcp[cor_index].undo();
+    entire_palette.undo(cor_index);
   }
   else if (e.getKeyCode() == 10) { // ENTER
+    entire_palette.
     bcp[cor_index].update_color(sV1.p, sV2.p, sV3.p, true);
+  }
+  else if (e.getKeyCode() == 122) { // F12
+    entire_palette.adjust_size(-1);
+  }
+  else if (e.getKeyCode() == 123) { // F12
+    entire_palette.adjust_size(1);
   }
   else {
     println("Unbound KeyCode: " + e.getKeyCode());

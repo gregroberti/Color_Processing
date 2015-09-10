@@ -7,10 +7,6 @@ Serial port;
 String com_port = "COM5";
 
 
-/////////////////////////////////////////////
-// Open palette tab to paste Color Palette //
-/////////////////////////////////////////////
-int[] color_palette = get_palette();
 
 
 
@@ -99,7 +95,7 @@ int COLOR_BTN_HEIGHT = 25;
 int COLOR_BTN_SPACE = 10;
 int COLOR_PALETTE_SIZE = 33; // Don't forget about 0
 int NUM_BUTTONS_ACROSS = 11;
-clrbtn[] bcp = new clrbtn[COLOR_PALETTE_SIZE];
+palette entire_palette = new palette(COLOR_PALETTE_SIZE);
 
 int cor_index = 0;
 color main_cor = color(0, 0, 0);
@@ -123,7 +119,7 @@ void setup() {
   sV2 = new sliderV(200, 100, 90, 255, 0, #03FF00, 1, "Green");
   sV3 = new sliderV(300, 100, 90, 255, 0, #009BFF, 2, "Blue");
   
-  initialize_color_buttons();
+  entire_palette.initialize_color_buttons();
 }
 
 void draw() {
@@ -136,10 +132,7 @@ void draw() {
   import_cp.render();
   export_cp.render();
   
-  // render favorites clrbtns
-  for (int i = 0; i < bcp.length; i++) {
-    bcp[i].render();
-  }
+  entire_palette.render();
 
   // send sync character
   // send the desired value

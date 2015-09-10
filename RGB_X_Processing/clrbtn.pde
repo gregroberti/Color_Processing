@@ -127,7 +127,7 @@ class clrbtn {
   }
   
   void sel() {
-    unselect_all();
+    entire_palette.unselect_all();
     selected = true;
     main_cor = cor;
   }

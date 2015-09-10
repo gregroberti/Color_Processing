@@ -45,7 +45,7 @@ class exportbtn {
   
   void click() {
     println("Copy and paste to customize your color palette in NEO!");
-    println(print_palette());
+    println(entire_palette.print_palette());
     save_palette();
   }
 }

@@ -10,7 +10,7 @@ void save_palette() {
   try {
     String fname = System.getProperty("user.home") + "\\Desktop\\color_palette.txt";
     PrintWriter writer = new PrintWriter(fname, "UTF-8");
-    writer.println(print_palette());
+    writer.println(entire_palette.print_palette());
     writer.close();
     println("Saved color palette to: " + fname);
   }
@@ -50,7 +50,7 @@ void load_palette() {
       //}
     }
     
-    update_palette(new_palette);
+    entire_palette.update_palette(new_palette);
     println("Successfully loaded color palette from: " + fname);
   }
   catch (FileNotFoundException e) {
