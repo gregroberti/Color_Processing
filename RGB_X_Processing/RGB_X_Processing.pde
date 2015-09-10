@@ -97,7 +97,6 @@ int SLIDER_HEIGHT = 255;
 int COLOR_BTN_WIDTH = 25;
 int COLOR_BTN_HEIGHT = 25;
 int COLOR_BTN_SPACE = 10;
-//int COLOR_PALETTE_SIZE = 33; // Don't forget about 0
 int NUM_BUTTONS_ACROSS = 13;
 palette entire_palette = new palette(33);
 
@@ -105,11 +104,10 @@ int cor_index = 0;
 color main_cor = color(0, 0, 0);
 sliderV sV1, sV2, sV3, sInc;
 importbtn import_cp = new importbtn(10, 10);
-exportbtn export_cp = new exportbtn(450, 10);
+exportbtn export_cp = new exportbtn(FORM_WIDTH - 50, 10);
 
 void setup() {
-  // FORM_WIDTH = 500
-  // FORM_HEIGHT = 500
+  // Update FORM_WIDTH & FORM_HEIGHT
   size(500, 550);
   
   println("Available serial ports:");
