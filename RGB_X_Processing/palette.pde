@@ -90,11 +90,6 @@ class palette {
     set_index(0);
   }
   
-  void update_palette(int[] new_palette) {
-    color_palette = new_palette;
-    initialize_color_buttons();
-  }
-  
   void update_clrsel(int stp) {
     bcp[cor_index].unsel();
     increment_index(stp);
@@ -150,8 +145,6 @@ class palette {
  }
 
   void render() {
-    println("num_btns="+num_btns);
-    println("bcp.length="+bcp.length);
     for (int i = 0; i < bcp.length; i++) {
       bcp[i].render();
     }
@@ -275,30 +268,33 @@ class palette {
       sb.append((char)data);
       input.close();
       
-      int size = 0;
+      int rgb_arr_size_new = 0;
       String[] rows = sb.toString().replace(" ", "").split("\r\n");
       for(int i=0; i<rows.length; i++) {
         String[] row = rows[i].split("//")[0].split(",");
         if(row.length == 3 || row.length == 4) {
           for(int j=0; j<row.length; j++) {
-            size++;
+            rgb_arr_size_new++;
           }
         }
       }
-      int[] new_palette = new int[size];
+      int[] color_palette_new = new int[rgb_arr_size_new];
       for(int i=0; i<rows.length; i++) {
         String[] row = rows[i].split("//")[0].split(",");
         if(row.length == 3 || row.length == 4) {
-          new_palette[(i*3)+0] = int(row[0]);
-          new_palette[(i*3)+1] = int(row[1]);
-          new_palette[(i*3)+2] = int(row[2]);
+          color_palette_new[(i*3)+0] = int(row[0]);
+          color_palette_new[(i*3)+1] = int(row[1]);
+          color_palette_new[(i*3)+2] = int(row[2]);
         }
         //else {
         //  println("Invalid row: " + row);
         //}
       }
       
-      entire_palette.update_palette(new_palette);
+      num_btns = rgb_arr_size_new/3;
+      rgb_arr_size = rgb_arr_size_new;
+      color_palette = color_palette_new;
+      initialize_color_buttons();
       println("Successfully loaded color palette from: " + fname);
     }
     catch (FileNotFoundException e) {
