@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
 class palette {
-  int y, index = 0;
+  int y, index = -1;
   clrbtn[] bcp;
   boolean horizontal;
   int btn_w, btn_h, btn_sp, btn_acr, btn_acr_unch;
@@ -107,10 +107,13 @@ class palette {
 
       bcp[i].clear_history();
     }
-    set_index(0);
   }
   
   void update_clrsel(int stp) {
+    if (index < 0 || index >= num_btns) {
+      return;
+    }
+    
     bcp[index].unsel();
     increment_index(stp);
     bcp[index].sel();
@@ -171,14 +174,19 @@ class palette {
   }
   
   void check_for_btn_clicks() {
+    println("index="+index);
+    int new_index = -1;
     for (int i = 0; i < bcp.length; i++) {
       if (bcp[i].isOver()) {
-        bcp[index].unsel();
         bcp[i].click();
-        index = i;
-        return;
+        new_index = i;
+        
       }
     }
+    if(index >= 0) {
+      bcp[index].unsel();
+    }
+    index = new_index;
   }
   
   void check_for_btn_release() {

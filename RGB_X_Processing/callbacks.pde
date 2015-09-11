@@ -40,9 +40,11 @@ public void keyPressed(KeyEvent e) {
     preview_palette.update_clrsel(1);
   }
   else if (e.getKeyCode() == 37) {  // LEFT ARROW
+    preview_palette.update_clrsel(-1);
     preset_palette.update_clrsel(-1);
   }
   else if (e.getKeyCode() == 39) { // RIGHT ARROW
+    preview_palette.update_clrsel(1);
     preset_palette.update_clrsel(1);
   }
   else if (e.getKeyCode() == 38) { // UP ARROW
