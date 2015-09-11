@@ -7,13 +7,30 @@ import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
 class palette {
+  int y, index = 0;
   clrbtn[] bcp;
+  boolean horizontal;
+  int btn_w, btn_h, btn_sp, btn_acr, btn_acr_unch;
   int[] color_palette;
   int rgb_arr_size, num_btns;
   
-  palette (int _size) {
+  palette (int _y, int _size, int _btn_w, int _btn_h, int _btn_sp, int _btn_acr, boolean _horizontal) {
+    y = _y;
+    btn_w = _btn_w;
+    btn_h = _btn_h;
+    btn_sp = _btn_sp;
     num_btns = _size;
+    
+    btn_acr_unch = _btn_acr;
+    if (_btn_acr < _size) {
+      btn_acr = _btn_acr;
+    }
+    else {
+      btn_acr = _size;
+    }
+    
     rgb_arr_size = _size*3;
+    horizontal = _horizontal;
     initialize(get_default_palette());
   }
   
@@ -38,10 +55,6 @@ class palette {
       println("Unable to reduce the size of the color palette below 1");
       return;
     }
-    else {
-      println("Updated Color Palette Size: " + num_btns_new);
-    }
-    
     
     int rgb_arr_size_new = rgb_arr_size + amnt*3;
     int[] color_palette_new = new int[rgb_arr_size_new];
@@ -56,6 +69,13 @@ class palette {
       }
     }
     
+    if(num_btns_new < btn_acr) {
+      btn_acr = num_btns_new;
+    }
+    else if(num_btns_new > btn_acr && num_btns_new < btn_acr_unch) {
+      btn_acr = num_btns_new;
+    }
+    
     num_btns = num_btns_new;
     rgb_arr_size = rgb_arr_size_new;
     color_palette = color_palette_new;
@@ -64,22 +84,22 @@ class palette {
   
   void initialize_color_buttons() {
     int id = 0;
-    int top_start = 340;
+    int top_start = y;
     int next_top = top_start;
     
-    int left_start = (FORM_WIDTH-((COLOR_BTN_WIDTH+COLOR_BTN_SPACE)*NUM_BUTTONS_ACROSS))/2;
+    int left_start = (FORM_WIDTH-((btn_w+btn_sp)*btn_acr))/2;
     int next_left = left_start;
     
-    int top_inc = COLOR_BTN_HEIGHT+COLOR_BTN_SPACE;
-    int left_inc = COLOR_BTN_WIDTH+COLOR_BTN_SPACE;
+    int top_inc = btn_h+btn_sp;
+    int left_inc = btn_w+btn_sp;
     
     bcp = new clrbtn[num_btns];
     for (int i=0; i<num_btns; i++) {
-      if (i%NUM_BUTTONS_ACROSS==0) {
-        bcp[i] = new clrbtn(next_left = left_start,  next_top += top_inc, id++);
+      if (i%btn_acr==0) {
+        bcp[i] = new clrbtn(next_left = left_start,  next_top += top_inc, btn_w, btn_h, id++);
       }
       else {
-        bcp[i] = new clrbtn(next_left += left_inc,  next_top += 0, id++);
+        bcp[i] = new clrbtn(next_left += left_inc,  next_top += 0, btn_w, btn_h, id++);
       }
       bcp[i].cor = color(color_palette[i*3 + 0],   // Red
                          color_palette[i*3 + 1],   // Green
@@ -91,9 +111,9 @@ class palette {
   }
   
   void update_clrsel(int stp) {
-    bcp[cor_index].unsel();
+    bcp[index].unsel();
     increment_index(stp);
-    bcp[cor_index].sel();
+    bcp[index].sel();
     update_sliders();
   }
  
@@ -153,8 +173,9 @@ class palette {
   void check_for_btn_clicks() {
     for (int i = 0; i < bcp.length; i++) {
       if (bcp[i].isOver()) {
+        bcp[index].unsel();
         bcp[i].click();
-        cor_index = i;
+        index = i;
         return;
       }
     }
@@ -168,26 +189,21 @@ class palette {
     }
   }
   
-  void reset_btn(int cor_index) {
-    bcp[cor_index].reset();
+  void reset_btn() {
+    bcp[index].reset();
   }
   
-  void undo(int cor_index) {
-    bcp[cor_index].undo();
+  void undo() {
+    bcp[index].undo();
   }
   
-  void update_color(int cor_index) {
-    color_palette[cor_index*3+0] = sV1.p;
-    color_palette[cor_index*3+1] = sV2.p;
-    color_palette[cor_index*3+2] = sV3.p;
-    bcp[cor_index].update_color(sV1.p, sV2.p, sV3.p, true);
+  void update_color() {
+    color_palette[index*3+0] = sV1.p;
+    color_palette[index*3+1] = sV2.p;
+    color_palette[index*3+2] = sV3.p;
+    bcp[index].update_color(sV1.p, sV2.p, sV3.p, true);
   }
   
-  void unselect_all() {
-    for (int i=0; i<bcp.length; i++) {
-      bcp[i].unsel();
-    }
-  }
   String print_palette() {
     String retval = "";
     for(int i = 0; i < bcp.length; i++) {
@@ -224,15 +240,15 @@ class palette {
       new_cor_index = 0;
     }
     
-    cor_index = new_cor_index;
-    bcp[cor_index].sel();
-    main_cor = bcp[cor_index].cor;
+    index = new_cor_index;
+    bcp[index].sel();
+    main_cor = bcp[index].cor;
     update_sliders();
   }
   
   void increment_index(int stp) {
-    int new_cor_index = cor_index + stp;
-    set_index(new_cor_index);
+    int new_index = index + stp;
+    set_index(new_index);
   }
   
   int get_size() {

@@ -13,33 +13,35 @@ class mycor {
 }
 
 class clrbtn {
-  int x, y, id;
+  int x, y, w, h, id;
   Stack<mycor> history = new Stack();
   color cor = color(255, 255, 255);
   int lclk = -1;
   boolean selected = false;
   boolean rst = false;
   
-  clrbtn (int _x, int _y, int _id) {
+  clrbtn (int _x, int _y, int _w, int _h, int _id) {
     x = _x;
     y = _y;
+    w = _w;
+    h = _h;
     id = _id;
   }
   
   void render_border() {
     if (selected) {  // Selected
       fill(color(200, 0, 0));
-      rect(x-2, y-2, COLOR_BTN_WIDTH+4, COLOR_BTN_HEIGHT+4);
+      rect(x-2, y-2, w+4, h+4);
     }
     else {  // Not Selected
       fill(color(255, 255, 255));
-      rect(x-1, y-1, COLOR_BTN_WIDTH+2, COLOR_BTN_HEIGHT+2);
+      rect(x-1, y-1, w+2, h+2);
     }
   }
   
   void render_fill() {
     fill(cor);
-    rect(x, y, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT);
+    rect(x, y, w, h);
   }
   
   void render_text() {
@@ -64,7 +66,7 @@ class clrbtn {
   }
   
   boolean isOver() {
-    if ((mouseX<x+COLOR_BTN_WIDTH) && (mouseX>x) && (mouseY<=y+COLOR_BTN_HEIGHT) && (mouseY>=y)) {
+    if ((mouseX<x+w) && (mouseX>x) && (mouseY<=y+h) && (mouseY>=y)) {
       return true;
     }
     return false;
@@ -126,7 +128,6 @@ class clrbtn {
   }
   
   void sel() {
-    entire_palette.unselect_all();
     selected = true;
     main_cor = cor;
   }

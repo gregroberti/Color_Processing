@@ -19,9 +19,9 @@ void mouseWheel(MouseEvent event) {
 }
 
 void mousePressed() {
-  entire_palette.check_for_btn_clicks();
+  preview_palette.check_for_btn_clicks();
+  preset_palette.check_for_btn_clicks();
 
-  
   if (export_cp.isOver()) {
     export_cp.click();
   }
@@ -31,21 +31,25 @@ void mousePressed() {
 }
 
 void mouseReleased() {
-  entire_palette.check_for_btn_release();
+  preview_palette.check_for_btn_release();
+  preset_palette.check_for_btn_release();
 }
 
 public void keyPressed(KeyEvent e) {
-  if (e.getKeyCode() == 37) {  // LEFT ARROW
-    entire_palette.update_clrsel(-1);
+  if (e.getKeyCode() == 32) {  // SPACE
+    preview_palette.update_clrsel(1);
+  }
+  else if (e.getKeyCode() == 37) {  // LEFT ARROW
+    preset_palette.update_clrsel(-1);
   }
   else if (e.getKeyCode() == 39) { // RIGHT ARROW
-    entire_palette.update_clrsel(1);
+    preset_palette.update_clrsel(1);
   }
   else if (e.getKeyCode() == 38) { // UP ARROW
-    entire_palette.update_clrsel(-NUM_BUTTONS_ACROSS);
+   preset_palette.update_clrsel(-preset_palette.btn_acr);
   }
   else if (e.getKeyCode() == 40) { // DOWN ARROW
-    entire_palette.update_clrsel(NUM_BUTTONS_ACROSS);
+   preset_palette.update_clrsel(preset_palette.btn_acr);
   }
   else if (e.getKeyCode() == 107) { // PLUS
     update_brightness(10);
@@ -54,20 +58,29 @@ public void keyPressed(KeyEvent e) {
     update_brightness(-10);
   }
   else if (e.getKeyCode() == 127) { // DELETE
-    entire_palette.reset_btn(cor_index);
+    preset_palette.reset_btn();
   }
   else if (e.getKeyCode() == 8) { // BACKSPACE
-    entire_palette.undo(cor_index);
+    preset_palette.undo();
   }
   else if (e.getKeyCode() == 10) { // ENTER
-    entire_palette.
-    bcp[cor_index].update_color(sV1.p, sV2.p, sV3.p, true);
+    preset_palette.update_color();
   }
-  else if (e.getKeyCode() == 122) { // F12
-    entire_palette.adjust_size(-1);
+  else if (e.getKeyCode() == 33) { // PAGE UP
+  preview_palette.adjust_size(1);
+  println("Updated Preview Palette Size: " + preview_palette.get_size());
+  }
+  else if (e.getKeyCode() == 34) { // PAGE DOWN
+  preview_palette.adjust_size(-1);
+  println("Updated Preview Palette Size: " + preview_palette.get_size());
+  }
+  else if (e.getKeyCode() == 122) { // F11
+    preset_palette.adjust_size(-1);
+    println("Updated Color Palette Size: " + preset_palette.get_size());
   }
   else if (e.getKeyCode() == 123) { // F12
-    entire_palette.adjust_size(1);
+    preset_palette.adjust_size(1);
+    println("Updated Color Palette Size: " + preset_palette.get_size());
   }
   else {
     println("Unbound KeyCode: " + e.getKeyCode());
