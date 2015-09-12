@@ -37,7 +37,7 @@ void mouseReleased() {
 
 public void keyPressed(KeyEvent e) {
   if (e.getKeyCode() == 32) {  // SPACE
-    preview_palette.update_clrsel(1);
+    //enable_live_preview();
   }
   else if (e.getKeyCode() == 37) {  // LEFT ARROW
     preview_palette.update_clrsel(-1);

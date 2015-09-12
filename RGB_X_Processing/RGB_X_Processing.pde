@@ -96,21 +96,23 @@ int SLIDER_WIDTH = 90;
 int SLIDER_HEIGHT = 255;
 int COLOR_BTN_WIDTH = 25;
 int COLOR_BTN_HEIGHT = 25;
-int COLOR_BTN_SPACE = 10;
+int COLOR_BTN_SPACE_X = 10;
+int COLOR_BTN_SPACE_Y = 10;
 int NUM_BUTTONS_ACROSS = 13;
 int PALETTE_SIZE = 33;
 int PREVIEW_TOP = SLIDER_TOP + SLIDER_HEIGHT;
-int PALETTE_TOP = PREVIEW_TOP + COLOR_BTN_HEIGHT + (COLOR_BTN_SPACE*2);
+int PALETTE_TOP = PREVIEW_TOP + COLOR_BTN_HEIGHT + (COLOR_BTN_SPACE_Y*2);
 int PREVIEW_SIZE = 4;
+int PREVIEW_BTN_SPACE_X = 5;
+int PREVIEW_BTN_SPACE_Y = 10;
 boolean PREVIEW_HORIZONTAL = true;
 boolean PRESET_HORIZONTAL = false;
 
 // Look, I took the time to add these dumb variables so you'd know what everything should do.. also so I don't forget either
-palette preview_palette = new palette(PREVIEW_TOP, PREVIEW_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, COLOR_BTN_SPACE, 9999, PREVIEW_HORIZONTAL);
-palette preset_palette = new palette(PALETTE_TOP, PALETTE_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, COLOR_BTN_SPACE, NUM_BUTTONS_ACROSS, PRESET_HORIZONTAL);
+palette preview_palette = new palette(PREVIEW_TOP, PREVIEW_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, PREVIEW_BTN_SPACE_X, PREVIEW_BTN_SPACE_Y, 9999, PREVIEW_HORIZONTAL);
+palette preset_palette = new palette(PALETTE_TOP, PALETTE_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, COLOR_BTN_SPACE_X, COLOR_BTN_SPACE_Y, NUM_BUTTONS_ACROSS, PRESET_HORIZONTAL);
 
-//int preview_index = 0;
-//int palette_index = 0;
+boolean live_preview = false;
 color main_cor = color(0, 0, 0);
 sliderV sV1, sV2, sV3, sInc;
 importbtn import_cp = new importbtn(10, 10);
@@ -153,10 +155,12 @@ void draw() {
 
   // send sync character
   // send the desired value
-  port.write('R');
-  port.write(sV1.p);
-  port.write('G');
-  port.write(sV2.p);
-  port.write('B');
-  port.write(sV3.p);
+  if(!live_preview) {
+    port.write('R');
+    port.write(sV1.p);
+    port.write('G');
+    port.write(sV2.p);
+    port.write('B');
+    port.write(sV3.p);
+  }
 }

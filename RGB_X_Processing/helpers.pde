@@ -2,6 +2,18 @@
 // Helper Functions //
 //////////////////////
 
+void toggle_live_preview() {
+  if (live_preview) {
+    
+    
+  }
+  else {
+    
+    
+  }
+  live_preview = !live_preview;
+}
+
 int[] getRGB(color _cor) {
   return new int[]{ (_cor >> 16) & 0xFF,
                     (_cor >> 8) & 0xFF,
