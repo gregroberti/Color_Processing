@@ -3,14 +3,6 @@
 //////////////////////
 
 void toggle_live_preview() {
-  if (live_preview) {
-    
-    
-  }
-  else {
-    
-    
-  }
   live_preview = !live_preview;
 }
 

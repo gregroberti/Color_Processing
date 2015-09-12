@@ -155,12 +155,13 @@ void draw() {
 
   // send sync character
   // send the desired value
-  if(!live_preview) {
-    port.write('R');
-    port.write(sV1.p);
-    port.write('G');
-    port.write(sV2.p);
-    port.write('B');
-    port.write(sV3.p);
+  if(live_preview) {
+    preview_palette.update_clrsel(1);
   }
+  port.write('R');
+  port.write(sV1.p);
+  port.write('G');
+  port.write(sV2.p);
+  port.write('B');
+  port.write(sV3.p);
 }
