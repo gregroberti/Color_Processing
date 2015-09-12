@@ -1,7 +1,7 @@
 void setup()
 {
   // declare the serial comm at 9600 baud rate
-  Serial.begin(9600);
+  Serial.begin(57600);
 
   // output pins
   pinMode(9, OUTPUT); // red
