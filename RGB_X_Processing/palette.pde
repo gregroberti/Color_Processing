@@ -327,6 +327,7 @@ class palette {
         //}
       }
       
+      btn_acr = btn_acr_unch;
       num_btns = rgb_arr_size_new/3;
       rgb_arr_size = rgb_arr_size_new;
       color_palette = color_palette_new;
