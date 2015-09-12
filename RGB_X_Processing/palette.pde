@@ -124,6 +124,7 @@ class palette {
       btn_acr = num_btns_new;
     }
     
+    index = -1;
     num_btns = num_btns_new;
     rgb_arr_size = rgb_arr_size_new;
     color_palette = color_palette_new;
@@ -179,8 +180,8 @@ class palette {
     for (int i = 0; i < bcp.length; i++) {
       if (bcp[i].isOver()) {
         bcp[i].click();
-        new_index = i;
         update_color_palette_arr();
+        new_index = i;
       }
     }
     if(index >= 0) {
@@ -193,16 +194,19 @@ class palette {
     for (int i = 0; i < bcp.length; i++) {
       if (bcp[i].isOver()) {
         bcp[i].release();
+        update_color_palette_arr();
       }
     }
   }
   
   void reset_btn() {
     bcp[index].reset();
+    update_color_palette_arr();
   }
   
   void undo() {
     bcp[index].undo();
+    update_color_palette_arr();
   }
   
   void update_color() {
