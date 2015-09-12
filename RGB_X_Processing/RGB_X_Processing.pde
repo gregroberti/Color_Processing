@@ -135,27 +135,34 @@ int[] get_default_palette() {
 ///////////////////////////////////////////
 
 int MOUSE_WHEEL_INC = 1;
+int DOUBLE_CLICK_SPEED = 150;
+
 int FORM_WIDTH = 500;
 int FORM_HEIGHT = 550;
+
 int SLIDER_TOP = 65;
 int SLIDER_SPACE = 10;
 int SLIDER_WIDTH = 90;
 int SLIDER_HEIGHT = 255;
+
+int PREVIEW_SPEED = 1;
+int LIVE_PREVIEW_COUNTER;
+int MAX_PREVIEW_SIZE = 255;
+int PREVIEW_BTN_SPACE_X = 5;
+int PREVIEW_BTN_SPACE_Y = 10;
+int PREVIEW_TOP = SLIDER_TOP + SLIDER_HEIGHT;
+int[] PREVIEW_PALETTE = {0,0,0,0,0,0,0,0,0};
+int PREVIEW_SIZE = PREVIEW_PALETTE.length/3;
+boolean PREVIEW_HORIZONTAL = true;
+
+int PALETTE_SIZE = 33;
 int COLOR_BTN_WIDTH = 25;
 int COLOR_BTN_HEIGHT = 25;
 int COLOR_BTN_SPACE_X = 10;
 int COLOR_BTN_SPACE_Y = 10;
 int NUM_BUTTONS_ACROSS = 13;
-int PALETTE_SIZE = 33;
-int PREVIEW_TOP = SLIDER_TOP + SLIDER_HEIGHT;
 int PALETTE_TOP = PREVIEW_TOP + COLOR_BTN_HEIGHT + (COLOR_BTN_SPACE_Y*2);
 int[] PRESET_PALETTE = get_default_palette();
-int MAX_PREVIEW_SIZE = 255;
-int PREVIEW_BTN_SPACE_X = 5;
-int PREVIEW_BTN_SPACE_Y = 10;
-int[] PREVIEW_PALETTE = {0,0,0,0,0,0,0,0,0};
-int PREVIEW_SIZE = PREVIEW_PALETTE.length/3;
-boolean PREVIEW_HORIZONTAL = true;
 boolean PRESET_HORIZONTAL = false;
 
 // Look, I took the time to add these dumb variables so you'd know what everything should do.. also so I don't forget either
@@ -206,7 +213,12 @@ void draw() {
   // send sync character
   // send the desired value
   if(live_preview) {
-    preview_palette.update_clrsel(1);
+    LIVE_PREVIEW_COUNTER++;
+    
+    if(LIVE_PREVIEW_COUNTER >= PREVIEW_SPEED) {
+      LIVE_PREVIEW_COUNTER = 0;
+      preview_palette.update_clrsel(1);
+    }
   }
   port.write('R');
   port.write(sV1.p);

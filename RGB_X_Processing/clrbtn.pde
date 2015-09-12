@@ -101,7 +101,7 @@ class clrbtn {
   
   void click() {
     int clk = millis();
-    if(clk-lclk < 150) {
+    if(clk-lclk < DOUBLE_CLICK_SPEED) {
       reset();
     }
     sel();

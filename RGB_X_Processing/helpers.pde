@@ -5,6 +5,7 @@
 void toggle_live_preview() {
   live_preview = !live_preview;
   if (live_preview) {
+    LIVE_PREVIEW_COUNTER = 0;
     preset_palette.unselect();
     preview_palette.set_index(0);
   }

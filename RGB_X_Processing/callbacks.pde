@@ -39,6 +39,14 @@ public void keyPressed(KeyEvent e) {
   if (e.getKeyCode() == 32) {  // SPACE
     toggle_live_preview();
   }
+  else if (e.getKeyCode() == 36) {  // HOME
+    if (PREVIEW_SPEED > 0) {
+      PREVIEW_SPEED--;
+    }
+  }
+  else if (e.getKeyCode() == 35) {  // END
+    PREVIEW_SPEED++;
+  }
   else if (e.getKeyCode() == 37) {  // LEFT ARROW
     preview_palette.update_clrsel(-1);
     preset_palette.update_clrsel(-1);
