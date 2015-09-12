@@ -144,7 +144,7 @@ class palette {
         new_index = i;
       }
     }
-    if(index >= 0) {
+    if(index >= 0 && new_index != index) {
       bcp[index].unsel();
     }
     index = new_index;
