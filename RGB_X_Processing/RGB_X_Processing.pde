@@ -6,6 +6,53 @@ Serial port;
 ///////////////////////
 String com_port = "COM5";
 
+int[] get_default_palette() {
+  return new int[] {
+    
+    //////////////////////////////////////////////
+    // PASTE YOUR COLOR PALETTE BELOW THIS LINE //
+    //////////////////////////////////////////////
+    
+    0, 0, 0,     //  Color #0 Blank
+    100, 0, 0,   //  Color #1 Red
+    100, 25, 0,  //  Color #2 Sunset
+    100, 50, 0,  //  Color #3 Orange
+    100, 75, 0,  //  Color #4 Canary
+    100, 100, 0, //  Color #5 Yellow
+    20, 100, 0,  //  Color #6 Lime
+    0, 100, 0,   //  Color #7 Green
+    0, 100, 10,  //  Color #8 Sea Foam
+    13, 100, 13, //  Color #9 Mint 
+    0, 100, 40,  //  Color #10 Aqua
+    0, 121, 73,  //  Color #11 Turquoise
+    0, 100, 108, //  Color #12 Cyan
+    0, 65, 100,  //  Color #13 Frostbolt
+    0 , 42, 100, //  Color #14 Frozen  
+    0, 22, 100,  //  Color #15 Azure
+    0, 0, 100,   //  Color #16 Blue
+    3, 0, 100,   //  Color #17 Cobalt
+    13, 0, 100,  //  Color #18 Mothafuckin Purple
+    26, 0, 100,  //  Color #19 Purple Drank
+    30, 14, 100, //  Color #20 Lavender
+    47, 26, 100, //  Color #21 Mauve 
+    100, 25, 25, //  Color #22 Lemonade
+    50, 0, 100,  //  Color #23 Bubblegum  
+    75, 0, 100,  //  Color #24 Magenta  
+    100, 0, 100, //  Color #25 Pink    
+    100, 0, 75,  //  Color #26 Hot Pink
+    100, 0, 50,  //  Color #27 Deep Pink    
+    100, 0, 25,  //  Color #28 Fuscia
+    100, 0, 10,  //  Color #29 Panther Pink
+    35, 67, 120, //  Color #30 Lilac  
+    13, 120, 100,//  Color #31 Polar   
+    34, 99, 120  //  Color #32 Moonstone
+    
+    //////////////////////////////////////////////
+    // PASTE YOUR COLOR PALETTE ABOVE THIS LINE //
+    //////////////////////////////////////////////
+  };
+}
+
 
 
 
@@ -102,15 +149,18 @@ int NUM_BUTTONS_ACROSS = 13;
 int PALETTE_SIZE = 33;
 int PREVIEW_TOP = SLIDER_TOP + SLIDER_HEIGHT;
 int PALETTE_TOP = PREVIEW_TOP + COLOR_BTN_HEIGHT + (COLOR_BTN_SPACE_Y*2);
-int PREVIEW_SIZE = 4;
+int[] PRESET_PALETTE = get_default_palette();
+int MAX_PREVIEW_SIZE = 255;
 int PREVIEW_BTN_SPACE_X = 5;
 int PREVIEW_BTN_SPACE_Y = 10;
+int[] PREVIEW_PALETTE = {0,0,0,0,0,0,0,0,0};
+int PREVIEW_SIZE = PREVIEW_PALETTE.length/3;
 boolean PREVIEW_HORIZONTAL = true;
 boolean PRESET_HORIZONTAL = false;
 
 // Look, I took the time to add these dumb variables so you'd know what everything should do.. also so I don't forget either
-palette preview_palette = new palette(PREVIEW_TOP, PREVIEW_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, PREVIEW_BTN_SPACE_X, PREVIEW_BTN_SPACE_Y, 9999, PREVIEW_HORIZONTAL);
-palette preset_palette = new palette(PALETTE_TOP, PALETTE_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, COLOR_BTN_SPACE_X, COLOR_BTN_SPACE_Y, NUM_BUTTONS_ACROSS, PRESET_HORIZONTAL);
+palette preview_palette = new palette(PREVIEW_PALETTE, PREVIEW_TOP, PREVIEW_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, PREVIEW_BTN_SPACE_X, PREVIEW_BTN_SPACE_Y, MAX_PREVIEW_SIZE, PREVIEW_HORIZONTAL);
+palette preset_palette = new palette(PRESET_PALETTE, PALETTE_TOP, PALETTE_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, COLOR_BTN_SPACE_X, COLOR_BTN_SPACE_Y, NUM_BUTTONS_ACROSS, PRESET_HORIZONTAL);
 
 boolean live_preview = false;
 color main_cor = color(0, 0, 0);

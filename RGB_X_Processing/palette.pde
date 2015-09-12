@@ -14,7 +14,7 @@ class palette {
   int[] color_palette;
   int rgb_arr_size, num_btns;
   
-  palette (int _y, int _size, int _btn_w, int _btn_h, int _btn_sp_x, int _btn_sp_y, int _btn_acr, boolean _horizontal) {
+  palette (int[] _color_palette, int _y, int _size, int _btn_w, int _btn_h, int _btn_sp_x, int _btn_sp_y, int _btn_acr, boolean _horizontal) {
     y = _y;
     btn_w = _btn_w;
     btn_h = _btn_h;
@@ -32,55 +32,12 @@ class palette {
     
     rgb_arr_size = _size*3;
     horizontal = _horizontal;
-    initialize(get_default_palette());
+    
+    if (_color_palette == null) {
+      _color_palette = get_default_palette();
+    }
+    initialize(_color_palette);
   }
-  
-   int[] get_default_palette() {
-   return new int[] {
-       
-     //////////////////////////////////////////////
-     // PASTE YOUR COLOR PALETTE BELOW THIS LINE //
-     //////////////////////////////////////////////
-      
-     0, 0, 0,     //  Color #0 Blank
-     100, 0, 0,   //  Color #1 Red
-     100, 25, 0,  //  Color #2 Sunset
-     100, 50, 0,  //  Color #3 Orange
-     100, 75, 0,  //  Color #4 Canary
-     100, 100, 0, //  Color #5 Yellow
-     20, 100, 0,  //  Color #6 Lime
-     0, 100, 0,   //  Color #7 Green
-     0, 100, 10,  //  Color #8 Sea Foam
-     13, 100, 13, //  Color #9 Mint 
-     0, 100, 40,  //  Color #10 Aqua
-     0, 121, 73,  //  Color #11 Turquoise
-     0, 100, 108, //  Color #12 Cyan
-     0, 65, 100,  //  Color #13 Frostbolt
-     0 , 42, 100, //  Color #14 Frozen  
-     0, 22, 100,  //  Color #15 Azure
-     0, 0, 100,   //  Color #16 Blue
-     3, 0, 100,   //  Color #17 Cobalt
-     13, 0, 100,  //  Color #18 Mothafuckin Purple
-     26, 0, 100,  //  Color #19 Purple Drank
-     30, 14, 100, //  Color #20 Lavender
-     47, 26, 100, //  Color #21 Mauve 
-     100, 25, 25, //  Color #22 Lemonade
-     50, 0, 100,  //  Color #23 Bubblegum  
-     75, 0, 100,  //  Color #24 Magenta  
-     100, 0, 100, //  Color #25 Pink    
-     100, 0, 75,  //  Color #26 Hot Pink
-     100, 0, 50,  //  Color #27 Deep Pink    
-     100, 0, 25,  //  Color #28 Fuscia
-     100, 0, 10,  //  Color #29 Panther Pink
-     35, 67, 120, //  Color #30 Lilac  
-     13, 120, 100,//  Color #31 Polar   
-     34, 99, 120  //  Color #32 Moonstone
-      
-     //////////////////////////////////////////////
-     // PASTE YOUR COLOR PALETTE ABOVE THIS LINE //
-     //////////////////////////////////////////////
-   };
- }
   
   void initialize(int[] new_color_palette) {
     color_palette = new int[rgb_arr_size];
@@ -98,9 +55,15 @@ class palette {
 
   void adjust_size(int amnt) {
     int num_btns_new = num_btns + amnt;
+    int btn_w_padded = (btn_w+btn_sp_x);
     
     if (num_btns_new < 1) {
       println("Unable to reduce the size of the color palette below 1");
+      return;
+    }
+    //this fancy little doo-dad will keep your live preview buttons from going off screen..
+    else if (horizontal && (((FORM_WIDTH-btn_w_padded)-(btn_w_padded*num_btns_new))/btn_w_padded < 0)) {
+      println("Try increasing the form size");
       return;
     }
     
@@ -117,10 +80,7 @@ class palette {
       }
     }
     
-    if(num_btns_new < btn_acr) {
-      btn_acr = num_btns_new;
-    }
-    else if(num_btns_new > btn_acr && num_btns_new < btn_acr_unch) {
+    if(num_btns_new < btn_acr || (num_btns_new > btn_acr && num_btns_new <= btn_acr_unch)) {
       btn_acr = num_btns_new;
     }
     
@@ -199,21 +159,34 @@ class palette {
     }
   }
   
+  void unselect() {
+    if (index != -1) {
+      bcp[index].unsel();
+      index = -1;
+    }
+  }
+  
   void reset_btn() {
-    bcp[index].reset();
-    update_color_palette_arr();
+    if (index != -1) {
+      bcp[index].reset();
+      update_color_palette_arr();
+    }
   }
   
   void undo() {
-    bcp[index].undo();
-    update_color_palette_arr();
+    if (index != -1) {
+      bcp[index].undo();
+      update_color_palette_arr();
+    }
   }
   
   void update_color() {
-    color_palette[index*3+0] = sV1.p;
-    color_palette[index*3+1] = sV2.p;
-    color_palette[index*3+2] = sV3.p;
-    bcp[index].update_color(sV1.p, sV2.p, sV3.p, true);
+    if (index != -1) {
+      color_palette[index*3+0] = sV1.p;
+      color_palette[index*3+1] = sV2.p;
+      color_palette[index*3+2] = sV3.p;
+      bcp[index].update_color(sV1.p, sV2.p, sV3.p, true);
+    }
   }
   
   void update_color_palette_arr() {

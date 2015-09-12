@@ -4,6 +4,10 @@
 
 void toggle_live_preview() {
   live_preview = !live_preview;
+  if (live_preview) {
+    preset_palette.unselect();
+    preview_palette.set_index(0);
+  }
 }
 
 int[] getRGB(color _cor) {

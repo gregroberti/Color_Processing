@@ -60,21 +60,24 @@ public void keyPressed(KeyEvent e) {
     update_brightness(-10);
   }
   else if (e.getKeyCode() == 127) { // DELETE
+    preview_palette.reset_btn();
     preset_palette.reset_btn();
   }
   else if (e.getKeyCode() == 8) { // BACKSPACE
+    preview_palette.undo();
     preset_palette.undo();
   }
   else if (e.getKeyCode() == 10) { // ENTER
+    preview_palette.update_color();
     preset_palette.update_color();
   }
   else if (e.getKeyCode() == 33) { // PAGE UP
-  preview_palette.adjust_size(1);
-  println("Updated Preview Palette Size: " + preview_palette.get_size());
+    preview_palette.adjust_size(1);
+    println("Updated Preview Palette Size: " + preview_palette.get_size());
   }
   else if (e.getKeyCode() == 34) { // PAGE DOWN
-  preview_palette.adjust_size(-1);
-  println("Updated Preview Palette Size: " + preview_palette.get_size());
+    preview_palette.adjust_size(-1);
+    println("Updated Preview Palette Size: " + preview_palette.get_size());
   }
   else if (e.getKeyCode() == 122) { // F11
     preset_palette.adjust_size(-1);
