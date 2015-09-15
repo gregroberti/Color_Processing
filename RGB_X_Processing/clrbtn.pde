@@ -100,11 +100,17 @@ class clrbtn {
   }
   
   void click() {
-    int clk = millis();
-    if(clk-lclk < DOUBLE_CLICK_SPEED) {
-      reset();
+    if (mouseButton == LEFT) {
+      int clk = millis();
+      if (clk-lclk < DOUBLE_CLICK_SPEED) {
+        reset();
+      }
+      lclk = clk;
     }
-    lclk = clk;
+    else if (mouseButton == RIGHT) {
+      update_color(main_cor, true);
+    }
+    sel();
   }
   
   void update_color(color _cor, boolean psh_hst) {
@@ -132,15 +138,5 @@ class clrbtn {
   
   void unsel() {
     selected = false;
-  }
-  
-  void release() {
-    int clk = millis();
-    if (clk-lclk > 500) {
-      update_color(main_cor, true);
-    }
-    else {
-      sel();
-    }
   }
 }
