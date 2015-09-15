@@ -122,10 +122,7 @@ class palette {
     if (index < 0 || index >= num_btns) {
       return;
     }
-    
-    bcp[index].unsel();
     increment_index(stp);
-    bcp[index].sel();
   }
 
   void render() {
