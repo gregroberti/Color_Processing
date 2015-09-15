@@ -42,8 +42,8 @@ void loop()
     curr_b = next_b;
     update = false;
   }
-
-  osmPWMSCCxyz(curr_r,curr_g,curr_b, 1);
+  
+  osmPWMSCCxyz(curr_r, curr_g, curr_b, 1);
 }
 
 // read the serial port

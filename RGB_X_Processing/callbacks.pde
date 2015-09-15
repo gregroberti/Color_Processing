@@ -44,7 +44,21 @@ void mouseReleased() {
 }
 
 public void keyPressed(KeyEvent e) {
-  if (e.getKeyCode() == 32) {  // SPACE
+  if (clearpalette) {
+    if (e.getKeyCode() != 67) { // Clear Palette Canceled
+      println("Pffew, that was close :)");
+    }
+    else if (e.getKeyCode() == 67) { // Clear that MOFO
+      println("All gone!");
+      preset_palette.reset_all();
+    }
+    clearpalette = false;
+  }
+  else if (e.getKeyCode() == 67) { // C (Clear Preset Palette)
+      println("Press 'c' again to clear the color preset palette (all white)");
+      clearpalette = true;
+    }
+  else if (e.getKeyCode() == 32) {  // SPACE
     toggle_live_preview();
   }
   else if (e.getKeyCode() == 36) {  // HOME
@@ -76,8 +90,8 @@ public void keyPressed(KeyEvent e) {
     update_brightness(-10);
   }
   else if (e.getKeyCode() == 127) { // DELETE
-    preview_palette.reset_btn();
-    preset_palette.reset_btn();
+    preview_palette.reset_selected();
+    preset_palette.reset_selected();
   }
   else if (e.getKeyCode() == 8) { // BACKSPACE
     preview_palette.undo();

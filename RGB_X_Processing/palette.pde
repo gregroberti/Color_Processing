@@ -162,10 +162,16 @@ class palette {
     }
   }
   
-  void reset_btn() {
+  void reset_selected() {
     if (index != -1) {
       bcp[index].reset();
       update_color_palette_arr();
+    }
+  }
+  
+  void reset_all() {
+    for (int i = 0; i < bcp.length; i++) {
+      bcp[i].reset();
     }
   }
   
