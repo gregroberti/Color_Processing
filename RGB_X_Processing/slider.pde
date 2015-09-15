@@ -50,6 +50,15 @@ class sliderV {
     fill(255);
     text(p + " " + name, x+2, h-p+y+6);
   }
+  
+  void check_out_of_range() {
+    if (p<0) {
+      p=0;
+    }
+    else if (p>h) {
+      p=h;
+    }
+  }
 
   void render() {
     noStroke();
@@ -58,22 +67,14 @@ class sliderV {
     render_bar();
     render_slider();
     
-    if (mouseX<x+w && mouseX>x && (mouseY<=y+h+20) && (mouseY>=y-20)) {
-      if(mousePressed==true) {
-        p = h-(mouseY-y);
-      }
-      
-      if (p<0) {
-        p=0;
-      }
-      else if (p>h) {
-        p=h;
-      }
-      
-      int[] rgb = getRGB(main_cor);
-      rgb[id] = p;
-      main_cor = color(rgb[0], rgb[1], rgb[2]);
+    if(mousePressed && isOver()) {
+      click();
     }
+  }
+  
+  void click() {
+    p = h-(mouseY-y);
+    update_main_color();
   }
   
   boolean isOver() {
@@ -82,5 +83,12 @@ class sliderV {
       return true;
     }
     return false;
+  }
+  
+  void update_main_color() {
+    check_out_of_range();
+    int[] rgb = getRGB(main_cor);
+    rgb[id] = p;
+    new_cor = color(rgb[0], rgb[1], rgb[2]);
   }
 }

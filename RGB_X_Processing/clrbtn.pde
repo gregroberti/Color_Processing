@@ -104,7 +104,6 @@ class clrbtn {
     if(clk-lclk < DOUBLE_CLICK_SPEED) {
       reset();
     }
-    sel();
     lclk = clk;
   }
   
@@ -122,14 +121,13 @@ class clrbtn {
       history.push(new mycor(cor));
     }
     cor = _cor;
-    main_cor = cor;
-    update_sliders();
+    new_cor = cor;
     println("Updated: " + _r + ", " + _g + ", " + _b + " // Color #" + id);
   }
   
   void sel() {
     selected = true;
-    main_cor = cor;
+    new_cor = cor;
   }
   
   void unsel() {
@@ -139,10 +137,10 @@ class clrbtn {
   void release() {
     int clk = millis();
     if (clk-lclk > 500) {
-      update_color(sV1.p, sV2.p, sV3.p, true);
+      update_color(main_cor, true);
     }
     else {
-      update_sliders();
+      sel();
     }
   }
 }

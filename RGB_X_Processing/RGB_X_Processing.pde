@@ -170,6 +170,7 @@ palette preview_palette = new palette(PREVIEW_PALETTE, PREVIEW_TOP, PREVIEW_SIZE
 palette preset_palette = new palette(PRESET_PALETTE, PALETTE_TOP, PALETTE_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, COLOR_BTN_SPACE_X, COLOR_BTN_SPACE_Y, NUM_BUTTONS_ACROSS, PRESET_HORIZONTAL);
 
 boolean live_preview = false;
+color new_cor = color(0, 0, 0);
 color main_cor = color(0, 0, 0);
 sliderV sV1, sV2, sV3, sInc;
 importbtn import_cp = new importbtn(10, 10);
@@ -220,10 +221,20 @@ void draw() {
       preview_palette.update_clrsel(1);
     }
   }
-  port.write('R');
-  port.write(sV1.p);
-  port.write('G');
-  port.write(sV2.p);
-  port.write('B');
-  port.write(sV3.p);
+  
+  if(new_cor != main_cor) {
+    main_cor = new_cor;
+
+    int rgb[] = getRGB(main_cor);
+    sV1.p = rgb[0];
+    sV2.p = rgb[1];
+    sV3.p = rgb[2];
+    
+    port.write('R');
+    port.write(sV1.p);
+    port.write('G');
+    port.write(sV2.p);
+    port.write('B');
+    port.write(sV3.p);
+  }
 }

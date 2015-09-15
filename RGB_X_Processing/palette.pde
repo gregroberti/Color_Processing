@@ -126,7 +126,6 @@ class palette {
     bcp[index].unsel();
     increment_index(stp);
     bcp[index].sel();
-    update_sliders();
   }
 
   void render() {
@@ -223,20 +222,17 @@ class palette {
   }
   
   void set_index(int new_cor_index) {
-    if (new_cor_index == -1) {
-      new_cor_index = num_btns -1;
-    }
-    else if (new_cor_index < 0) {
+    if (new_cor_index < 0) {
       new_cor_index = num_btns - 1;
     }
     else if (new_cor_index >= num_btns) {
       new_cor_index = 0;
     }
     
+    bcp[index].unsel();
     index = new_cor_index;
     bcp[index].sel();
-    main_cor = bcp[index].cor;
-    update_sliders();
+    new_cor = bcp[index].cor;
   }
   
   void increment_index(int stp) {

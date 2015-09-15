@@ -18,13 +18,6 @@ int[] getRGB(color _cor) {
                   };
 }
 
-void update_sliders() {
-  int[] rgb = getRGB(main_cor);
-  sV1.p = rgb[0];
-  sV2.p = rgb[1];
-  sV3.p = rgb[2];
-}
-
 void update_brightness(int stp) {
   int[] rgb = getRGB(main_cor);
   int[] new_rgb = new int[rgb.length];
@@ -40,6 +33,5 @@ void update_brightness(int stp) {
       new_rgb[i] = rgb[i]+stp;
     }
   }
-  main_cor = color(new_rgb[0], new_rgb[1], new_rgb[2]);
-  update_sliders();
+  new_cor = color(new_rgb[0], new_rgb[1], new_rgb[2]);
 }

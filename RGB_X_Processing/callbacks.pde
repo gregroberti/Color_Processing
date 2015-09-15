@@ -14,15 +14,23 @@ void mouseWheel(MouseEvent event) {
   else if (sV3.isOver()) {
      rgb[2] -= MOUSE_WHEEL_INC*e;
   }
-  main_cor = color(rgb[0], rgb[1], rgb[2]);
-  update_sliders();
+  new_cor = color(rgb[0], rgb[1], rgb[2]);
 }
 
 void mousePressed() {
   preview_palette.check_for_btn_clicks();
   preset_palette.check_for_btn_clicks();
 
-  if (export_cp.isOver()) {
+  if (sV1.isOver()) {
+    sV1.click();
+  }
+  else if (sV2.isOver()) {
+    sV2.click();
+  }
+  else if (sV3.isOver()) {
+    sV3.click();
+  }
+  else if (export_cp.isOver()) {
     export_cp.click();
   }
   else if (import_cp.isOver()) {
@@ -94,6 +102,9 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 123) { // F12
     preset_palette.adjust_size(1);
     println("Updated Color Palette Size: " + preset_palette.get_size());
+  }
+  else if (e.getKeyCode() >= 48 && e.getKeyCode() <= 57) { // 0 - 9
+    preset_palette.set_index(e.getKeyCode() - 48);
   }
   else {
     println("Unbound KeyCode: " + e.getKeyCode());
