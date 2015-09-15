@@ -18,6 +18,7 @@ void mouseWheel(MouseEvent event) {
 }
 
 void mousePressed() {
+  live_preview = false;
   preview_palette.check_for_btn_clicks();
   preset_palette.check_for_btn_clicks();
 

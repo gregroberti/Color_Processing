@@ -232,7 +232,9 @@ class palette {
       new_cor_index = 0;
     }
     
-    bcp[index].unsel();
+    if (index >= 0) {
+      bcp[index].unsel();
+    }
     index = new_cor_index;
     bcp[index].sel();
     new_cor = bcp[index].cor;
