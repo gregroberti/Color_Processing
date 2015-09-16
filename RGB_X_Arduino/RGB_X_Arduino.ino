@@ -1,12 +1,8 @@
 volatile boolean update = false;
 volatile int long TTtime;
-volatile int next_r = 0;
-volatile int next_g = 0;
-volatile int next_b = 0;
-volatile int curr_r = 0;
-volatile int curr_g = 0;
-volatile int curr_b = 0;
-
+volatile int red = 0;
+volatile int green = 0;
+volatile int blue = 0;
 
 void setup()
 {
@@ -25,25 +21,23 @@ void loop()
   switch(GetFromSerial())
   {
   case 'R':
-    next_r = GetFromSerial();
+    red = GetFromSerial();
     break;
   case 'G':
-    next_g = GetFromSerial();
+    green = GetFromSerial();
     break;
   case 'B':
-    next_b = GetFromSerial();
+    blue = GetFromSerial();
     update = true;
     break;
   }
   
   if(update) {
-    curr_r = next_r;
-    curr_g = next_g;
-    curr_b = next_b;
     update = false;
+    analogWrite(5, blue);
+    analogWrite(6, green);
+    analogWrite(9, red);
   }
-  
-  osmPWMSCCxyz(curr_r, curr_g, curr_b, 1);
 }
 
 // read the serial port
@@ -53,16 +47,3 @@ int GetFromSerial()
   }
   return Serial.read();
 }
-
-// this is the light engine
-void osmPWMSCCxyz(byte red, byte green, byte blue, int time)
-{ // void osmPWM
-	while (time > 0)
-	{ // while time
-		analogWrite(5, blue); // blue
-		analogWrite(6, green); // green
-		analogWrite(9, red); // red
-		time--;
-	}// elihw time
-}// diov osmPWM
-

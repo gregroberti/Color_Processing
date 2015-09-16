@@ -114,7 +114,8 @@ public void keyPressed(KeyEvent e) {
     println("Updated Color Palette Size: " + preset_palette.get_size());
   }
   else if (e.getKeyCode() >= 48 && e.getKeyCode() <= 57) { // 0 - 9
-    preset_palette.set_index(e.getKeyCode() - 48);
+    preset_palette.unselect();
+    preview_palette.set_index(e.getKeyCode() - 48);
   }
   else {
     println("Unbound KeyCode: " + e.getKeyCode());

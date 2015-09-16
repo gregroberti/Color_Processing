@@ -9,6 +9,10 @@ void toggle_live_preview() {
     preset_palette.unselect();
     preview_palette.set_index(0);
   }
+  else {
+    preview_palette.unselect();
+    new_cor = color(0, 0, 0);
+  }
 }
 
 int[] getRGB(color _cor) {
