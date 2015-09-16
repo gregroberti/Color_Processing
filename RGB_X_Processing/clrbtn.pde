@@ -66,7 +66,6 @@ class clrbtn {
   }
   
   void reset() {
-    println("Reset Color #" + id);
     if (cor == color(255, 255, 255)) {
       update_color(0, 0, 0, true);
     }
@@ -79,11 +78,9 @@ class clrbtn {
   void undo() {
     if(!history.empty()) {
       rst = false;
-      println("Undo Color #" + id);
       update_color(history.pop().cor, false);
-      
     }
-    println(history.size() + " changes left to undo");
+    println(history.size() + " change(s) left to undo for color #" + id);
   }
   
   void click() {

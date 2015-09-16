@@ -9,7 +9,7 @@ void render_help_txt() {
 }
 
 void print_keyboard_shortcuts() {
-  println("KEYBORD SHORTCUTS:");
+  println("\nKEYBORD SHORTCUTS:");
   println("- Type 'C' to clear the color palette (toggle white/black)");
   println("- Arrow keys to navigate the color palette");
   println("- Number keys 0-9 select the corresponding live preview button");

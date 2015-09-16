@@ -119,10 +119,9 @@ class palette {
   }
   
   void update_clrsel(int stp) {
-    if (index < 0 || index >= num_btns) {
-      return;
+    if (index >= 0 && index < num_btns) {
+      increment_index(stp);
     }
-    increment_index(stp);
   }
 
   void render() {
