@@ -185,7 +185,7 @@ void setup() {
   println(Serial.list());
 
   // check on the output monitor wich port is available on your machine
-  port = new Serial(this, com_port, 57600);
+  port = new Serial(this, com_port, 115200);
 
   // create 3 instances of the sliderV class
   sV1 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,

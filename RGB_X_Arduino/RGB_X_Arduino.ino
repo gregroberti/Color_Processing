@@ -7,7 +7,7 @@ volatile int blue = 0;
 void setup()
 {
   // declare the serial comm at 9600 baud rate
-  Serial.begin(57600);
+  Serial.begin(115200);
 
   // output pins
   pinMode(9, OUTPUT); // red
