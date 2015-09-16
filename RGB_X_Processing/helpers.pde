@@ -10,20 +10,21 @@ void render_help_txt() {
 
 void print_keyboard_shortcuts() {
   println("KEYBORD SHORTCUTS:");
-  println("'c' will clear the color palette (sets all presets to white)");
-  println("Arrow keys navigate the color palette (and live preview palette)");
-  println("0-9 will select the corresponding color preset button");
-  println("Enter will set the selected button to the slider values");
-  println("Backspace will undo changes to your selected button");
-  println("Delete will 'reset' a button (white/black)");
-  println("Plus/Minus toggles 'brightness' (lowers/raises all slider values equally)");
-  println("Space bar toggles live preview");
-  println("F11 will decrease the size of your color palette");
-  println("F12 will increase the size of your color palette");
-  println("Page Up will increase the number of live preview buttons");
-  println("Page Down will decrease the number of live preview buttons");
-  println("Home will increase the speed of live preview playback");
-  println("End will decrease the speed of live preview playback");
+  println("- Type 'C' to clear the color palette (toggle white/black)");
+  println("- Arrow keys to navigate the color palette");
+  println("- Number keys 0-9 select the corresponding live preview button");
+  println("- Enter sets the selected button to the slider values");
+  println("- Backspace undoes changes to your selected button");
+  println("- Delete 'resets' a button (toggle white/black)");
+  println("- Plus/minus toggles 'brightness' (lowers/raises all slider values equally by 10)");
+  println("- Space bar toggles live preview");
+  println("- F1 displays this help menu");
+  println("- F11 decreases the size of your color palette");
+  println("- F12 increases the size of your color palette");
+  println("- Page Up increases the number of live preview buttons");
+  println("- Page Down decreases the number of live preview buttons");
+  println("- Home increase the speed of live preview playback");
+  println("- End decreases the speed of live preview playback");
 }
 
 void toggle_live_preview() {
