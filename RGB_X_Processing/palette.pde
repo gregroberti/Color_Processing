@@ -146,15 +146,6 @@ class palette {
     index = new_index;
   }
   
-  void check_for_btn_release() {
-    for (int i = 0; i < bcp.length; i++) {
-      if (bcp[i].isOver()) {
-        bcp[i].release();
-        update_color_palette_arr();
-      }
-    }
-  }
-  
   void unselect() {
     if (index != -1) {
       bcp[index].unsel();

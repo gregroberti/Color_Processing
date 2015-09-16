@@ -39,11 +39,6 @@ void mousePressed() {
   }
 }
 
-void mouseReleased() {
-  preview_palette.check_for_btn_release();
-  preset_palette.check_for_btn_release();
-}
-
 public void keyPressed(KeyEvent e) {
   if (clearpalette) {
     if (e.getKeyCode() != 67) { // Clear Palette Canceled
