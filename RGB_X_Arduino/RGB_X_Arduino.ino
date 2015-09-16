@@ -4,9 +4,8 @@
 #define GREEN    6
 #define BLUE     5
 
-#define LIGHT_ON  2
-#define LIGHT_OFF 40
-#define INTERVAL 1000
+#define LIGHT_ON  200
+#define LIGHT_OFF 1000
 
 volatile byte inByte;
 volatile boolean light_on = false;
@@ -99,10 +98,15 @@ void reset_rec() {
   lp_enabled = false;
 }
 
-ISR(TIMER2_COMPA_vect) // TIMER2 INTERRUPT @ 61HZ / 16.40ms
-{ // TIMER2 ISR
+ISR(TIMER2_COMPA_vect)
+{
   unsigned long currMillis = millis();
-  if (lp_enabled && (currMillis - prevMillis >= INTERVAL)) {
+  if (lp_enabled) {
+    if((light_on && ((currMillis - prevMillis) >= LIGHT_ON)) || (!light_on && ((currMillis - prevMillis) >= LIGHT_OFF))) {
+      light_on = !light_on;
+      prevMillis = currMillis;
+    }
+    
     if (light_on) {
       if (lp_index >= lp_size) {
         lp_index = 0;
@@ -117,25 +121,22 @@ ISR(TIMER2_COMPA_vect) // TIMER2 INTERRUPT @ 61HZ / 16.40ms
       analogWrite(GREEN, 0);
       analogWrite(BLUE, 0);
     }
-    light_on = !light_on;
-    prevMillis = currMillis;
   }
 }
 
 void TimerMax(void)
 {
-	// SET TIMER0 AND TIMER1
-	TCCR0B = (TCCR0B & 0b11111000) | 0x01; // Timer 0 for pin 5 & 6
-	TCCR1B = (TCCR1B & 0b11111000) | 0x01; // Timer 1 for pin 9 & 10
+  TCCR0B = TCCR0B & B11111000 | B00000001;
 
-	//SET TIMER2 INTERRUPT 16.40ms
-	TCCR2A = 0;// TCCR2A REG
-	TCCR2B = 0;// TCCR2B REG
-	TCNT2  = 0;// INITIALIZE TO ZERO
-	// 1024 pre-scaler
-	TCCR2B |= (1 << CS22);
-	TCCR2B |= (1 << CS21);
-	TCCR2B |= (1 << CS20);
+  //SET TIMER2 INTERRUPT 16.40ms
+  TCCR2A = 0;// TCCR2A REG
+  TCCR2B = 0;// TCCR2B REG
+  TCNT2  = 0;// INITIALIZE TO ZERO
 
-	TIMSK2 |= (1 << OCIE2A); // TIMER2 INTERRUPT ENABLE
+  // 1024 pre-scaler
+  TCCR2B |= (1 << CS22);
+  TCCR2B |= (1 << CS21);
+//  TCCR2B |= (1 << CS20);
+
+  TIMSK2 |= (1 << OCIE2A); // TIMER2 INTERRUPT ENABLE
 }
