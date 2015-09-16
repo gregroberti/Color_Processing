@@ -23,9 +23,11 @@ void calculate_ratio() {
  
  void render_ratio_txt() {
   fill(255);
-  text(ratio_r, sV1.x + (sV1.w/2) - 20, sV1.y +sV1.h + 30);
-  text(ratio_g, sV2.x + (sV2.w/2) - 20, sV2.y +sV2.h + 30);
-  text(ratio_b, sV3.x + (sV3.w/2) - 20, sV3.y +sV3.h + 30);
+  text(ratio_r, sV1.x + (sV1.w/2) - 20, sV1.y + sV1.h + 30);
+  text(":", sV1.x + sV1.w + 3, sV1.y + sV1.h + 30);
+  text(ratio_g, sV2.x + (sV2.w/2) - 20, sV2.y + sV2.h + 30);
+  text(":", sV2.x + sV2.w + 3, sV2.y + sV2.h + 30);
+  text(ratio_b, sV3.x + (sV3.w/2) - 20, sV3.y + sV3.h + 30);
 }
 
 void print_keyboard_shortcuts() {
