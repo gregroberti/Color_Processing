@@ -6,6 +6,7 @@
 
 #define LIGHT_ON  2
 #define LIGHT_OFF 40
+#define INTERVAL 1000
 
 volatile byte inByte;
 volatile boolean light_on = false;
@@ -25,6 +26,8 @@ volatile int next_green = 0;
 volatile int next_blue = 0;
 volatile int live_preview[MAX_PREVIEW];
 
+unsigned long prevMillis = 0;
+
 void setup()
 {
   // declare the serial comm at 9600 baud rate
@@ -39,7 +42,7 @@ void setup()
 }
 
 void loop()
-{ 
+{
   
   switch(GetFromSerial())
   {
@@ -96,33 +99,27 @@ void reset_rec() {
   lp_enabled = false;
 }
 
-void osmPWM(byte red, byte green, byte blue, int time)
-{
-  while (time >= 0)
-  {
-    analogWrite(RED, red);
-    analogWrite(GREEN, green);
-    analogWrite(BLUE, blue);
-    delay(100);
-    time--;
-  }
-}
-
 ISR(TIMER2_COMPA_vect) // TIMER2 INTERRUPT @ 61HZ / 16.40ms
 { // TIMER2 ISR
-  if (lp_enabled) {
+  unsigned long currMillis = millis();
+  if (lp_enabled && (currMillis - prevMillis >= INTERVAL)) {
     if (light_on) {
       if (lp_index >= lp_size) {
         lp_index = 0;
       }
-      osmPWM(live_preview[(lp_index*3)+0], live_preview[(lp_index*3)+1], live_preview[(lp_index*3)+2], LIGHT_ON);
+      analogWrite(RED, live_preview[(lp_index*3)+0]);
+      analogWrite(GREEN, live_preview[(lp_index*3)+1]);
+      analogWrite(BLUE, live_preview[(lp_index*3)+2]);
       lp_index++;
     }
     else {
-      osmPWM(0, 0, 0, LIGHT_OFF);
+      analogWrite(RED, 0);
+      analogWrite(GREEN, 0);
+      analogWrite(BLUE, 0);
     }
+    light_on = !light_on;
+    prevMillis = currMillis;
   }
-  light_on = !light_on;
 }
 
 void TimerMax(void)
