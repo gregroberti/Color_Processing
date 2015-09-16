@@ -41,17 +41,17 @@ void mousePressed() {
 
 public void keyPressed(KeyEvent e) {
   if (clearpalette) {
-    if (e.getKeyCode() != 67) { // Clear Palette Canceled
+    if (e.getKeyCode() != 67) {
       println("Pffew, that was close :)");
     }
-    else if (e.getKeyCode() == 67) { // Clear that MOFO
+    else if (e.getKeyCode() == 67) {
       println("All gone!");
       preset_palette.reset_all();
     }
     clearpalette = false;
   }
-  else if (e.getKeyCode() == 67) { // C (Clear Preset Palette)
-      println("Press 'c' again to clear the color preset palette (all white)");
+  else if (e.getKeyCode() == 67) { // C
+      println("Press 'c' again to clear the color preset palette (white/black)");
       clearpalette = true;
     }
   else if (e.getKeyCode() == 32) {  // SPACE
