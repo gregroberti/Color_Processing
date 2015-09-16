@@ -144,6 +144,7 @@ class palette {
       bcp[index].unsel();
     }
     index = new_index;
+    render();
   }
   
   void unselect() {

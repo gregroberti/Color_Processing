@@ -206,6 +206,8 @@ void draw() {
   sV2.render();
   sV3.render();
   
+  render_help_txt();
+  
   import_cp.render();
   export_cp.render();
   

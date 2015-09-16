@@ -51,9 +51,9 @@ public void keyPressed(KeyEvent e) {
     clearpalette = false;
   }
   else if (e.getKeyCode() == 67) { // C
-      println("Press 'c' again to clear the color preset palette (white/black)");
-      clearpalette = true;
-    }
+    println("Press 'c' again to clear the color preset palette (white/black)");
+    clearpalette = true;
+  }
   else if (e.getKeyCode() == 32) {  // SPACE
     toggle_live_preview();
   }
@@ -104,6 +104,9 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 34) { // PAGE DOWN
     preview_palette.adjust_size(-1);
     println("Updated Preview Palette Size: " + preview_palette.get_size());
+  }
+  else if (e.getKeyCode() == 112) { // F1
+    print_keyboard_shortcuts();
   }
   else if (e.getKeyCode() == 122) { // F11
     preset_palette.adjust_size(-1);

@@ -15,9 +15,11 @@ class mycor {
 class clrbtn {
   int x, y, w, h, id;
   Stack<mycor> history = new Stack();
+  color txt_cor = color(255, 255, 255);
+  color bor_cor = color(255, 255, 255);
   color cor = color(255, 255, 255);
   int lclk = -1;
-  boolean selected = false;
+  int bor_thk = 1;
   boolean rst = false;
   
   clrbtn (int _x, int _y, int _w, int _h, int _id) {
@@ -29,14 +31,8 @@ class clrbtn {
   }
   
   void render_border() {
-    if (selected) {  // Selected
-      fill(color(200, 0, 0));
-      rect(x-2, y-2, w+4, h+4);
-    }
-    else {  // Not Selected
-      fill(color(255, 255, 255));
-      rect(x-1, y-1, w+2, h+2);
-    }
+    fill(bor_cor);
+    rect(x-1*bor_thk, y-1*bor_thk, w+2*bor_thk, h+2*bor_thk);
   }
   
   void render_fill() {
@@ -45,16 +41,7 @@ class clrbtn {
   }
   
   void render_text() {
-    fill(255);
-    int total = 0;
-    int[] rgb = getRGB(cor);
-    for (int i=0; i<rgb.length; i++) {
-      total += rgb[i];
-    }
-    
-    if (total > 600) {
-      fill(0);
-    }
+    fill(txt_cor);
     text(id, x+1, y+10);
   }
   
@@ -128,15 +115,33 @@ class clrbtn {
     }
     cor = _cor;
     new_cor = cor;
+    update_text_color();
     println("Updated: " + _r + ", " + _g + ", " + _b + " // Color #" + id);
   }
   
   void sel() {
-    selected = true;
+    bor_cor = color(200, 0, 0);
+    bor_thk = 2;
     new_cor = cor;
   }
   
   void unsel() {
-    selected = false;
+    bor_cor = color(255, 255, 255);
+    bor_thk = 1;
+  }
+  
+  void update_text_color() {
+    int total = 0;
+    int[] rgb = getRGB(cor);
+    for (int i=0; i<rgb.length; i++) {
+      total += rgb[i];
+    }
+    
+    if (total > 600) {
+      txt_cor = color(0, 0, 0);
+    }
+    else {
+      txt_cor = color(255, 255, 255);
+    }
   }
 }
