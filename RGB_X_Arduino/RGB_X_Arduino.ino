@@ -4,6 +4,9 @@
 #define GREEN    6
 #define BLUE     5
 
+#define LIGHT_ON  2
+#define LIGHT_OFF 40
+
 volatile byte inByte;
 volatile boolean light_on = false;
 volatile boolean rec_red = false;
@@ -93,15 +96,14 @@ void reset_rec() {
   lp_enabled = false;
 }
 
-// this is the light engine
 void osmPWM(byte red, byte green, byte blue, int time)
-{ // void osmPWM
-  time = time * 19;
-  while (time > 0)
+{
+  while (time >= 0)
   {
     analogWrite(RED, red);
     analogWrite(GREEN, green);
     analogWrite(BLUE, blue);
+    delay(100);
     time--;
   }
 }
@@ -113,11 +115,11 @@ ISR(TIMER2_COMPA_vect) // TIMER2 INTERRUPT @ 61HZ / 16.40ms
       if (lp_index >= lp_size) {
         lp_index = 0;
       }
-      osmPWM(live_preview[(lp_index*3)+0], live_preview[(lp_index*3)+1], live_preview[(lp_index*3)+2], 1);
+      osmPWM(live_preview[(lp_index*3)+0], live_preview[(lp_index*3)+1], live_preview[(lp_index*3)+2], LIGHT_ON);
       lp_index++;
     }
     else {
-      osmPWM(0, 0, 0, 3);
+      osmPWM(0, 0, 0, LIGHT_OFF);
     }
   }
   light_on = !light_on;
