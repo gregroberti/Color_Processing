@@ -1,8 +1,17 @@
-volatile boolean update = false;
-volatile int long TTtime;
-volatile int red = 0;
-volatile int green = 0;
-volatile int blue = 0;
+#include <avr/interrupt.h>
+#define RED      9
+#define GREEN    6
+#define BLUE     5
+
+volatile boolean rec_red = false;
+volatile boolean rec_green = false;
+volatile boolean rec_blue = false;
+volatile int curr_red = 0;
+volatile int curr_green = 0;
+volatile int curr_blue = 0;
+volatile int next_red = 0;
+volatile int next_green = 0;
+volatile int next_blue = 0;
 
 void setup()
 {
@@ -16,34 +25,45 @@ void setup()
 }
 
 void loop()
-{
-  // call the returned value from GetFromSerial() function
+{ 
+  
   switch(GetFromSerial())
   {
-  case 'R':
-    red = GetFromSerial();
-    break;
-  case 'G':
-    green = GetFromSerial();
-    break;
-  case 'B':
-    blue = GetFromSerial();
-    update = true;
-    break;
+    case 'R':
+      next_red = GetFromSerial();
+      rec_red = true;
+      break;
+    case 'G':
+      next_green = GetFromSerial();
+      rec_green = true;
+      break;
+    case 'B':
+      next_blue = GetFromSerial();
+      rec_blue = true;
+      break;
   }
   
-  if(update) {
-    update = false;
-    analogWrite(5, blue);
-    analogWrite(6, green);
-    analogWrite(9, red);
+  if(rec_red && rec_green && rec_blue) {
+    curr_red = next_red;
+    curr_green = next_green;
+    curr_blue = next_blue;
+    reset_rec();
   }
+  
+  analogWrite(BLUE, curr_blue);
+  analogWrite(GREEN, curr_green);
+  analogWrite(RED, curr_red);
 }
 
-// read the serial port
 int GetFromSerial()
 {
   while (Serial.available()<=0) {
   }
   return Serial.read();
+}
+
+void reset_rec() {
+  rec_red = false;
+  rec_green = false;
+  rec_blue = false;
 }
