@@ -38,7 +38,6 @@ void calculate_ratio() {
   for (int i=0; i < rgb.length; i++) {
     rgb_ratio[i] = (float)rgb[i] / min;
   }
-  render_ratio_txt();
 }
  
  void render_ratio_txt() {
@@ -73,6 +72,7 @@ void turn_off_light() {
   preset_palette.unselect();
   preview_palette.unselect();
   new_cor = color(0, 0, 0);
+  main_cor = color(0, 0, 0);
   int[] rgb = getRGB(new_cor);
   update_sliders(rgb);
   render_everything();
@@ -100,14 +100,11 @@ void set_live_preview(boolean _live_preview) {
   
   if (live_preview) {
     println("Live Preview Enabled");
-    println("Sending: L");
     port.write('L');
     int[] color_palette = preview_palette.get_palette();
     for (int i = 0; i < color_palette.length; i++) {
-      println("Sending: " + color_palette[i]);
       port.write(color_palette[i]);
     }
-    println("Sending: P");
     port.write('P');
   }
   else {
