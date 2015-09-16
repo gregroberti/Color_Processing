@@ -190,6 +190,10 @@ class palette {
     }
   }
   
+  int[] get_palette() {
+    return color_palette;
+  }
+  
   String print_palette() {
     String retval = "";
     for(int i = 0; i < bcp.length; i++) {

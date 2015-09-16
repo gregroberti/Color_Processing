@@ -18,7 +18,7 @@ void mouseWheel(MouseEvent event) {
 }
 
 void mousePressed() {
-  live_preview = false;
+  disable_live_preview();
   preview_palette.check_for_btn_clicks();
   preset_palette.check_for_btn_clicks();
 
@@ -61,14 +61,6 @@ public void keyPressed(KeyEvent e) {
   }
   else if (e.getKeyCode() == 32) {  // SPACE
     toggle_live_preview();
-  }
-  else if (e.getKeyCode() == 36) {  // HOME
-    if (PREVIEW_SPEED > 0) {
-      PREVIEW_SPEED--;
-    }
-  }
-  else if (e.getKeyCode() == 35) {  // END
-    PREVIEW_SPEED++;
   }
   else if (e.getKeyCode() == 37) {  // LEFT ARROW
     preview_palette.update_clrsel(-1);

@@ -145,8 +145,6 @@ int SLIDER_SPACE = 10;
 int SLIDER_WIDTH = 90;
 int SLIDER_HEIGHT = 255;
 
-int PREVIEW_SPEED = 1;
-int LIVE_PREVIEW_COUNTER;
 int MAX_PREVIEW_SIZE = 255;
 int PREVIEW_BTN_SPACE_X = 5;
 int PREVIEW_BTN_SPACE_Y = 15;
@@ -200,7 +198,7 @@ void setup() {
   preset_palette.initialize_color_buttons();
 }
 
-void draw() {
+void render_everything() {
   background(0);
 
   sV1.render();
@@ -215,32 +213,24 @@ void draw() {
   
   preset_palette.render();
   preview_palette.render();
+}
 
-  // send sync character
-  // send the desired value
-  if(live_preview) {
-    LIVE_PREVIEW_COUNTER++;
-    
-    if(LIVE_PREVIEW_COUNTER >= PREVIEW_SPEED) {
-      LIVE_PREVIEW_COUNTER = 0;
-      preview_palette.update_clrsel(1);
-    }
-  }
+void draw() {
+  if(!live_preview) {
+    render_everything();
   
-  if(new_cor != main_cor) {
-    main_cor = new_cor;
-
-    int rgb[] = getRGB(main_cor);
-    sV1.p = rgb[0];
-    sV2.p = rgb[1];
-    sV3.p = rgb[2];
-    
-    port.write('R');
-    port.write(sV1.p);
-    port.write('G');
-    port.write(sV2.p);
-    port.write('B');
-    port.write(sV3.p);
-    calculate_ratio();
+    if(new_cor != main_cor) {
+      main_cor = new_cor;
+      
+      int rgb[] = getRGB(main_cor);
+      update_sliders(rgb);
+      
+      port.write('R');
+      port.write(rgb[0]);
+      port.write('G');
+      port.write(rgb[1]);
+      port.write('B');
+      port.write(rgb[2]);
+    }
   }
 }

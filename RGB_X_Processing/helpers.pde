@@ -2,10 +2,16 @@
 // Helper Functions //
 //////////////////////
 
+void update_sliders(int[] rgb) {
+  sV1.p = rgb[0];
+  sV2.p = rgb[1];
+  sV3.p = rgb[2];
+  calculate_ratio();
+}
+
 void render_help_txt() {
   fill(255);
   text("Press F1 for keyboard shortcuts!", (FORM_WIDTH / 2) - 90, 25);
-  
 }
 
 void calculate_ratio() {
@@ -32,6 +38,7 @@ void calculate_ratio() {
   for (int i=0; i < rgb.length; i++) {
     rgb_ratio[i] = (float)rgb[i] / min;
   }
+  render_ratio_txt();
 }
  
  void render_ratio_txt() {
@@ -60,20 +67,51 @@ void print_keyboard_shortcuts() {
   println("- F12 increases the size of your color palette");
   println("- Page Up increases the number of live preview buttons");
   println("- Page Down decreases the number of live preview buttons");
-  println("- Home increase the speed of live preview playback");
-  println("- End decreases the speed of live preview playback");
+}
+
+void turn_off_light() {
+  preset_palette.unselect();
+  preview_palette.unselect();
+  new_cor = color(0, 0, 0);
+  int[] rgb = getRGB(new_cor);
+  update_sliders(rgb);
+  render_everything();
+  port.write('R');
+  port.write(0);
+  port.write('G');
+  port.write(0);
+  port.write('B');
+  port.write(0);
+}
+
+void disable_live_preview() {
+  if(live_preview) {
+    set_live_preview(false);
+  }
 }
 
 void toggle_live_preview() {
-  live_preview = !live_preview;
+  set_live_preview(live_preview = !live_preview);
+}
+
+void set_live_preview(boolean _live_preview) {
+  live_preview = _live_preview;
+  turn_off_light();
+  
   if (live_preview) {
-    LIVE_PREVIEW_COUNTER = 0;
-    preset_palette.unselect();
-    preview_palette.set_index(0);
+    println("Live Preview Enabled");
+    println("Sending: L");
+    port.write('L');
+    int[] color_palette = preview_palette.get_palette();
+    for (int i = 0; i < color_palette.length; i++) {
+      println("Sending: " + color_palette[i]);
+      port.write(color_palette[i]);
+    }
+    println("Sending: P");
+    port.write('P');
   }
   else {
-    preview_palette.unselect();
-    new_cor = color(0, 0, 0);
+    println("Live Preview Disabled");
   }
 }
 
