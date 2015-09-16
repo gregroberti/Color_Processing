@@ -1,4 +1,5 @@
 #include <avr/interrupt.h>
+#define MAX_PREVIEW 255
 #define RED      9
 #define GREEN    6
 #define BLUE     5
@@ -19,7 +20,7 @@ volatile int curr_blue = 0;
 volatile int next_red = 0;
 volatile int next_green = 0;
 volatile int next_blue = 0;
-volatile int live_preview[255];
+volatile int live_preview[MAX_PREVIEW];
 
 void setup()
 {
@@ -27,9 +28,9 @@ void setup()
   Serial.begin(115200);
 
   // output pins
-  pinMode(9, OUTPUT); // red
-  pinMode(6, OUTPUT); // green
-  pinMode(5, OUTPUT); // blue
+  pinMode(RED, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+  pinMode(BLUE, OUTPUT);
   
   TimerMax();
 }
@@ -47,8 +48,7 @@ void loop()
         inByte = GetFromSerial();
         index++;
       }
-      lp_size = lp_index + 1;
-      lp_index = 0;
+      lp_size = index/3;
       lp_enabled = true;
       break;
     case 'R':
@@ -110,7 +110,7 @@ ISR(TIMER2_COMPA_vect) // TIMER2 INTERRUPT @ 61HZ / 16.40ms
 { // TIMER2 ISR
   if (lp_enabled) {
     if (light_on) {
-      if (lp_index > lp_size) {
+      if (lp_index >= lp_size) {
         lp_index = 0;
       }
       osmPWM(live_preview[(lp_index*3)+0], live_preview[(lp_index*3)+1], live_preview[(lp_index*3)+2], 1);
