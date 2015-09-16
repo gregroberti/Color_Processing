@@ -8,6 +8,26 @@ void render_help_txt() {
   
 }
 
+void calculate_ratio() {
+  int[] rgb = getRGB(main_cor);
+  
+  int min = min(rgb[0], rgb[1], rgb[2]);
+  if(min == 0) {
+    min = 1;
+  }
+  
+  ratio_r = (float)rgb[0] / min;
+  ratio_g = (float)rgb[1] / min;
+  ratio_b = (float)rgb[2] / min;
+}
+ 
+ void render_ratio_txt() {
+  fill(255);
+  text(ratio_r, sV1.x + (sV1.w/2) - 20, sV1.y +sV1.h + 30);
+  text(ratio_g, sV2.x + (sV2.w/2) - 20, sV2.y +sV2.h + 30);
+  text(ratio_b, sV3.x + (sV3.w/2) - 20, sV3.y +sV3.h + 30);
+}
+
 void print_keyboard_shortcuts() {
   println("\nKEYBORD SHORTCUTS:");
   println("- Type 'C' to clear the color palette (toggle white/black)");

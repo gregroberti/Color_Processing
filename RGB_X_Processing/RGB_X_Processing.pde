@@ -149,7 +149,7 @@ int PREVIEW_SPEED = 1;
 int LIVE_PREVIEW_COUNTER;
 int MAX_PREVIEW_SIZE = 255;
 int PREVIEW_BTN_SPACE_X = 5;
-int PREVIEW_BTN_SPACE_Y = 10;
+int PREVIEW_BTN_SPACE_Y = 15;
 int PREVIEW_TOP = SLIDER_TOP + SLIDER_HEIGHT;
 int[] PREVIEW_PALETTE = {0,0,0,0,0,0,0,0,0};
 int PREVIEW_SIZE = PREVIEW_PALETTE.length/3;
@@ -169,6 +169,7 @@ boolean PRESET_HORIZONTAL = false;
 palette preview_palette = new palette(PREVIEW_PALETTE, PREVIEW_TOP, PREVIEW_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, PREVIEW_BTN_SPACE_X, PREVIEW_BTN_SPACE_Y, MAX_PREVIEW_SIZE, PREVIEW_HORIZONTAL);
 palette preset_palette = new palette(PRESET_PALETTE, PALETTE_TOP, PALETTE_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, COLOR_BTN_SPACE_X, COLOR_BTN_SPACE_Y, NUM_BUTTONS_ACROSS, PRESET_HORIZONTAL);
 
+float ratio_r, ratio_g, ratio_b;
 boolean clearpalette = false;
 boolean live_preview = false;
 color new_cor = color(0, 0, 0);
@@ -207,6 +208,7 @@ void draw() {
   sV3.render();
   
   render_help_txt();
+  render_ratio_txt();
   
   import_cp.render();
   export_cp.render();
@@ -239,5 +241,6 @@ void draw() {
     port.write(sV2.p);
     port.write('B');
     port.write(sV3.p);
+    calculate_ratio();
   }
 }
