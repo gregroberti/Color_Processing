@@ -11,23 +11,36 @@ void render_help_txt() {
 void calculate_ratio() {
   int[] rgb = getRGB(main_cor);
   
-  int min = min(rgb[0], rgb[1], rgb[2]);
+  int min = 0;
+  if (rgb[0] == 0 && rgb[1] > 0 && rgb[2] > 0) {
+    min = min(rgb[1], rgb[2]);
+  }
+  else if (rgb[0] > 0 && rgb[1] == 0 && rgb[2] > 0) {
+    min = min(rgb[0], rgb[2]);
+  }
+  else if (rgb[0] > 0 && rgb[1] > 0 && rgb[2] == 0) {
+    min = min(rgb[0], rgb[1]);
+  }
+  else {
+    min = min(rgb[0], rgb[1], rgb[2]);
+  }
+  
   if(min == 0) {
     min = 1;
   }
   
-  ratio_r = (float)rgb[0] / min;
-  ratio_g = (float)rgb[1] / min;
-  ratio_b = (float)rgb[2] / min;
+  for (int i=0; i < rgb.length; i++) {
+    rgb_ratio[i] = (float)rgb[i] / min;
+  }
 }
  
  void render_ratio_txt() {
   fill(255);
-  text(ratio_r, sV1.x + (sV1.w/2) - 20, sV1.y + sV1.h + 30);
+  text(rgb_ratio[0], sV1.x + (sV1.w/2) - 20, sV1.y + sV1.h + 30);
   text(":", sV1.x + sV1.w + 3, sV1.y + sV1.h + 30);
-  text(ratio_g, sV2.x + (sV2.w/2) - 20, sV2.y + sV2.h + 30);
+  text(rgb_ratio[1], sV2.x + (sV2.w/2) - 20, sV2.y + sV2.h + 30);
   text(":", sV2.x + sV2.w + 3, sV2.y + sV2.h + 30);
-  text(ratio_b, sV3.x + (sV3.w/2) - 20, sV3.y + sV3.h + 30);
+  text(rgb_ratio[2], sV3.x + (sV3.w/2) - 20, sV3.y + sV3.h + 30);
 }
 
 void print_keyboard_shortcuts() {
@@ -39,7 +52,8 @@ void print_keyboard_shortcuts() {
   println("- Enter (or right-click) sets the selected button to the slider values");
   println("- Backspace undoes changes to your selected button");
   println("- Delete (or double-click) 'resets' a button (toggle white/black)");
-  println("- Plus/minus toggles 'brightness' (lowers/raises all slider values equally by 10)");
+  println("- Plus increases the brightness of the main color");
+  println("- Minus decreases the brightness of the main color");
   println("- Space bar toggles live preview");
   println("- F1 displays this help menu");
   println("- F11 decreases the size of your color palette");
@@ -96,10 +110,13 @@ void update_brightness(int pct) {
     
     // Update the value
     int new_val = int(rgb[i] + amnt);
-    if(new_val < 0) {
+    if (rgb[i] == 0) {
       new_rgb[i] = 0;
     }
-    else if(new_val > 255) {
+    else if (new_val <= 0) {
+      new_rgb[i] = 1;
+    }
+    else if (new_val > 255) {
       new_rgb[i] = 255;
     }
     else {
