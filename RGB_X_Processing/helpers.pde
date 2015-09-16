@@ -11,11 +11,12 @@ void render_help_txt() {
 void print_keyboard_shortcuts() {
   println("\nKEYBORD SHORTCUTS:");
   println("- Type 'C' to clear the color palette (toggle white/black)");
+  println("- Type 'R' to select a random RGB value");
   println("- Arrow keys to navigate the color palette");
   println("- Number keys 0-9 select the corresponding live preview button");
-  println("- Enter sets the selected button to the slider values");
+  println("- Enter (or right-click) sets the selected button to the slider values");
   println("- Backspace undoes changes to your selected button");
-  println("- Delete 'resets' a button (toggle white/black)");
+  println("- Delete (or double-click) 'resets' a button (toggle white/black)");
   println("- Plus/minus toggles 'brightness' (lowers/raises all slider values equally by 10)");
   println("- Space bar toggles live preview");
   println("- F1 displays this help menu");
@@ -47,19 +48,40 @@ int[] getRGB(color _cor) {
                   };
 }
 
-void update_brightness(int stp) {
+void update_brightness(int pct) {
   int[] rgb = getRGB(main_cor);
   int[] new_rgb = new int[rgb.length];
   
+  // Repeat for R, G, and B
   for(int i=0; i<rgb.length; i++) {
-    if(rgb[i]+stp < 0) {
+    
+    // Determine amount to increase/decrease
+    float amnt = rgb[i]*((float)pct/100);
+    if (amnt < 1 && amnt > 0) {
+      amnt = 1;
+    }
+    else if (amnt > -1 && amnt < 0) {
+      amnt = -1;
+    }
+    else if (amnt == 0) {
+      if (pct > 0) {
+        amnt = 1;
+      }
+      else if (pct < 0) {
+        amnt = -1;
+      }
+    }
+    
+    // Update the value
+    int new_val = int(rgb[i] + amnt);
+    if(new_val < 0) {
       new_rgb[i] = 0;
     }
-    else if(rgb[i]+stp > 255) {
+    else if(new_val > 255) {
       new_rgb[i] = 255;
     }
     else {
-      new_rgb[i] = rgb[i]+stp;
+      new_rgb[i] = new_val;
     }
   }
   new_cor = color(new_rgb[0], new_rgb[1], new_rgb[2]);

@@ -54,6 +54,11 @@ public void keyPressed(KeyEvent e) {
     println("Press 'c' again to clear the color preset palette (white/black)");
     clearpalette = true;
   }
+  else if (e.getKeyCode() == 82) { // R
+    int rgb[] = { int(random(255)), int(random(255)), int(random(255)) };
+    new_cor = color(rgb[0], rgb[1], rgb[2]);
+    println("Random color: " + rgb[0] + ", " + rgb[1] + ", " + rgb[2]);
+  }
   else if (e.getKeyCode() == 32) {  // SPACE
     toggle_live_preview();
   }
