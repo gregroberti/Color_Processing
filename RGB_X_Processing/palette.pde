@@ -285,20 +285,20 @@ class palette {
       }
       int[] color_palette_new = new int[rgb_arr_size_new];
       
-      println("rgb_arr_size_new="+rgb_arr_size_new);
-      println("rows.length="+rows.length);
-      println("color_palette_new.length="+color_palette_new.length);
+      //println("rgb_arr_size_new="+rgb_arr_size_new);
+      //println("rows.length="+rows.length);
+      //println("color_palette_new.length="+color_palette_new.length);
       
       for(int i=0; i<rows.length; i++) {
-        println("rows[i]="+rows[i]);
+        //println("rows[i]="+rows[i]);
         String[] row = rows[i].split("//")[0].split(",");
         if(row.length == 3 || row.length == 4) {
           color_palette_new[(i*3)+0] = int(row[0]);
-          println("R="+int(row[0]));
+          //println("R="+int(row[0]));
           color_palette_new[(i*3)+1] = int(row[1]);
-          println("G="+int(row[1]));
+          //println("G="+int(row[1]));
           color_palette_new[(i*3)+2] = int(row[2]);
-          println("B="+int(row[2]));
+          //println("B="+int(row[2]));
         }
         //else {
         //  println("Invalid row: " + row);
