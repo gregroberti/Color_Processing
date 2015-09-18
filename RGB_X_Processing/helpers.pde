@@ -2,6 +2,23 @@
 // Helper Functions //
 //////////////////////
 
+color get_random_color() {
+  int rgb[] = { int(random(256)), int(random(256)), int(random(256)) };
+  switch (int(random(10))) {
+    case 0:
+      rgb[0] = 0;
+      break;
+    case 1:
+      rgb[1] = 0;
+      break;
+    case 2:
+      rgb[2] = 0;
+      break;
+  }
+  //println("Random color: " + rgb[0] + ", " + rgb[1] + ", " + rgb[2]);
+  return color(rgb[0], rgb[1], rgb[2]);
+}
+
 void update_sliders(int[] rgb) {
   sV1.p = rgb[0];
   sV2.p = rgb[1];
