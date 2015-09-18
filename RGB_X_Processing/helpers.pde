@@ -68,6 +68,7 @@ void calculate_ratio() {
 
 void print_keyboard_shortcuts() {
   println("\nKEYBORD SHORTCUTS:");
+  println("- Esc will close Slider-Pro!");
   println("- Type 'C' to clear the color palette (toggle white/black)");
   println("- Type 'R' to select a random RGB value");
   println("- Arrow keys to navigate the color palette");
