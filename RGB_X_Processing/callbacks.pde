@@ -58,6 +58,8 @@ public void keyPressed(KeyEvent e) {
     int rgb[] = { int(random(255)), int(random(255)), int(random(255)) };
     new_cor = color(rgb[0], rgb[1], rgb[2]);
     println("Random color: " + rgb[0] + ", " + rgb[1] + ", " + rgb[2]);
+    preview_palette.unselect();
+    preset_palette.unselect();
   }
   else if (e.getKeyCode() == 32) {  // SPACE
     toggle_live_preview();

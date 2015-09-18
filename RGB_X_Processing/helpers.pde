@@ -76,12 +76,15 @@ void turn_off_light() {
   int[] rgb = getRGB(new_cor);
   update_sliders(rgb);
   render_everything();
-  port.write('R');
-  port.write(0);
-  port.write('G');
-  port.write(0);
-  port.write('B');
-  port.write(0);
+  
+  if (connected) {
+    port.write('R');
+    port.write(0);
+    port.write('G');
+    port.write(0);
+    port.write('B');
+    port.write(0);
+  }
 }
 
 void disable_live_preview() {
@@ -100,12 +103,14 @@ void set_live_preview(boolean _live_preview) {
   
   if (live_preview) {
     println("Live Preview Enabled");
-    port.write('L');
-    int[] color_palette = preview_palette.get_palette();
-    for (int i = 0; i < color_palette.length; i++) {
-      port.write(color_palette[i]);
+    if (connected) {
+      port.write('L');
+      int[] color_palette = preview_palette.get_palette();
+      for (int i = 0; i < color_palette.length; i++) {
+        port.write(color_palette[i]);
+      }
+      port.write('P');
     }
-    port.write('P');
   }
   else {
     println("Live Preview Disabled");

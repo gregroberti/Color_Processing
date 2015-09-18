@@ -168,6 +168,7 @@ palette preview_palette = new palette(PREVIEW_PALETTE, PREVIEW_TOP, PREVIEW_SIZE
 palette preset_palette = new palette(PRESET_PALETTE, PALETTE_TOP, PALETTE_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, COLOR_BTN_SPACE_X, COLOR_BTN_SPACE_Y, NUM_BUTTONS_ACROSS, PRESET_HORIZONTAL);
 
 float[] rgb_ratio = {0.0, 0.0, 0.0};
+boolean connected = false;
 boolean clearpalette = false;
 boolean live_preview = false;
 color new_cor = color(0, 0, 0);
@@ -180,11 +181,16 @@ void setup() {
   // Update FORM_WIDTH & FORM_HEIGHT
   size(500, 550);
   
-  println("Available serial ports:");
-  println(Serial.list());
-
-  // check on the output monitor wich port is available on your machine
-  port = new Serial(this, com_port, 115200);
+  try {
+    // check on the output monitor wich port is available on your machine
+    port = new Serial(this, com_port, 115200);
+    connected = true;
+  }
+  catch (Exception e) {
+    println("ERROR: Unable to connect on " + com_port);
+    print("Your available serial ports are: ");
+    println(Serial.list());
+  }
 
   // create 3 instances of the sliderV class
   sV1 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,
@@ -200,7 +206,7 @@ void setup() {
 
 void render_everything() {
   background(0);
-
+  
   sV1.render();
   sV2.render();
   sV3.render();
@@ -225,12 +231,14 @@ void draw() {
       int rgb[] = getRGB(main_cor);
       update_sliders(rgb);
       
-      port.write('R');
-      port.write(rgb[0]);
-      port.write('G');
-      port.write(rgb[1]);
-      port.write('B');
-      port.write(rgb[2]);
+      if (connected) {
+        port.write('R');
+        port.write(rgb[0]);
+        port.write('G');
+        port.write(rgb[1]);
+        port.write('B');
+        port.write(rgb[2]);
+      }
     }
   }
 }
