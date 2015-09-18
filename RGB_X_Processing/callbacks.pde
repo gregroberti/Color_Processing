@@ -59,6 +59,9 @@ public void keyPressed(KeyEvent e) {
     preview_palette.unselect();
     preset_palette.unselect();
   }
+  else if (e.getKeyCode() == 27) {  // ESC
+    println("Bye now");
+  }
   else if (e.getKeyCode() == 32) {  // SPACE
     toggle_live_preview();
   }
