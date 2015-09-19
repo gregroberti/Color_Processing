@@ -246,11 +246,10 @@ class palette {
   
   void save_palette() {
     try {
-      String fname = System.getProperty("user.home") + "\\Desktop\\color_palette.txt";
-      PrintWriter writer = new PrintWriter(fname, "UTF-8");
+      PrintWriter writer = new PrintWriter(SAVE_FILE, "UTF-8");
       writer.print(print_palette());
       writer.close();
-      println("Saved color palette to: " + fname);
+      println("Saved color palette to: " + SAVE_FILE);
     }
     catch (FileNotFoundException e) {
       println("FileNotFoundException: " + e);
@@ -262,9 +261,8 @@ class palette {
   
   void load_palette() {
     StringBuilder sb = new StringBuilder();
-    String fname = System.getProperty("user.home") + "\\Desktop\\color_palette.txt";
     try {
-      InputStream input = new FileInputStream(fname);
+      InputStream input = new FileInputStream(SAVE_FILE);
       int data = input.read();
       while(data != -1) {
        sb.append((char)data);
@@ -310,7 +308,7 @@ class palette {
       rgb_arr_size = rgb_arr_size_new;
       color_palette = color_palette_new;
       initialize_color_buttons();
-      println("Successfully loaded color palette from: " + fname);
+      println("Successfully loaded color palette from: " + SAVE_FILE);
     }
     catch (FileNotFoundException e) {
       println("FileNotFoundException: " + e);
