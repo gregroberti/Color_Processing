@@ -80,10 +80,10 @@ public void keyPressed(KeyEvent e) {
    preset_palette.update_clrsel(preset_palette.btn_acr);
   }
   else if (e.getKeyCode() == 107) { // PLUS
-    update_brightness(10);
+    update_brightness(BRIGHTNESS_MODIFIER);
   }
   else if (e.getKeyCode() == 109) { // MINUS
-    update_brightness(-10);
+    update_brightness(-1*BRIGHTNESS_MODIFIER);
   }
   else if (e.getKeyCode() == 127) { // DELETE
     preview_palette.reset_selected();
