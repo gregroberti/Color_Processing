@@ -50,6 +50,9 @@ public void keyPressed(KeyEvent e) {
     }
     clearpalette = false;
   }
+  else if (live_preview && e.getKeyCode() != 32) {
+    disable_live_preview();
+  }
   else if (e.getKeyCode() == 67) { // C
     println("Press 'c' again to clear the color preset palette (white/black)");
     clearpalette = true;
