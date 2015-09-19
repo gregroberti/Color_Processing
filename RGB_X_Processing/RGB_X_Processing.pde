@@ -135,7 +135,7 @@ int[] get_default_palette() {
 ///////////////////////////////////////////
 
 String SAVE_FILE = System.getProperty("user.home") + "\\Desktop\\color_palette.txt";
-int BRIGHTNESS_MODIFIER = 5;
+int BRIGHTNESS_MODIFIER = 1;
 int MOUSE_WHEEL_INC = 1;
 int DOUBLE_CLICK_SPEED = 150;
 
