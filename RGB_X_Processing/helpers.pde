@@ -32,10 +32,19 @@ void render_help_txt() {
 }
 
 void calculate_ratio() {
+  int min = 0;
   int[] rgb = getRGB(main_cor);
   
-  int min = 0;
-  if (rgb[0] == 0 && rgb[1] > 0 && rgb[2] > 0) {
+  if (rgb[0] == 0 && rgb[1] == 0 && rgb[2] > 0) {
+    min = rgb[2];
+  }
+  else if (rgb[0] == 0 && rgb[1] > 0 && rgb[2] == 0) {
+    min = rgb[1];
+  }
+  else if (rgb[0] > 0 && rgb[1] == 0 && rgb[2] == 0) {
+    min = rgb[0];
+  }
+  else if (rgb[0] == 0 && rgb[1] > 0 && rgb[2] > 0) {
     min = min(rgb[1], rgb[2]);
   }
   else if (rgb[0] > 0 && rgb[1] == 0 && rgb[2] > 0) {
