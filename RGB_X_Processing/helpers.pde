@@ -142,43 +142,20 @@ int[] getRGB(color _cor) {
                   };
 }
 
-void update_brightness(int pct) {
+void update_brightness(int amnt) {
   int[] rgb = getRGB(main_cor);
   int[] new_rgb = new int[rgb.length];
   
   // Repeat for R, G, and B
-  for(int i=0; i<rgb.length; i++) {
-    
-    // Determine amount to increase/decrease
-    float amnt = rgb[i]*((float)pct/100);
-    if (amnt < 1 && amnt > 0) {
-      amnt = 1;
-    }
-    else if (amnt > -1 && amnt < 0) {
-      amnt = -1;
-    }
-    else if (amnt == 0) {
-      if (pct > 0) {
-        amnt = 1;
+  for (int i=0; i<rgb.length; i++) {
+    if (rgb[i] > 0) {
+      int new_val = rgb[i] + int(rgb_ratio[i]*amnt);
+      if (new_val <= 0 || new_val > 255) {
+        return;
       }
-      else if (pct < 0) {
-        amnt = -1;
+      else {
+        new_rgb[i] = new_val;
       }
-    }
-    
-    // Update the value
-    int new_val = int(rgb[i] + amnt);
-    if (rgb[i] == 0) {
-      new_rgb[i] = 0;
-    }
-    else if (new_val <= 0) {
-      new_rgb[i] = 1;
-    }
-    else if (new_val > 255) {
-      new_rgb[i] = 255;
-    }
-    else {
-      new_rgb[i] = new_val;
     }
   }
   new_cor = color(new_rgb[0], new_rgb[1], new_rgb[2]);
