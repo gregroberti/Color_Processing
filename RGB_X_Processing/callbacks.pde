@@ -54,6 +54,13 @@ public void keyPressed(KeyEvent e) {
     println("Press 'c' again to clear the color preset palette (white/black)");
     clearpalette = true;
   }
+  else if (e.getKeyCode() == 80) { // P
+    println("Color Palette:");
+    println(preset_palette.print_palette());
+    println();
+    println("Live Preview:");
+    println(preview_palette.print_palette());
+  }
   else if (e.getKeyCode() == 82) { // R
     new_cor = get_random_color();
     preview_palette.unselect();
