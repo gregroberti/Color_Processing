@@ -194,27 +194,14 @@ class palette {
     return color_palette;
   }
   
-  String print_palette() {
-    String retval = "";
+  String[] print_palette() {
+    String[] retval = new String[bcp.length];
     for(int i = 0; i < bcp.length; i++) {
-      int red = color_palette[i*3+0];
-      int green = color_palette[i*3+1];
-      int blue = color_palette[i*3+2];
-      String line = "";
-      
-      if (i != bcp.length - 1) {
-        line = red + ", " + green + ", " + blue + ",";
-      }
-      else {
-        line = red + ", " + green + ", " + blue;
-      }
-      
-      while (line.length() < 16) {
-        line += " ";
-      }
-      
-      retval += line + "// Color #" + i + "\r\n";
-      
+      int[] rgb = { color_palette[i*3+0],
+                    color_palette[i*3+1],
+                    color_palette[i*3+2]
+                  };
+      retval[i] = print_color(rgb, i, i == bcp.length - 1);
     }
     return retval;
   }

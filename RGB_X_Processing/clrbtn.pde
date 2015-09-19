@@ -120,9 +120,7 @@ class clrbtn {
     bor_cor = color(200, 0, 0);
     bor_thk = 2;
     new_cor = cor;
-    
-    int[] rgb = getRGB(cor);
-    println(rgb[0] + ", " + rgb[1] + ", " + rgb[2] + " // Color #" + id);
+    println(print_color(getRGB(cor), id, true));
   }
   
   void unsel() {

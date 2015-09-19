@@ -55,11 +55,12 @@ public void keyPressed(KeyEvent e) {
     clearpalette = true;
   }
   else if (e.getKeyCode() == 80) { // P
+    println();
     println("Color Palette:");
-    println(preset_palette.print_palette());
+    println(String.join("\n\r", preset_palette.print_palette()));
     println();
     println("Live Preview:");
-    println(preview_palette.print_palette());
+    println(String.join("\n\r", preview_palette.print_palette()));
   }
   else if (e.getKeyCode() == 82) { // R
     new_cor = get_random_color();

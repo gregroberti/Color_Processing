@@ -2,6 +2,18 @@
 // Helper Functions //
 //////////////////////
 
+String print_color(int[] rgb, int i, boolean last_line) {
+    String line = rgb[0] + ", " + rgb[1] + ", " + rgb[2];
+    if (!last_line) {
+      line += ",";
+    }
+    while (line.length() < 16) {
+      line += " ";
+    }
+    line += "// Color #" + i;
+    return line;
+  }
+
 color get_random_color() {
   int rgb[] = { int(random(256)), int(random(256)), int(random(256)) };
   switch (int(random(10))) {
@@ -94,6 +106,7 @@ void print_keyboard_shortcuts() {
   println("- F12 increases the size of your color palette");
   println("- Page Up increases the number of live preview buttons");
   println("- Page Down decreases the number of live preview buttons");
+  println();
 }
 
 void turn_off_light() {
