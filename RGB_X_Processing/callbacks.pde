@@ -22,16 +22,23 @@ void mousePressed() {
   preview_palette.check_for_btn_clicks();
   preset_palette.check_for_btn_clicks();
 
-  if (sV1.isOver()) {
-    sV1.click();
+  if (use_sliders) {
+    if (sV1.isOver()) {
+      sV1.click();
+    }
+    else if (sV2.isOver()) {
+      sV2.click();
+    }
+    else if (sV3.isOver()) {
+      sV3.click();
+    }
   }
-  else if (sV2.isOver()) {
-    sV2.click();
+  
+  if (use_picker && color_picker.isOver()) {
+    color_picker.click();
   }
-  else if (sV3.isOver()) {
-    sV3.click();
-  }
-  else if (export_cp.isOver()) {
+  
+  if (export_cp.isOver()) {
     export_cp.click();
   }
   else if (import_cp.isOver()) {
@@ -118,6 +125,9 @@ public void keyPressed(KeyEvent e) {
   }
   else if (e.getKeyCode() == 112) { // F1
     print_keyboard_shortcuts();
+  }
+  else if (e.getKeyCode() == 116) { // F5
+    switch_view();
   }
   else if (e.getKeyCode() == 122) { // F11
     preset_palette.adjust_size(-1);

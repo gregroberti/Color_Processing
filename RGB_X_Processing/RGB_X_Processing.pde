@@ -173,8 +173,11 @@ float[] rgb_ratio = {0.0, 0.0, 0.0};
 boolean connected = false;
 boolean clearpalette = false;
 boolean live_preview = false;
+boolean use_sliders = false;
+boolean use_picker = true;
 color new_cor = color(0, 0, 0);
 color main_cor = color(0, 0, 0);
+ColorPicker color_picker;
 sliderV sV1, sV2, sV3, sInc;
 importbtn import_cp = new importbtn(10, 10);
 exportbtn export_cp = new exportbtn(FORM_WIDTH - 50, 10);
@@ -193,6 +196,8 @@ void setup() {
     print("Your available serial ports are: ");
     println(Serial.list());
   }
+  
+  color_picker = new ColorPicker(30, 40, 500, 300, color(255, 255, 255));
 
   // create 3 instances of the sliderV class
   sV1 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,
@@ -209,13 +214,17 @@ void setup() {
 void render_everything() {
   background(0);
   
-  sV1.render();
-  sV2.render();
-  sV3.render();
+  if (use_sliders) {
+    sV1.render();
+    sV2.render();
+    sV3.render();
+    render_ratio_txt();
+  }
+  else if (use_picker) {
+    color_picker.render();
+  }
   
   render_help_txt();
-  render_ratio_txt();
-  
   import_cp.render();
   export_cp.render();
   

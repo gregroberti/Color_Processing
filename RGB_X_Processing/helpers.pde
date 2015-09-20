@@ -2,6 +2,11 @@
 // Helper Functions //
 //////////////////////
 
+void switch_view() {
+  use_picker = !use_picker;
+  use_sliders = !use_sliders;
+}
+
 String print_color(int[] rgb, int i, boolean last_line) {
     String line = rgb[0] + ", " + rgb[1] + ", " + rgb[2];
     if (!last_line) {
@@ -32,10 +37,12 @@ color get_random_color() {
 }
 
 void update_sliders(int[] rgb) {
-  sV1.p = rgb[0];
-  sV2.p = rgb[1];
-  sV3.p = rgb[2];
-  calculate_ratio();
+  if(use_sliders) {
+    sV1.p = rgb[0];
+    sV2.p = rgb[1];
+    sV3.p = rgb[2];
+    calculate_ratio();
+  }
 }
 
 void render_help_txt() {
@@ -102,6 +109,7 @@ void print_keyboard_shortcuts() {
   println("- Minus decreases the brightness of the main color");
   println("- Space bar toggles live preview");
   println("- F1 displays this help menu");
+  println("- F5 switches between sliders and color picker");
   println("- F11 decreases the size of your color palette");
   println("- F12 increases the size of your color palette");
   println("- Page Up increases the number of live preview buttons");
