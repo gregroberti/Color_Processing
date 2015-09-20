@@ -84,8 +84,10 @@ class sliderV {
   }
   
   void click() {
-    p = h-(mouseY-y);
-    update_main_color();
+    if (use_sliders) {
+      p = h-(mouseY-y);
+      update_main_color();
+    }
   }
   
   boolean isOver() {

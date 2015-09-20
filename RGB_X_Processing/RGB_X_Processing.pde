@@ -192,6 +192,7 @@ void setup() {
     // check on the output monitor wich port is available on your machine
     port = new Serial(this, com_port, 115200);
     connected = true;
+    println("Connected on " + com_port);
   }
   catch (Exception e) {
     println("ERROR: Unable to connect on " + com_port);
@@ -202,7 +203,7 @@ void setup() {
   import_cp = new importbtn(10, 10);
   export_cp = new exportbtn(width - 50, 10);
   
-  color_picker = new ColorPicker(10, 40, width - 20, 300, WHITE);
+  color_picker = new ColorPicker(10, 40, width - 20, 300);
 
   // create 3 instances of the sliderV class
   sV1 = new sliderV(((width-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,
@@ -239,7 +240,7 @@ void draw() {
     if(new_cor != main_cor) {
       main_cor = new_cor;
       
-      int rgb[] = getRGB(main_cor);
+      int[] rgb = getRGB(main_cor);
       update_sliders(rgb);
       
       if (connected) {

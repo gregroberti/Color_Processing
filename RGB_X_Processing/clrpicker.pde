@@ -3,25 +3,23 @@
 //////////////////
 
 public class ColorPicker {
-  int x, y, w, h, c;
+  int x, y, w, h;
   int alpha = 0;
   PImage cpImage;
   
-  public ColorPicker (int _x, int _y, int _w, int _h, color _c) {
+  public ColorPicker (int _x, int _y, int _w, int _h) {
     x = _x;
     y = _y;
     w = _w;
     h = _h;
-    c = _c;
     
     cpImage = createImage(w, h, RGB);
     initialize();
   }
   
   private void initialize() {
-    int cw = w;
-    for (int i=0; i<cw; i++) {
-      float nColorPercent = i / (float)cw;
+    for (int i=0; i<w; i++) {
+      float nColorPercent = i / (float)w;
       float rad = (-360 * nColorPercent) * (PI / 180);
       int nR = (int)(cos(rad) * 127 + 128) << 16;
       int nG = (int)(cos(rad + 2 * PI / 3) * 127 + 128) << 8;
@@ -60,8 +58,9 @@ public class ColorPicker {
   }
   
   void click() {
-    c = get(mouseX, mouseY);
-    new_cor = c;
+    if (use_picker) {
+      new_cor = get(mouseX, mouseY);
+    }
   }
   
   void update_alpha() {
