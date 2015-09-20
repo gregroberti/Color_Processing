@@ -186,7 +186,7 @@ exportbtn export_cp;
 
 void setup() {
   size(500, 550);
-  frame.setTitle("Slider Pro by Greg Roberti");
+  surface.setTitle("Slider Pro for the OSM by Greg Roberti");
   
   try {
     // check on the output monitor wich port is available on your machine
