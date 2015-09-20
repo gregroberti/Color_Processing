@@ -37,12 +37,10 @@ color get_random_color() {
 }
 
 void update_sliders(int[] rgb) {
-  if(use_sliders) {
-    sV1.p = rgb[0];
-    sV2.p = rgb[1];
-    sV3.p = rgb[2];
-    calculate_ratio();
-  }
+  sV1.p = rgb[0];
+  sV2.p = rgb[1];
+  sV3.p = rgb[2];
+  calculate_ratio();
 }
 
 void render_help_txt() {
