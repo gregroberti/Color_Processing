@@ -44,6 +44,7 @@ class importbtn {
   }
   
   void click() {
-    preset_palette.load_palette();
+    File save_file = new File(SAVE_FILE);
+    selectInput("Select a file to process:", "load_palette_callback", save_file);
   }
 }

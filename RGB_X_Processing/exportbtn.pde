@@ -44,8 +44,7 @@ class exportbtn {
   }
   
   void click() {
-    println("Copy and paste to customize your color palette in NEO!");
-    println(String.join("\n\r", preset_palette.print_palette()));
-    preset_palette.save_palette();
+    File save_file = new File(SAVE_FILE);
+    selectOutput("Select a file to process:", "save_palette_callback", save_file);
   }
 }

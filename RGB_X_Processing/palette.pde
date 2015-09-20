@@ -231,12 +231,20 @@ class palette {
     return num_btns;
   }
   
-  void save_palette() {
+void fileSelected(File selection) {
+  if (selection == null) {
+    println("Window was closed or the user hit cancel.");
+  } else {
+    println("User selected " + selection.getAbsolutePath());
+  }
+}
+  
+  void save_palette(File selection) {
     try {
-      PrintWriter writer = new PrintWriter(SAVE_FILE, "UTF-8");
-      writer.print(print_palette());
+      PrintWriter writer = new PrintWriter(selection, "UTF-8");
+      writer.print(String.join("\r\n", print_palette()));
       writer.close();
-      println("Saved color palette to: " + SAVE_FILE);
+      println("Saved color palette to: " + selection);
     }
     catch (FileNotFoundException e) {
       println("FileNotFoundException: " + e);
@@ -246,10 +254,10 @@ class palette {
     }
   }
   
-  void load_palette() {
+  void load_palette(File selection) {
     StringBuilder sb = new StringBuilder();
     try {
-      InputStream input = new FileInputStream(SAVE_FILE);
+      InputStream input = new FileInputStream(selection);
       int data = input.read();
       while(data != -1) {
        sb.append((char)data);

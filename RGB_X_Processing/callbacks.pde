@@ -67,10 +67,10 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 80) { // P
     println();
     println("Color Palette:");
-    println(String.join("\n\r", preset_palette.print_palette()));
+    println(String.join("\r\n", preset_palette.print_palette()));
     println();
     println("Live Preview:");
-    println(String.join("\n\r", preview_palette.print_palette()));
+    println(String.join("\r\n", preview_palette.print_palette()));
   }
   else if (e.getKeyCode() == 82) { // R
     new_cor = get_random_color();
@@ -143,5 +143,25 @@ public void keyPressed(KeyEvent e) {
   }
   else {
     println("Unbound KeyCode: " + e.getKeyCode());
+  }
+}
+
+void load_palette_callback(File selection) {
+  if (selection == null) {
+    print("No file selected to load palette");
+  }
+  else {
+    preset_palette.load_palette(selection);
+    mousePressed = false;
+  }
+}
+
+void save_palette_callback(File selection) {
+  if (selection == null) {
+    print("No file selected to save palette");
+  }
+  else {
+    preset_palette.save_palette(selection);
+    mousePressed = false;
   }
 }
