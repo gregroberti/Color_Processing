@@ -4,6 +4,7 @@
 
 public class ColorPicker {
   int x, y, w, h, c;
+  int alpha = 255;
   PImage cpImage;
   
   public ColorPicker (int _x, int _y, int _w, int _h, color _c) {
@@ -64,7 +65,7 @@ public class ColorPicker {
   }
   
   void render_border() {
-    fill(255);
+    fill(WHITE, alpha);
     rect(x-1, y-1, w+2, h+2);
   }
   

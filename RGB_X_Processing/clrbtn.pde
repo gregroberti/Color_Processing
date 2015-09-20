@@ -5,7 +5,7 @@
 import java.util.*;
 
 class mycor {
-  color cor = color(255, 255, 255);
+  color cor = WHITE;
   
   mycor (color _cor) {
     cor = _cor;
@@ -15,9 +15,10 @@ class mycor {
 class clrbtn {
   int x, y, w, h, id;
   Stack<mycor> history = new Stack();
-  color txt_cor = color(255, 255, 255);
-  color bor_cor = color(255, 255, 255);
-  color cor = color(255, 255, 255);
+  int alpha = 255;
+  color txt_cor = WHITE;
+  color bor_cor = WHITE;
+  color cor = WHITE;
   int lclk = -1;
   int bor_thk = 1;
   boolean rst = false;
@@ -31,17 +32,17 @@ class clrbtn {
   }
   
   void render_border() {
-    fill(bor_cor);
+    fill(bor_cor, alpha);
     rect(x-1*bor_thk, y-1*bor_thk, w+2*bor_thk, h+2*bor_thk);
   }
   
   void render_fill() {
-    fill(cor);
+    fill(cor, alpha);
     rect(x, y, w, h);
   }
   
   void render_text() {
-    fill(txt_cor);
+    fill(txt_cor, alpha);
     text(id, x+1, y+10);
   }
   
@@ -66,7 +67,7 @@ class clrbtn {
   }
   
   void reset() {
-    if (cor == color(255, 255, 255)) {
+    if (cor == WHITE) {
       update_color(0, 0, 0, true);
     }
     else {
@@ -124,7 +125,7 @@ class clrbtn {
   }
   
   void unsel() {
-    bor_cor = color(255, 255, 255);
+    bor_cor = WHITE;
     bor_thk = 1;
   }
   
@@ -136,10 +137,10 @@ class clrbtn {
     }
     
     if (total > 600) {
-      txt_cor = color(0, 0, 0);
+      txt_cor = BLACK;
     }
     else {
-      txt_cor = color(255, 255, 255);
+      txt_cor = WHITE;
     }
   }
 }

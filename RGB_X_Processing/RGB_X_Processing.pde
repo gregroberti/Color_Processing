@@ -134,6 +134,10 @@ int[] get_default_palette() {
 // OK, BUT DON'T SAY I DIDN'T WARN YOU.. //
 ///////////////////////////////////////////
 
+color WHITE = color(255, 255, 255);
+color BLACK = color(0, 0, 0);
+color GREY = color(55, 55, 55);
+
 String SAVE_FILE = System.getProperty("user.home") + "\\Desktop\\color_palette.txt";
 int BRIGHTNESS_MODIFIER = 1;
 int MOUSE_WHEEL_INC = 1;
@@ -175,8 +179,8 @@ boolean clearpalette = false;
 boolean live_preview = false;
 boolean use_sliders = true;
 boolean use_picker = false;
-color new_cor = color(0, 0, 0);
-color main_cor = color(0, 0, 0);
+color new_cor = BLACK;
+color main_cor = BLACK;
 ColorPicker color_picker;
 sliderV sV1, sV2, sV3, sInc;
 importbtn import_cp = new importbtn(10, 10);
@@ -197,7 +201,7 @@ void setup() {
     println(Serial.list());
   }
   
-  color_picker = new ColorPicker(10, 40, FORM_WIDTH - 20, 300, color(255, 255, 255));
+  color_picker = new ColorPicker(10, 40, FORM_WIDTH - 20, 300, WHITE);
 
   // create 3 instances of the sliderV class
   sV1 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,

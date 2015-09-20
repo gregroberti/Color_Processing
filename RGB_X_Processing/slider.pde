@@ -8,6 +8,7 @@ based on www.anthonymattox.com slider class
 */
 class sliderV {
   int x, y, w, h, p, id;
+  int alpha = 255;
   color cor;
   String name;
 
@@ -23,31 +24,31 @@ class sliderV {
   }
   
   void render_min() {
-    fill(color(55, 55, 55));
+    fill(GREY, alpha);
     rect(x-1, y+h+4, w, 15);
     
-    fill(255);
+    fill(WHITE, alpha);
     text("MIN", x+30, y+h+17);
   }
   
   void render_max() {
-    fill(color(55, 55, 55));
+    fill(GREY, alpha);
     rect(x-1, y-19, w, 15);
     
-    fill(255);
+    fill(WHITE, alpha);
     text("MAX", x+30, y-7);
   }
   
   void render_bar() {
-    fill(cor);
+    fill(cor, alpha);
     rect(x-1, y-4, w, h+10);
   }
   
   void render_slider() {
-    fill(0);
+    fill(BLACK, alpha);
     rect(x, h-p+y-5, w-2, 13);
     
-    fill(255);
+    fill(WHITE, alpha);
     text(p + " " + name, x+2, h-p+y+6);
   }
   
@@ -58,6 +59,20 @@ class sliderV {
     else if (p>h) {
       p=h;
     }
+  }
+  
+  boolean update_alpha(int alpha_offset) {
+    if (alpha >= 255) {
+      alpha = 255;
+      return false;
+    }
+    else if (alpha <= 0) {
+      alpha = 0;
+      return false;
+    }
+    
+    alpha += alpha_offset;
+    return true;
   }
 
   void render() {

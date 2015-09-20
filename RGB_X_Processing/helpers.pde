@@ -44,7 +44,7 @@ void update_sliders(int[] rgb) {
 }
 
 void render_help_txt() {
-  fill(255);
+  fill(WHITE);
   text("Press F1 for keyboard shortcuts!", (FORM_WIDTH / 2) - 90, 25);
 }
 
@@ -84,7 +84,7 @@ void calculate_ratio() {
 }
  
  void render_ratio_txt() {
-  fill(255);
+  fill(WHITE, sV1.alpha);
   text(rgb_ratio[0], sV1.x + (sV1.w/2) - 20, sV1.y + sV1.h + 30);
   text(":", sV1.x + sV1.w + 3, sV1.y + sV1.h + 30);
   text(rgb_ratio[1], sV2.x + (sV2.w/2) - 20, sV2.y + sV2.h + 30);
@@ -118,8 +118,8 @@ void print_keyboard_shortcuts() {
 void turn_off_light() {
   preset_palette.unselect();
   preview_palette.unselect();
-  new_cor = color(0, 0, 0);
-  main_cor = color(0, 0, 0);
+  new_cor = BLACK;
+  main_cor = BLACK;
   int[] rgb = getRGB(new_cor);
   update_sliders(rgb);
   render_everything();

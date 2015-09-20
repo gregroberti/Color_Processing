@@ -14,17 +14,17 @@ class importbtn {
   }
   
   void render_border() {
-    fill(color(255, 255, 255));
+    fill(WHITE);
     rect(x-1, y-1, w+2, h+2);
   }
   
   void render_fill() {
-    fill(color(55, 55, 55));
+    fill(GREY);
     rect(x, y, w, h);
   }
   
   void render_text() {
-    fill(255);
+    fill(WHITE);
     text("Import", x+2, y+13);
   }
  
