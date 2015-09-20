@@ -33,8 +33,7 @@ public class ImagePicker {
         new_cor = get(mouseX, mouseY);
       }
       else if (mouseButton == RIGHT) {
-        File save_file = new File("C:\\galaxy.jpg");
-        selectInput("Select an image file:", "load_image_callback", save_file);
+        selectInput("Select an image file:", "load_image_callback");
         mousePressed = false;
       }
     }

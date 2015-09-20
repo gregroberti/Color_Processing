@@ -3,18 +3,23 @@
 //////////////////////
 
 void set_view_sliders() {
+  sV1.alpha = 0;
+  sV2.alpha = 0;
+  sV3.alpha = 0;
   use_picker = false;
   use_sliders = true;
   use_image = false;
 }
 
 void set_view_picker() {
+  color_picker.alpha = 0;
   use_picker = true;
   use_sliders = false;
   use_image = false;
 }
 
 void set_view_image() {
+  image_picker.alpha = 0;
   use_picker = false;
   use_sliders = false;
   use_image = true;
