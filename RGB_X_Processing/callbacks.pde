@@ -5,16 +5,26 @@
 void mouseWheel(MouseEvent event) {
   float e = event.getCount();
   int[] rgb = getRGB(main_cor);
-  if (sV1.isOver()){
-     rgb[0] -= MOUSE_WHEEL_INC*e;
+  if (use_sliders) {
+    if (sV1.isOver()){
+       rgb[0] -= MOUSE_WHEEL_INC*e;
+    }
+    else if (sV2.isOver()){
+       rgb[1] -= MOUSE_WHEEL_INC*e;
+    }
+    else if (sV3.isOver()) {
+       rgb[2] -= MOUSE_WHEEL_INC*e;
+    }
+    new_cor = color(rgb[0], rgb[1], rgb[2]);
   }
-  else if (sV2.isOver()){
-     rgb[1] -= MOUSE_WHEEL_INC*e;
+  else if (use_picker) {
+    new_cor = get_random_color();
   }
-  else if (sV3.isOver()) {
-     rgb[2] -= MOUSE_WHEEL_INC*e;
+  
+  if (new_cor != main_cor) {
+    preview_palette.unselect();
+    preset_palette.unselect();
   }
-  new_cor = color(rgb[0], rgb[1], rgb[2]);
 }
 
 void mousePressed() {
