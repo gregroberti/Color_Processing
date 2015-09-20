@@ -44,10 +44,6 @@ void mousePressed() {
     }
   }
   
-  if (use_picker && color_picker.isOver()) {
-    color_picker.click();
-  }
-  
   if (export_cp.isOver()) {
     export_cp.click();
   }
