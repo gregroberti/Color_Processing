@@ -45,7 +45,7 @@ void update_sliders(int[] rgb) {
 
 void render_help_txt() {
   fill(WHITE);
-  text("Press F1 for keyboard shortcuts!", (FORM_WIDTH / 2) - 90, 25);
+  text("Press F1 for keyboard shortcuts!", (width / 2) - 90, 25);
 }
 
 void calculate_ratio() {

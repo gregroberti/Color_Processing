@@ -144,9 +144,6 @@ int BRIGHTNESS_MODIFIER = 1;
 int MOUSE_WHEEL_INC = 1;
 int DOUBLE_CLICK_SPEED = 150;
 
-int FORM_WIDTH = 500;
-int FORM_HEIGHT = 550;
-
 int SLIDER_TOP = 65;
 int SLIDER_SPACE = 10;
 int SLIDER_WIDTH = 90;
@@ -184,12 +181,12 @@ color new_cor = BLACK;
 color main_cor = BLACK;
 ColorPicker color_picker;
 sliderV sV1, sV2, sV3, sInc;
-importbtn import_cp = new importbtn(10, 10);
-exportbtn export_cp = new exportbtn(FORM_WIDTH - 50, 10);
+importbtn import_cp;
+exportbtn export_cp;
 
 void setup() {
-  // Update FORM_WIDTH & FORM_HEIGHT
   size(500, 550);
+  frame.setTitle("Slider Pro by Greg Roberti");
   
   try {
     // check on the output monitor wich port is available on your machine
@@ -202,14 +199,17 @@ void setup() {
     println(Serial.list());
   }
   
-  color_picker = new ColorPicker(10, 40, FORM_WIDTH - 20, 300, WHITE);
+  import_cp = new importbtn(10, 10);
+  export_cp = new exportbtn(width - 50, 10);
+  
+  color_picker = new ColorPicker(10, 40, width - 20, 300, WHITE);
 
   // create 3 instances of the sliderV class
-  sV1 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,
+  sV1 = new sliderV(((width-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,
                       SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #FF0000, 0, "Red");
-  sV2 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*1,
+  sV2 = new sliderV(((width-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*1,
                       SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #03FF00, 1, "Green");
-  sV3 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*2,
+  sV3 = new sliderV(((width-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*2,
                       SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #009BFF, 2, "Blue");
   
   preview_palette.initialize_color_buttons();

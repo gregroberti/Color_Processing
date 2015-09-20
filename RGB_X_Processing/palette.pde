@@ -62,7 +62,7 @@ class palette {
       return;
     }
     //this fancy little doo-dad will keep your live preview buttons from going off screen..
-    else if (horizontal && (((FORM_WIDTH-btn_w_padded)-(btn_w_padded*num_btns_new))/btn_w_padded < 0)) {
+    else if (horizontal && (((width-btn_w_padded)-(btn_w_padded*num_btns_new))/btn_w_padded < 0)) {
       println("Try increasing the form size");
       return;
     }
@@ -96,7 +96,7 @@ class palette {
     int top_start = y;
     int next_top = top_start;
     
-    int left_start = (FORM_WIDTH-((btn_w+btn_sp_x)*btn_acr))/2;
+    int left_start = (width-((btn_w+btn_sp_x)*btn_acr))/2;
     int next_left = left_start;
     
     int top_inc = btn_h+btn_sp_y;
