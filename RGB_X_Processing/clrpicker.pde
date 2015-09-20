@@ -4,7 +4,7 @@
 
 public class ColorPicker {
   int x, y, w, h, c;
-  int alpha = 255;
+  int alpha = 0;
   PImage cpImage;
   
   public ColorPicker (int _x, int _y, int _w, int _h, color _c) {
@@ -14,7 +14,7 @@ public class ColorPicker {
     h = _h;
     c = _c;
     
-    cpImage = new PImage(w, h);
+    cpImage = createImage(w, h, RGB);
     initialize();
   }
   
@@ -64,14 +64,32 @@ public class ColorPicker {
     new_cor = c;
   }
   
+  void update_alpha() {
+    if (use_sliders && alpha > 0) {
+      alpha -= ALPHA_MODIFIER*2;
+    }
+    else if (use_picker && alpha < 255) {
+      alpha += ALPHA_MODIFIER;
+    }
+  }
+  
+  void render_alpha_cover() {
+    fill(BLACK, 255-alpha);
+    rect(x, y, w, h);
+  }
+  
   void render_border() {
     fill(WHITE, alpha);
     rect(x-1, y-1, w+2, h+2);
   }
   
   void render() {
+    update_alpha();
     render_border();
     image(cpImage, x, y);
-    check_for_clicks();
+    render_alpha_cover();
+    if (use_picker) {
+      check_for_clicks();
+    }
   }
 }

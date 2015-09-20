@@ -139,6 +139,7 @@ color BLACK = color(0, 0, 0);
 color GREY = color(55, 55, 55);
 
 String SAVE_FILE = System.getProperty("user.home") + "\\Desktop\\color_palette.txt";
+int ALPHA_MODIFIER = 5;
 int BRIGHTNESS_MODIFIER = 1;
 int MOUSE_WHEEL_INC = 1;
 int DOUBLE_CLICK_SPEED = 150;
@@ -216,17 +217,12 @@ void setup() {
 }
 
 void render_everything() {
-  background(0);
-  
-  if (use_sliders) {
-    sV1.render();
-    sV2.render();
-    sV3.render();
-    render_ratio_txt();
-  }
-  else if (use_picker) {
-    color_picker.render();
-  }
+  background(BLACK);
+  color_picker.render();
+  sV1.render();
+  sV2.render();
+  sV3.render();
+  render_ratio_txt();
   
   render_help_txt();
   import_cp.render();

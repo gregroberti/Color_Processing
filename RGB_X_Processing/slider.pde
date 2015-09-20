@@ -61,21 +61,17 @@ class sliderV {
     }
   }
   
-  boolean update_alpha(int alpha_offset) {
-    if (alpha >= 255) {
-      alpha = 255;
-      return false;
+  void update_alpha() {
+    if (use_picker && alpha > 0) {
+      alpha -= ALPHA_MODIFIER*2;
     }
-    else if (alpha <= 0) {
-      alpha = 0;
-      return false;
+    else if (use_sliders && alpha < 255) {
+      alpha += ALPHA_MODIFIER;
     }
-    
-    alpha += alpha_offset;
-    return true;
   }
 
   void render() {
+    update_alpha();
     noStroke();
     render_min();
     render_max();
