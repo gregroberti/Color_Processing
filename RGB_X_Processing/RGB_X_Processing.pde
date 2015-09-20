@@ -197,7 +197,7 @@ void setup() {
     println(Serial.list());
   }
   
-  color_picker = new ColorPicker(30, 40, 500, 300, color(255, 255, 255));
+  color_picker = new ColorPicker(10, 40, FORM_WIDTH - 20, 300, color(255, 255, 255));
 
   // create 3 instances of the sliderV class
   sV1 = new sliderV(((FORM_WIDTH-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,

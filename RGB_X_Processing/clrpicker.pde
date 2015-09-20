@@ -2,13 +2,11 @@
 // Color Picker //
 //////////////////
 
-public class ColorPicker 
-{
+public class ColorPicker {
   int x, y, w, h, c;
   PImage cpImage;
   
-  public ColorPicker (int _x, int _y, int _w, int _h, color _c)
-  {
+  public ColorPicker (int _x, int _y, int _w, int _h, color _c) {
     x = _x;
     y = _y;
     w = _w;
@@ -16,16 +14,12 @@ public class ColorPicker
     c = _c;
     
     cpImage = new PImage(w, h);
-    
     initialize();
   }
   
-  private void initialize()
-  {
-    // draw color.
-    int cw = w - 60;
-    for( int i=0; i<cw; i++ ) 
-    {
+  private void initialize() {
+    int cw = w;
+    for (int i=0; i<cw; i++) {
       float nColorPercent = i / (float)cw;
       float rad = (-360 * nColorPercent) * (PI / 180);
       int nR = (int)(cos(rad) * 127 + 128) << 16;
@@ -38,38 +32,45 @@ public class ColorPicker
     }
   }
 
-  private void setGradient(int _x, int _y, float _w, float _h, color _c1, color _c2)
-  {
-   int[] rgb1 = getRGB(_c1);
-   int[] rgb2 = getRGB(_c2);
-   float deltaR = rgb2[0] - rgb1[0];
-   float deltaG = rgb2[1] - rgb1[1];
-   float deltaB = rgb2[2] - rgb1[2];
+  private void setGradient(int _x, int _y, float _w, float _h, color _c1, color _c2) {
+    int[] rgb1 = getRGB(_c1);
+    int[] rgb2 = getRGB(_c2);
+    float deltaR = rgb2[0] - rgb1[0];
+    float deltaG = rgb2[1] - rgb1[1];
+    float deltaB = rgb2[2] - rgb1[2];
 
-   for (int j = _y; j<(_y+_h); j++)
-   {
-     int c = color(rgb1[0]+(j-_y)*(deltaR/_h), rgb1[1]+(j-_y)*(deltaG/_h), rgb1[2]+(j-_y)*(deltaB/_h));
-     cpImage.set(_x, j, c);
-   }
+    for (int j=_y; j<(_y+_h); j++) {
+      int c = color(rgb1[0]+(j-_y)*(deltaR/_h), rgb1[1]+(j-_y)*(deltaG/_h), rgb1[2]+(j-_y)*(deltaB/_h));
+      cpImage.set(_x, j, c);
+    }
   }
   
   boolean isOver() {
-    if (mouseX >= x && mouseX < x + w && mouseY >= y && mouseY < y + h) {
+    if ((mouseX>=x) && (mouseX<x+w) && (mouseY >=y) && (mouseY<y+h)) {
       return true;
     }
     return false;
   }
   
-  void click() {
-    c = get( mouseX, mouseY );
-    new_cor = c;
-  }
-  
-  void render() {
-    image(cpImage, x, y);
-    
+  void check_for_clicks() {
     if(mousePressed && isOver()) {
       click();
     }
+  }
+  
+  void click() {
+    c = get(mouseX, mouseY);
+    new_cor = c;
+  }
+  
+  void render_border() {
+    fill(255);
+    rect(x-1, y-1, w+2, h+2);
+  }
+  
+  void render() {
+    render_border();
+    image(cpImage, x, y);
+    check_for_clicks();
   }
 }

@@ -152,8 +152,8 @@ void load_palette_callback(File selection) {
   }
   else {
     preset_palette.load_palette(selection);
-    mousePressed = false;
   }
+  mousePressed = false;
 }
 
 void save_palette_callback(File selection) {
@@ -162,6 +162,6 @@ void save_palette_callback(File selection) {
   }
   else {
     preset_palette.save_palette(selection);
-    mousePressed = false;
   }
+  mousePressed = false;
 }
