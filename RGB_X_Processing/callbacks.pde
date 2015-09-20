@@ -148,7 +148,7 @@ public void keyPressed(KeyEvent e) {
 
 void load_palette_callback(File selection) {
   if (selection == null) {
-    print("No file selected to load palette");
+    println("No file selected to load palette");
   }
   else {
     preset_palette.load_palette(selection);
@@ -158,7 +158,7 @@ void load_palette_callback(File selection) {
 
 void save_palette_callback(File selection) {
   if (selection == null) {
-    print("No file selected to save palette");
+    println("No file selected to save palette");
   }
   else {
     preset_palette.save_palette(selection);
