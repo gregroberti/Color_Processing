@@ -65,11 +65,11 @@ public class ColorPicker {
   }
   
   void update_alpha() {
-    if (use_sliders && alpha > 0) {
-      alpha -= ALPHA_MODIFIER*2;
-    }
-    else if (use_picker && alpha < 255) {
+    if (use_picker && alpha < 255) {
       alpha += ALPHA_MODIFIER;
+    }
+    else if (alpha > 0) {
+      alpha -= ALPHA_MODIFIER*2;
     }
   }
   
