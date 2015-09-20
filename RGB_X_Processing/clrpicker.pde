@@ -68,7 +68,7 @@ public class ColorPicker {
     if (use_picker && alpha < 255) {
       alpha += ALPHA_MODIFIER;
     }
-    else if (alpha > 0) {
+    else if (!use_picker && alpha > 0) {
       alpha -= ALPHA_MODIFIER*2;
     }
   }

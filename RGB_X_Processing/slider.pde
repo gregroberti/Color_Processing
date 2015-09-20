@@ -65,7 +65,7 @@ class sliderV {
     if (use_sliders && alpha < 255) {
       alpha += ALPHA_MODIFIER;
     }
-    else if (alpha > 0) {
+    else if (!use_sliders && alpha > 0) {
       alpha -= ALPHA_MODIFIER*2;
     }
   }
