@@ -175,11 +175,13 @@ float[] rgb_ratio = {0.0, 0.0, 0.0};
 boolean connected = false;
 boolean clearpalette = false;
 boolean live_preview = false;
+boolean use_image = false;
 boolean use_sliders = true;
 boolean use_picker = false;
 color new_cor = BLACK;
 color main_cor = BLACK;
 ColorPicker color_picker;
+ImagePicker image_picker;
 sliderV sV1, sV2, sV3, sInc;
 importbtn import_cp;
 exportbtn export_cp;
@@ -204,6 +206,7 @@ void setup() {
   export_cp = new exportbtn(width - 50, 10);
   
   color_picker = new ColorPicker(10, 40, width - 20, 300);
+  image_picker = new ImagePicker(10, 40, width - 20, 300);
 
   // create 3 instances of the sliderV class
   sV1 = new sliderV(((width-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,
@@ -219,7 +222,15 @@ void setup() {
 
 void render_everything() {
   background(BLACK);
-  color_picker.render();
+  
+  if (use_picker) {
+    color_picker.render();
+  }
+  
+  if (use_image) {
+    image_picker.render();
+  }
+  
   sV1.render();
   sV2.render();
   sV3.render();

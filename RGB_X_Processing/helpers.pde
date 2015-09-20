@@ -2,9 +2,22 @@
 // Helper Functions //
 //////////////////////
 
-void switch_view() {
-  use_picker = !use_picker;
-  use_sliders = !use_sliders;
+void set_view_sliders() {
+  use_picker = false;
+  use_sliders = true;
+  use_image = false;
+}
+
+void set_view_picker() {
+  use_picker = true;
+  use_sliders = false;
+  use_image = false;
+}
+
+void set_view_image() {
+  use_picker = false;
+  use_sliders = false;
+  use_image = true;
 }
 
 String print_color(int[] rgb, int i, boolean last_line) {
@@ -107,7 +120,9 @@ void print_keyboard_shortcuts() {
   println("- Minus decreases the brightness of the main color");
   println("- Space bar toggles live preview");
   println("- F1 displays this help menu");
-  println("- F5 switches between sliders and color picker");
+  println("- F4 switches to the RGB sliders");
+  println("- F5 switches to the color picker");
+  println("- F6 switches to the image color extractor");
   println("- F11 decreases the size of your color palette");
   println("- F12 increases the size of your color palette");
   println("- Page Up increases the number of live preview buttons");

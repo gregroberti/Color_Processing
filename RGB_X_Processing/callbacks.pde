@@ -132,8 +132,14 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 112) { // F1
     print_keyboard_shortcuts();
   }
+  else if (e.getKeyCode() == 115) { // F4
+    set_view_sliders();
+  }
   else if (e.getKeyCode() == 116) { // F5
-    switch_view();
+    set_view_picker();
+  }
+  else if (e.getKeyCode() == 117) { // F6
+    set_view_image();
   }
   else if (e.getKeyCode() == 122) { // F11
     preset_palette.adjust_size(-1);
@@ -150,6 +156,16 @@ public void keyPressed(KeyEvent e) {
   else {
     println("Unbound KeyCode: " + e.getKeyCode());
   }
+}
+
+void load_image_callback(File selection) {
+  if (selection == null) {
+    println("No image file selected");
+  }
+  else {
+    image_picker.load(selection);
+  }
+  mousePressed = false;
 }
 
 void load_palette_callback(File selection) {
