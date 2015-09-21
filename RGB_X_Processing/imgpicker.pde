@@ -33,8 +33,8 @@ public class ImagePicker {
         new_cor = get(mouseX, mouseY);
       }
       else if (mouseButton == RIGHT) {
-        selectInput("Select an image file:", "load_image_callback");
         mousePressed = false;
+        selectInput("Select an image file:", "load_image_callback");
       }
     }
   }

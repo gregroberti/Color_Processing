@@ -303,7 +303,7 @@ void fileSelected(File selection) {
       rgb_arr_size = rgb_arr_size_new;
       color_palette = color_palette_new;
       initialize_color_buttons();
-      println("Successfully loaded color palette from: " + SAVE_FILE);
+      println("Successfully loaded color palette from: " + selection.getAbsolutePath());
     }
     catch (FileNotFoundException e) {
       println("FileNotFoundException: " + e);
