@@ -69,6 +69,10 @@ public class ImagePicker {
     if (ipImage != null) {
       image(ipImage, x, y);
     }
+    else {
+      fill(BLACK, alpha);
+      text("Right-click to select an image", x+(w/2)-80, y+(h/2));
+    }
     render_alpha_cover();
     if (use_image) {
       check_for_clicks();
