@@ -44,7 +44,7 @@ class exportbtn {
   }
   
   void click() {
-    File save_file = new File(SAVE_FILE);
+    File save_file = new File(COLOR_PALETTE_DIR + "\\*.txt");
     selectOutput("Select a file to process:", "save_palette_callback", save_file);
   }
 }

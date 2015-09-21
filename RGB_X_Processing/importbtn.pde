@@ -44,7 +44,7 @@ class importbtn {
   }
   
   void click() {
-    File save_file = new File(sketchPath("") + "\\RGB_X_Processing\\color_palettes");
+    File save_file = new File(COLOR_PALETTE_DIR + "\\*.txt");
     selectInput("Select a file to process:", "load_palette_callback", save_file);
   }
 }

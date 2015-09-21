@@ -34,7 +34,8 @@ public class ImagePicker {
       }
       else if (mouseButton == RIGHT) {
         mousePressed = false;
-        selectInput("Select an image file:", "load_image_callback");
+        File image_file = new File(IMAGES_DIR + "\\*.jpg");
+        selectInput("Select an image file", "load_image_callback", image_file);
       }
     }
   }

@@ -138,7 +138,6 @@ color WHITE = color(255, 255, 255);
 color BLACK = color(0, 0, 0);
 color GREY = color(55, 55, 55);
 
-String SAVE_FILE = System.getProperty("user.home") + "\\Desktop\\color_palette.txt";
 int ALPHA_MODIFIER = 5;
 int BRIGHTNESS_MODIFIER = 1;
 int MOUSE_WHEEL_INC = 1;
@@ -186,6 +185,9 @@ sliderV sV1, sV2, sV3, sInc;
 importbtn import_cp;
 exportbtn export_cp;
 
+String IMAGES_DIR;
+String COLOR_PALETTE_DIR;
+
 void setup() {
   size(500, 550);
   surface.setTitle("Slider Pro for the OSM by Greg Roberti");
@@ -201,6 +203,9 @@ void setup() {
     print("Your available serial ports are: ");
     println(Serial.list());
   }
+  
+  IMAGES_DIR = sketchPath("") + "images";
+  COLOR_PALETTE_DIR = sketchPath("") + "color_palettes";
   
   import_cp = new importbtn(10, 10);
   export_cp = new exportbtn(width - 50, 10);
