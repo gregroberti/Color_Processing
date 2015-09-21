@@ -1,0 +1,33 @@
+0, 0, 0, // Color #0 // Blank
+127, 0, 0, // Color #1 // Red Dead
+127, 0, 7, // Color #2 // Infrapink
+127, 35, 0, // Color #3 // Sunset Orange
+127, 95, 0, // Color #4 // Golden Showers
+127, 127, 0, // Color #5 // Banana Yellow
+90, 127, 0, // Color #6 // Laz0r Lemon
+35, 127, 0, // Color #7 // Lyme
+0, 127, 0, // Color #8 // Cannabis
+0, 127, 34, // Color #9 // Turquoise
+0, 127, 63, // Color #10 // Cyan Blue
+0, 75, 127, // Color #11 // Blue Skies
+0, 0, 127, // Color #12 // Bluth
+7, 0, 127, // Color #13 // Blurple
+15, 0, 127, // Color #14 // Dank Purple
+28, 0, 127, // Color #15 // Purple Haze
+127, 0, 95, // Color #16 // Mangenta
+127, 57, 52, // Color #17 // Lite Peenk
+75, 127, 80, // Color #18 // Master Race
+127, 120, 120, // Color #19 // Rose Petal
+127, 80, 10, // Color #20 // Peech
+120, 127, 25, // Color #21 // Golden White
+40, 127, 25, // Color #22 // Minted
+25, 127, 60, // Color #23 // Bleach (beverage)
+45, 122, 127, // Color #24 // Silver Surfer
+65, 65, 127, // Color #25 // Warm Laughinder
+35, 55, 127, // Color #26 // Cool Purplewhite
+2, 4, 3, // Color #27 // Ghost Ghost
+4, 0, 0, // Color #28 // Ghost Blood
+4, 2, 0, // Color #29 // Ghost PooPoo/420
+0, 4, 0, // Color #30 // Ghost Cannabis
+0, 0, 4, // Color #31 // Ghost Bluth
+1, 0, 12 // Color #32 // Ghost Dank

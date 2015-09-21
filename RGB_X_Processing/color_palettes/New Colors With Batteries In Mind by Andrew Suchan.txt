@@ -1,0 +1,19 @@
+0, 144, 144, // Color #0 Dead Pig
+0, 88, 187, // Color #1 Skyy
+0, 0, 174, // Color #2 Blew
+0, 104, 194, // Color #3 Diva Plavalaguna
+154, 0, 35, // Color #4 Pink Agenda
+121, 0, 3, // Color #5 Redinkulous
+110, 0, 0, // Color #6 Lo-Red-der //all my friends know him//
+210, 120, 0, // Color #7 Dehydration
+98, 181, 0, // Color #8 Laz0r Lemon
+48, 181, 1, // Color #9 Lyme
+0, 181, 1, // Color #10 Glureen
+31, 0, 188, // Color #11 Peep Durple
+102, 77, 16, // Color #12 Peankch
+86, 86, 86, // Color #13 Rose Petal
+16, 77, 102, // Color #14 PeriwinkIe
+6, 6, 0, // Color #15 Pacman's Ghost
+10, 0, 1, // Color #16 Pink Ghost
+0, 30, 2, // Color #17 Bleach Ghost
+2, 0, 30, // Color #18 Deep Space
