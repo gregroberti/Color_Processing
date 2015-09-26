@@ -118,6 +118,29 @@ class palette {
     }
   }
   
+  void fill_rainbow() {
+    // Credit for this feature goes to Alvin Yao-Wen Cheung
+    
+    int phase = 100;
+    int center = 128;
+    int cor_width = 127;
+    double frequency = Math.PI*2/num_btns;
+    
+    for (int i = 0; i < num_btns; i++) {
+      bcp[i].clear_history();
+      
+      int red   = (int)Math.floor(Math.sin(frequency*i+2+phase) * cor_width + center);
+      int green = (int)Math.floor(Math.sin(frequency*i+0+phase) * cor_width + center);
+      int blue  = (int)Math.floor(Math.sin(frequency*i+4+phase) * cor_width + center);
+      
+      bcp[i].cor = color(red, green, blue);
+      
+      color_palette[i*3+0] = red;
+      color_palette[i*3+1] = green;
+      color_palette[i*3+2] = blue;
+    }
+  }
+  
   void update_clrsel(int stp) {
     if (index >= 0 && index < num_btns) {
       increment_index(stp);

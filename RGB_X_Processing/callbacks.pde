@@ -63,12 +63,26 @@ public void keyPressed(KeyEvent e) {
     }
     clearpalette = false;
   }
+  else if (fillpalette) {
+    if (e.getKeyCode() != 70) {
+      println("Pffew, that was close :)");
+    }
+    else if (e.getKeyCode() == 70) {
+      println("Your rainbow is complete!");
+      preset_palette.fill_rainbow();
+    }
+    fillpalette = false;
+  }
   else if (live_preview && e.getKeyCode() != 32) {
     disable_live_preview();
   }
   else if (e.getKeyCode() == 67) { // C
     println("Press 'c' again to clear the color preset palette (white/black)");
     clearpalette = true;
+  }
+  else if (e.getKeyCode() == 70) { // F
+    println("Press 'f' again to fill color preset palette automatically");
+    fillpalette = true;
   }
   else if (e.getKeyCode() == 73) { // I
     preview_palette.insert_selected();

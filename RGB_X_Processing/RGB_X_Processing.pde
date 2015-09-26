@@ -173,6 +173,7 @@ palette preset_palette = new palette(PRESET_PALETTE, PALETTE_TOP, PALETTE_SIZE, 
 float[] rgb_ratio = {0.0, 0.0, 0.0};
 boolean connected = false;
 boolean clearpalette = false;
+boolean fillpalette = false;
 boolean live_preview = false;
 boolean use_image = false;
 boolean use_sliders = true;
