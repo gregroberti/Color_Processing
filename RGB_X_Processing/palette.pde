@@ -121,8 +121,8 @@ class palette {
   void fill_rainbow() {
     // Credit for this feature goes to Alvin Yao-Wen Cheung
     
-    int phase = 100;
-    int center = 128;
+    int phase = 600;
+    int center = 75;
     int cor_width = 127;
     double frequency = Math.PI*2/num_btns;
     
