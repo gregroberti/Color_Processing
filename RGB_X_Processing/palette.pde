@@ -267,7 +267,7 @@ void fileSelected(File selection) {
       input.close();
       
       int rgb_arr_size_new = 0;
-      String[] rows = sb.toString().replace(" ", "").split("\r\n");
+      String[] rows = sb.toString().replace(" ", "").replace("\r\n", "\n").split("\n");
       for(int i=0; i<rows.length; i++) {
         String[] row = rows[i].split("//")[0].split(",");
         if(row.length == 3 || row.length == 4) {
