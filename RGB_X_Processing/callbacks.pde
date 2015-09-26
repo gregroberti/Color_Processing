@@ -28,6 +28,8 @@ void mouseWheel(MouseEvent event) {
 }
 
 void mousePressed() {
+  fillpalette = false;
+  clearpalette = false;
   disable_live_preview();
   preview_palette.check_for_btn_clicks();
   preset_palette.check_for_btn_clicks();

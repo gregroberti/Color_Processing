@@ -110,34 +110,31 @@ class palette {
       else {
         bcp[i] = new clrbtn(next_left += left_inc,  next_top += 0, btn_w, btn_h, id++);
       }
+      
+      bcp[i].clear_history();
       bcp[i].cor = color(color_palette[i*3 + 0],   // Red
                          color_palette[i*3 + 1],   // Green
                          color_palette[i*3 + 2]);  // Blue
-
-      bcp[i].clear_history();
     }
   }
   
   void fill_rainbow() {
     // Credit for this feature goes to Alvin Yao-Wen Cheung
     
+    unselect();
+    new_cor = BLACK;
     int phase = (int)random(0,1200);
-    int center = RAINBOW_PALETTE_BRIGHTNESS;
-    int cor_width = RAINBOW_PALETTE_CONTRAST;
     double frequency = Math.PI*2/num_btns;
     
     for (int i = 0; i < num_btns; i++) {
+      color_palette[i*3+0] = (int)Math.floor(Math.sin(frequency*i+2+phase) * RAINBOW_PALETTE_CONTRAST + RAINBOW_PALETTE_BRIGHTNESS);
+      color_palette[i*3+1] = (int)Math.floor(Math.sin(frequency*i+0+phase) * RAINBOW_PALETTE_CONTRAST + RAINBOW_PALETTE_BRIGHTNESS);
+      color_palette[i*3+2] = (int)Math.floor(Math.sin(frequency*i+4+phase) * RAINBOW_PALETTE_CONTRAST + RAINBOW_PALETTE_BRIGHTNESS);
+      
       bcp[i].clear_history();
-      
-      int red   = (int)Math.floor(Math.sin(frequency*i+2+phase) * cor_width + center);
-      int green = (int)Math.floor(Math.sin(frequency*i+0+phase) * cor_width + center);
-      int blue  = (int)Math.floor(Math.sin(frequency*i+4+phase) * cor_width + center);
-      
-      bcp[i].cor = color(red, green, blue);
-      
-      color_palette[i*3+0] = red;
-      color_palette[i*3+1] = green;
-      color_palette[i*3+2] = blue;
+      bcp[i].cor = color(color_palette[i*3 + 0],   // Red
+                         color_palette[i*3 + 1],   // Green
+                         color_palette[i*3 + 2]);  // Blue
     }
   }
   
