@@ -68,7 +68,7 @@ public void keyPressed(KeyEvent e) {
       println("Pffew, that was close :)");
     }
     else if (e.getKeyCode() == 70) {
-      println("Your rainbow is complete!");
+      println("Your shiny new rainbow color palette is complete!");
       preset_palette.fill_rainbow();
     }
     fillpalette = false;
@@ -81,7 +81,7 @@ public void keyPressed(KeyEvent e) {
     clearpalette = true;
   }
   else if (e.getKeyCode() == 70) { // F
-    println("Press 'f' again to fill color preset palette automatically");
+    println("Press 'f' again to replace the color palette with evenly spaced colors");
     fillpalette = true;
   }
   else if (e.getKeyCode() == 73) { // I
