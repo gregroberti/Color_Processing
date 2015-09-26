@@ -158,32 +158,17 @@ class palette {
       return;
     }
     println("Inserting Color #" + index);
-    rgb_arr_size = rgb_arr_size + 3;
-    num_btns = num_btns + 1;
-    
-    int[] new_color_palette = new int[rgb_arr_size];
-    for (int i = 0; i < num_btns; i++) {
-      //println("bcp[" + int(i) + "] = bcp[" + int(i+1) +"]");
-      if (i < index) {
-        new_color_palette[i*3+0] = color_palette[i*3+0];
-        new_color_palette[i*3+1] = color_palette[i*3+1];
-        new_color_palette[i*3+2] = color_palette[i*3+2];
-      }
-      else if (i == index) {
-        int[] rgb = getRGB(main_cor);
-        new_color_palette[i*3+0] = rgb[0];
-        new_color_palette[i*3+1] = rgb[1];
-        new_color_palette[i*3+2] = rgb[2];
-      }
-      else if (i > index) {
-        new_color_palette[i*3+0] = color_palette[(i*3+0)-3];
-        new_color_palette[i*3+1] = color_palette[(i*3+1)-3];
-        new_color_palette[i*3+2] = color_palette[(i*3+2)-3];
-      }
+    int curr_index = index;
+    println("num_btns="+num_btns);
+    adjust_size(1);
+    println("num_btns="+num_btns);
+    for (int i = num_btns - 1; i > curr_index; i--) {
+      println("i="+i);
+      color_palette[i*3+0] = color_palette[(i*3+0) - 3];
+      color_palette[i*3+1] = color_palette[(i*3+1) - 3];
+      color_palette[i*3+2] = color_palette[(i*3+2) - 3];
     }
-    color_palette = new_color_palette;
     initialize_color_buttons();
-    unselect();
   }
   
   void remove_selected() {
