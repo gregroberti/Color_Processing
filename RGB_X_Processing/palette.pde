@@ -159,16 +159,19 @@ class palette {
     }
     println("Inserting Color #" + index);
     int curr_index = index;
-    println("num_btns="+num_btns);
     adjust_size(1);
-    println("num_btns="+num_btns);
     for (int i = num_btns - 1; i > curr_index; i--) {
-      println("i="+i);
       color_palette[i*3+0] = color_palette[(i*3+0) - 3];
       color_palette[i*3+1] = color_palette[(i*3+1) - 3];
       color_palette[i*3+2] = color_palette[(i*3+2) - 3];
     }
+    
+    color_palette[curr_index*3+0] = 0;
+    color_palette[curr_index*3+1] = 0;
+    color_palette[curr_index*3+2] = 0;
+    
     initialize_color_buttons();
+    set_index(curr_index);
   }
   
   void remove_selected() {
@@ -177,14 +180,14 @@ class palette {
     }
     println("Deleting Color #" + index);
     int curr_index = index;
-    rgb_arr_size = rgb_arr_size - 3;
-    num_btns = num_btns - 1;
     
     for (int i = index; i < bcp.length - 1; i++) {
       color_palette[i*3+0] = color_palette[(i*3+0)+3];
       color_palette[i*3+1] = color_palette[(i*3+1)+3];
       color_palette[i*3+2] = color_palette[(i*3+2)+3];
     }
+    
+    adjust_size(-1);
     initialize_color_buttons();
     
     if (curr_index == num_btns) {

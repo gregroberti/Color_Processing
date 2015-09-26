@@ -114,7 +114,7 @@ void print_keyboard_shortcuts() {
   println("\nKEYBORD SHORTCUTS:");
   println("- Esc will close Slider-Pro!");
   println("- Type 'C' to clear the color palette (toggle white/black)");
-  println("- Type 'I' to insert the main color as the selected button");
+  println("- Type 'I' to insert a new button at the current position");
   println("- Type 'P' to print your color palettes");
   println("- Type 'R' to select a random RGB value");
   println("- Type 'X' to remove the selected button");
