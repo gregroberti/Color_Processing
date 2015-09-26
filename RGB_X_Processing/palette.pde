@@ -172,10 +172,11 @@ class palette {
   }
   
   void remove_selected() {
-    if (index == -1) {
+    if (index == -1 || num_btns == 1) {
       return;
     }
     println("Deleting Color #" + index);
+    int curr_index = index;
     rgb_arr_size = rgb_arr_size - 3;
     num_btns = num_btns - 1;
     
@@ -184,8 +185,12 @@ class palette {
       color_palette[i*3+1] = color_palette[(i*3+1)+3];
       color_palette[i*3+2] = color_palette[(i*3+2)+3];
     }
-    unselect();
     initialize_color_buttons();
+    
+    if (curr_index == num_btns) {
+      curr_index = curr_index - 1;
+    }
+    set_index(curr_index);
   }
   
   void reset_selected() {
@@ -255,7 +260,7 @@ class palette {
       new_cor_index = 0;
     }
     
-    if (index >= 0) {
+    if (index >= 0 && index < num_btns) {
       bcp[index].unsel();
     }
     index = new_cor_index;
