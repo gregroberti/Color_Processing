@@ -116,6 +116,7 @@ void print_keyboard_shortcuts() {
   println("- Type 'C' to clear the color palette (toggle white/black)");
   println("- Type 'P' to print your color palettes");
   println("- Type 'R' to select a random RGB value");
+  println("- Type 'X' to remove the selected button");
   println("- Arrow keys to navigate the color palette");
   println("- Number keys 0-9 select the corresponding live preview button");
   println("- Enter (or right-click) sets the selected button to the slider values");

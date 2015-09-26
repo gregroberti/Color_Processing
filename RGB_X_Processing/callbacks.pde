@@ -83,6 +83,10 @@ public void keyPressed(KeyEvent e) {
     preview_palette.unselect();
     preset_palette.unselect();
   }
+  else if (e.getKeyCode() == 88) { // X
+    preview_palette.remove_selected();
+    preset_palette.remove_selected();
+  }
   else if (e.getKeyCode() == 27) {  // ESC
     println("Bye now");
   }

@@ -42,7 +42,7 @@ class palette {
   void initialize(int[] new_color_palette) {
     color_palette = new int[rgb_arr_size];
     
-    for(int i=0; i<rgb_arr_size; i++)
+    for(int i = 0; i < rgb_arr_size; i++)
     {
       if(i<new_color_palette.length) {
         color_palette[i] = new_color_palette[i];
@@ -71,7 +71,7 @@ class palette {
     int[] color_palette_new = new int[rgb_arr_size_new];
     
     // Fit the old array into the new one and pad if necessary
-    for(int i=0; i<rgb_arr_size_new; i++) {
+    for(int i = 0; i < rgb_arr_size_new; i++) {
       if(i<rgb_arr_size) {
         color_palette_new[i] = color_palette[i];
       }
@@ -103,7 +103,7 @@ class palette {
     int left_inc = btn_w+btn_sp_x;
     
     bcp = new clrbtn[num_btns];
-    for (int i=0; i<num_btns; i++) {
+    for (int i = 0; i < num_btns; i++) {
       if (i%btn_acr==0) {
         bcp[i] = new clrbtn(next_left = left_start,  next_top += top_inc, btn_w, btn_h, id++);
       }
@@ -153,11 +153,31 @@ class palette {
     }
   }
   
-  void reset_selected() {
-    if (index != -1) {
-      bcp[index].reset();
-      update_color_palette_arr();
+  void remove_selected() {
+    if (index == -1) {
+      return;
     }
+    println("Deleting Color #" + index);
+    rgb_arr_size = rgb_arr_size - 3;
+    num_btns = num_btns - 1;
+    
+    for (int i = index; i < bcp.length - 1; i++) {
+      println("bcp[" + int(i) + "] = bcp[" + int(i+1) +"]");
+      color_palette[i*3+0] = color_palette[(i*3+0)+3];
+      color_palette[i*3+1] = color_palette[(i*3+1)+3];
+      color_palette[i*3+2] = color_palette[(i*3+2)+3];
+    }
+    unselect();
+    initialize_color_buttons();
+  }
+  
+  void reset_selected() {
+    if (index == -1) {
+      return;
+    }
+    
+    bcp[index].reset();
+    update_color_palette_arr();
   }
   
   void reset_all() {
@@ -167,19 +187,23 @@ class palette {
   }
   
   void undo() {
-    if (index != -1) {
-      bcp[index].undo();
-      update_color_palette_arr();
+    if (index == -1) {
+      return;
     }
+    
+    bcp[index].undo();
+    update_color_palette_arr();
   }
   
   void update_color() {
-    if (index != -1) {
-      color_palette[index*3+0] = sV1.p;
-      color_palette[index*3+1] = sV2.p;
-      color_palette[index*3+2] = sV3.p;
-      bcp[index].update_color(sV1.p, sV2.p, sV3.p, true);
+    if (index == -1) {
+      return;
     }
+    
+    color_palette[index*3+0] = sV1.p;
+    color_palette[index*3+1] = sV2.p;
+    color_palette[index*3+2] = sV3.p;
+    bcp[index].update_color(sV1.p, sV2.p, sV3.p, true);
   }
   
   void update_color_palette_arr() {
@@ -268,10 +292,10 @@ void fileSelected(File selection) {
       
       int rgb_arr_size_new = 0;
       String[] rows = sb.toString().replace(" ", "").replace("\r\n", "\n").split("\n");
-      for(int i=0; i<rows.length; i++) {
+      for(int i = 0; i < rows.length; i++) {
         String[] row = rows[i].split("//")[0].split(",");
         if(row.length == 3 || row.length == 4) {
-          for(int j=0; j<row.length; j++) {
+          for(int j = 0; j < row.length; j++) {
             rgb_arr_size_new++;
           }
         }
@@ -282,7 +306,7 @@ void fileSelected(File selection) {
       //println("rows.length="+rows.length);
       //println("color_palette_new.length="+color_palette_new.length);
       
-      for(int i=0; i<rows.length; i++) {
+      for(int i = 0; i < rows.length; i++) {
         //println("rows[i]="+rows[i]);
         String[] row = rows[i].split("//")[0].split(",");
         if(row.length == 3 || row.length == 4) {
