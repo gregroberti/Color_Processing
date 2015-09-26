@@ -3,15 +3,40 @@
 //////////////////
 
 public class ImagePicker {
-  int x, y, w, h;
+  int x, imgx, y, imgy, w, imgw, h, imgh;
   int alpha = 0;
   PImage ipImage;
   
   public ImagePicker (int _x, int _y, int _w, int _h) {
-    x = _x;
-    y = _y;
-    w = _w;
-    h = _h;
+    x = imgx = _x;
+    y = imgy = _y;
+    w = imgw = _w;
+    h = imgh = _h;
+  }
+  
+  void zoom(float amnt) {
+    if (ipImage == null) {
+      return;
+    }
+    
+    // Zoom by height
+    int new_height = int(ipImage.height-ZOOM_AMOUNT*amnt);
+    int new_width = int((float)ipImage.width/ipImage.height*new_height);
+    
+    // Zoom by width
+    //int new_width = int(ipImage.width-ZOOM_AMOUNT*amnt);
+    //int new_height = int((float)ipImage.height/ipImage.width * new_width);
+    
+    if (new_height < h || new_width < w) {
+      return;
+    }
+    else if ((new_width > 0) && (new_height > 0)) {
+      imgx = imgx - (new_width - imgw)/2;
+      imgy = imgy - (new_height - imgh)/2;
+      imgw = new_width;
+      imgh = new_height;
+      ipImage.resize(imgw, imgh);
+    }
   }
   
   boolean isOver() {
@@ -54,21 +79,31 @@ public class ImagePicker {
     rect(x, y, w, h);
   }
   
+  void render_perimeter_mask(int _x, int _y, int _w, int _h) {
+    fill(BLACK);
+    rect(_x, _y, _w, _h);
+  }
+  
   void render_border() {
     fill(WHITE, alpha);
     rect(x-1, y-1, w+2, h+2);
   }
   
   void load(File selection) {
+    imgx = x;
+    imgy = y;
+    imgw = w;
+    imgh = h;
+    
     ipImage = loadImage(selection.getAbsolutePath());
-    ipImage.resize(w, h);
+    ipImage.resize(imgw, imgh);
   }
   
   void render() {
     update_alpha();
     render_border();
     if (ipImage != null) {
-      image(ipImage, x, y);
+      image(ipImage, imgx, imgy);
     }
     else {
       fill(BLACK, alpha);
@@ -78,5 +113,8 @@ public class ImagePicker {
     if (use_image) {
       check_for_clicks();
     }
+    
+    render_perimeter_mask(0, 0, width, y-1);
+    render_perimeter_mask(0, y+h+1, width, height - y+h);
   }
 }

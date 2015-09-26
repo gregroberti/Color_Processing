@@ -20,6 +20,9 @@ void mouseWheel(MouseEvent event) {
   else if (use_picker) {
     new_cor = get_random_color();
   }
+  else if (use_image && image_picker.isOver()) {
+    image_picker.zoom(e);
+  }
   
   if (new_cor != main_cor) {
     preview_palette.unselect();
