@@ -70,6 +70,10 @@ public void keyPressed(KeyEvent e) {
     println("Press 'c' again to clear the color preset palette (white/black)");
     clearpalette = true;
   }
+  else if (e.getKeyCode() == 73) { // I
+    preview_palette.insert_selected();
+    preset_palette.insert_selected();
+  }
   else if (e.getKeyCode() == 80) { // P
     println();
     println("Color Palette:");
