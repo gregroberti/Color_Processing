@@ -205,7 +205,7 @@ void setup() {
   catch (Exception e) {
     println("ERROR: Unable to connect on " + com_port);
     print("Your available serial ports are: ");
-    println(Serial.list());
+    println(String.join(",", Serial.list()));
   }
   
   IMAGES_DIR = sketchPath("") + "images";
