@@ -115,6 +115,8 @@ public class ImagePicker {
     }
     
     render_perimeter_mask(0, 0, width, y-1);
-    render_perimeter_mask(0, y+h+1, width, height - y+h);
+    render_perimeter_mask(0, y+h+1, width, height-y+h);
+    render_perimeter_mask(0, 0, x-1, height);
+    render_perimeter_mask(x+w+1, 0, width-y-h, height);
   }
 }
