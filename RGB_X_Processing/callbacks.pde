@@ -94,11 +94,15 @@ public void keyPressed(KeyEvent e) {
   }
   else if (e.getKeyCode() == 80) { // P
     println();
-    println("Color Palette:");
-    println(String.join("\r\n", preset_palette.print_palette()));
+    println("// Color Palette (" + preset_palette.num_btns + " colors) //");
+    print("  ");
+    println(String.join("\r\n  ", preset_palette.print_palette()));
+    println("// Color Palette (" + preset_palette.num_btns + " colors) //");
     println();
-    println("Live Preview:");
-    println(String.join("\r\n", preview_palette.print_palette()));
+    println("// Live Preview (" + preview_palette.num_btns + " colors) //");
+    print("  ");
+    println(String.join("\r\n  ", preview_palette.print_palette()));
+    println("// Live Preview (" + preview_palette.num_btns + " colors) //");
   }
   else if (e.getKeyCode() == 82) { // R
     new_cor = get_random_color();
