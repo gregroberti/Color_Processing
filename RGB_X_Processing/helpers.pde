@@ -33,7 +33,9 @@ String print_color(int[] rgb, int i, boolean last_line) {
     while (line.length() < 16) {
       line += " ";
     }
-    line += "// Color #" + i;
+    if (i >= 0) {
+      line += "// Color #" + i;
+    }
     return line;
   }
 
@@ -108,16 +110,29 @@ void calculate_ratio() {
 
 void invert_main_color() {
   int[] rgb = getRGB(main_cor);
-    int total = 0;
+    int high, low;
+    high = low = -1;
     for (int i = 0; i < 3; i++) {
-      if (rgb[i] > total) {
-        total = rgb[i];
+      if (high == -1 || rgb[i] > high) {
+        high = rgb[i];
+      }
+      if (low == -1 || rgb[i] < low) {
+        low = rgb[i];
       }
     }
     for (int i = 0; i < 3; i++) {
-      rgb[i] = total - rgb[i];
+      if (rgb[i] == high) {
+        rgb[i] = low;
+      }
+      else if(rgb[i] == low) {
+        rgb[i] = high;
+      }
+      else {
+        rgb[i] = high - rgb[i];
+      }
     }
     new_cor = color(rgb[0], rgb[1], rgb[2]);
+    println("Inverted Main Color: " + print_color(rgb, -1, true));
 }
 
 
