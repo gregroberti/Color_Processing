@@ -139,6 +139,7 @@ color BLACK = color(0, 0, 0);
 color GREY = color(55, 55, 55);
 
 int ZOOM_AMOUNT = 15;
+int IMAGE_SHIFT = 15;
 int ALPHA_MODIFIER = 5;
 int BRIGHTNESS_MODIFIER = 1;
 int MOUSE_WHEEL_INC = 1;

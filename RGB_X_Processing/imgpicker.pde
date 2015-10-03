@@ -31,12 +31,49 @@ public class ImagePicker {
       return;
     }
     else if ((new_width > 0) && (new_height > 0)) {
-      imgx = imgx - (new_width - imgw)/2;
-      imgy = imgy - (new_height - imgh)/2;
+      int new_imgx = imgx - (new_width - imgw)/2;
+      int new_imgy = imgy - (new_height - imgh)/2;
       imgw = new_width;
       imgh = new_height;
+      update_imgx_imgy(new_imgx, new_imgy);
       ipImage.resize(imgw, imgh);
     }
+  }
+  
+  void shift_img(int _x, int _y) {
+    if ( _x == 0 && _y == 0) {
+      println("imgx="+imgx);
+      imgx = x/w - imgx/imgw + x;
+      println("imgx="+imgx);
+      
+      println("imgy="+imgy);
+      imgy = y/h - imgy/imgh + y;
+      println("imgy="+imgy);
+    }
+    else {
+      int new_imgx = imgx + _x;
+      int new_imgy = imgy + _y;
+      
+      update_imgx_imgy(new_imgx, new_imgy);
+    }
+  }
+  
+  void update_imgx_imgy(int new_imgx, int new_imgy) {
+    if (new_imgx + imgw < x + w) {
+        new_imgx = x + w - imgw;
+      }
+      if (new_imgx > x) {
+        new_imgx = x;
+      }
+      if (new_imgy + imgh < y + h) {
+        new_imgy = y + h - imgh;
+      }
+      if (new_imgy > y) {
+        new_imgy = y;
+      }
+      
+      imgx = new_imgx;
+      imgy = new_imgy;
   }
   
   boolean isOver() {

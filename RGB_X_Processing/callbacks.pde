@@ -160,6 +160,33 @@ public void keyPressed(KeyEvent e) {
     preview_palette.adjust_size(-1);
     println("Updated Preview Palette Size: " + preview_palette.get_size());
   }
+  else if (e.getKeyCode() == 97) { // NUM1
+    image_picker.shift_img(-IMAGE_SHIFT, IMAGE_SHIFT); // DOWN LEFT
+  }
+  else if (e.getKeyCode() == 98) { // NUM2
+    image_picker.shift_img(0, IMAGE_SHIFT); // DOWN
+  }
+  else if (e.getKeyCode() == 99) { // NUM3
+    image_picker.shift_img(IMAGE_SHIFT, IMAGE_SHIFT); // DOWN RIGHT
+  }
+  else if (e.getKeyCode() == 100) { // NUM4
+    image_picker.shift_img(-IMAGE_SHIFT, 0); // LEFT
+  }
+  //else if (e.getKeyCode() == 101) { // NUM5
+  //  image_picker.shift_img(0, 0); // RESET
+  //}
+  else if (e.getKeyCode() == 102) { // NUM6
+    image_picker.shift_img(IMAGE_SHIFT, 0);  // RIGHT
+  }
+  else if (e.getKeyCode() == 103) { // NUM7
+    image_picker.shift_img(-IMAGE_SHIFT, -IMAGE_SHIFT);  // UP LEFT
+  }
+  else if (e.getKeyCode() == 104) { // NUM8
+    image_picker.shift_img(0, -IMAGE_SHIFT);  // UP
+  }
+  else if (e.getKeyCode() == 105) { // NUM9
+    image_picker.shift_img(IMAGE_SHIFT, -IMAGE_SHIFT);  // UP RIGHT
+  }
   else if (e.getKeyCode() == 112) { // F1
     print_keyboard_shortcuts();
   }
