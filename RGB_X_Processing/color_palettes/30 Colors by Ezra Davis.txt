@@ -1,0 +1,31 @@
+0, 0, 0, // Color #0 Blank
+125, 0, 0, // Color #1 Red
+150, 25, 0, // Color #2 Dark Orange
+135, 45, 0, // Color #3 Tangerine
+150, 140, 0, // Color #4 Yellow
+100, 120, 0, // Color #5 Laser Yellow
+50, 135, 0, // Color #6 Neon Green
+0, 150, 0, // Color #7 Green
+0, 130, 20, // Color #8 Turquoise
+0, 110, 150, // Color #9 Baby Blue
+0, 30, 120, // Color #10 Deep Freeze
+0, 0, 130, // Color #11 Blue
+35, 25, 115, // Color #12 Lilac
+22, 0, 110, // Color #13 Purple
+150, 80, 40, // Color #14 Pale Pink
+125, 24, 141, // Color #15 Cherry Blossom
+105, 0, 142, // Color #16 Pink
+130, 0, 73, // Color #17 Hot Pink
+125, 0, 24, // Color #18 Dark Pink
+65, 150, 100, // Color #19 White
+35, 110, 70, // Color #20 Silver
+20, 111, 12, // Color #21 Mint
+14, 61, 31, // Color #22 Chrome
+80, 65, 5, // Color #23 Peach
+130, 110, 4, // Color #24 Dark Gold 
+140, 150, 8, // Color #25 Light Gold
+140, 150, 20, // Color #26 White Gold
+4, 0, 12, // Color #27 Ghost Purple
+0, 0, 4, // Color #28 Ghost Blue
+0, 4, 0, // Color #29 Ghost Green
+4, 0, 0 // Color #30 Ghost Red
