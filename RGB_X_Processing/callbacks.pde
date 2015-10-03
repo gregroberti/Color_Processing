@@ -25,8 +25,7 @@ void mouseWheel(MouseEvent event) {
   }
   
   if (new_cor != main_cor) {
-    preview_palette.unselect();
-    preset_palette.unselect();
+    unselect_all();
   }
 }
 
@@ -103,8 +102,9 @@ public void keyPressed(KeyEvent e) {
   }
   else if (e.getKeyCode() == 82) { // R
     new_cor = get_random_color();
-    preview_palette.unselect();
-    preset_palette.unselect();
+  }
+  else if (e.getKeyCode() == 84) { // T
+    invert_main_color();
   }
   else if (e.getKeyCode() == 88) { // X
     preview_palette.remove_selected();

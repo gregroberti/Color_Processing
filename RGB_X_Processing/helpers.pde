@@ -54,6 +54,11 @@ color get_random_color() {
   return color(rgb[0], rgb[1], rgb[2]);
 }
 
+void unselect_all() {
+  preview_palette.unselect();
+  preset_palette.unselect();
+}
+
 void update_sliders(int[] rgb) {
   sV1.p = rgb[0];
   sV2.p = rgb[1];
@@ -100,8 +105,23 @@ void calculate_ratio() {
     rgb_ratio[i] = (float)rgb[i] / min;
   }
 }
- 
- void render_ratio_txt() {
+
+void invert_main_color() {
+  int[] rgb = getRGB(main_cor);
+    int total = 0;
+    for (int i = 0; i < 3; i++) {
+      if (rgb[i] > total) {
+        total = rgb[i];
+      }
+    }
+    for (int i = 0; i < 3; i++) {
+      rgb[i] = total - rgb[i];
+    }
+    new_cor = color(rgb[0], rgb[1], rgb[2]);
+}
+
+
+void render_ratio_txt() {
   fill(WHITE, sV1.alpha);
   text(rgb_ratio[0], sV1.x + (sV1.w/2) - 20, sV1.y + sV1.h + 30);
   text(":", sV1.x + sV1.w + 3, sV1.y + sV1.h + 30);
@@ -118,6 +138,7 @@ void print_keyboard_shortcuts() {
   println("- Type 'I' to insert a new button at the current position");
   println("- Type 'P' to print your color palettes");
   println("- Type 'R' to select a random RGB value");
+  println("- Type 'T' to invert the main color's RGB values");
   println("- Type 'X' to remove the selected button");
   println("- Arrow keys to navigate the color palette");
   println("- Number keys 0-9 select the corresponding live preview button");
@@ -139,8 +160,7 @@ void print_keyboard_shortcuts() {
 }
 
 void turn_off_light() {
-  preset_palette.unselect();
-  preview_palette.unselect();
+  unselect_all();
   new_cor = BLACK;
   main_cor = BLACK;
   int[] rgb = getRGB(new_cor);
