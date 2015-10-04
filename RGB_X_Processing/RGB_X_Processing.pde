@@ -196,6 +196,7 @@ String COLOR_PALETTE_DIR;
 
 void setup() {
   size(500, 550);
+  //surface.setResizable(true);
   surface.setTitle("Slider Pro for the OSM by Greg Roberti");
   
   try {

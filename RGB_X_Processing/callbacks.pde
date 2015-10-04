@@ -116,6 +116,7 @@ public void keyPressed(KeyEvent e) {
   }
   else if (e.getKeyCode() == 27) {  // ESC
     println("Bye now");
+    turn_off_light();
   }
   else if (e.getKeyCode() == 32) {  // SPACE
     toggle_live_preview();

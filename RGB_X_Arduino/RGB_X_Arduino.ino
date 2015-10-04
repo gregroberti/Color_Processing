@@ -1,5 +1,6 @@
 #include <avr/interrupt.h>
 #define MAX_PREVIEW 255
+#define BUTTON   2
 #define RED      9
 #define GREEN    6
 #define BLUE     5
@@ -78,7 +79,7 @@ void loop()
   }
   
   if (!lp_enabled) {
-    analogWrite(RED, curr_red);  
+    analogWrite(RED, curr_red);
     analogWrite(GREEN, curr_green);
     analogWrite(BLUE, curr_blue);
   }
@@ -100,6 +101,12 @@ void reset_rec() {
 
 ISR(TIMER2_COMPA_vect)
 {
+  if (digitalRead (BUTTON) == LOW) {
+    curr_red = 0;
+    curr_green = 0;
+    curr_blue = 0;
+  }
+  
   unsigned long currMillis = millis();
   if (lp_enabled) {
     if((light_on && ((currMillis - prevMillis) >= LIGHT_ON)) || (!light_on && ((currMillis - prevMillis) >= LIGHT_OFF))) {
