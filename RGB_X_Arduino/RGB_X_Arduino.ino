@@ -101,13 +101,15 @@ void reset_rec() {
 
 ISR(TIMER2_COMPA_vect)
 {
+  unsigned long currMillis = millis();
   if (digitalRead (BUTTON) == LOW) {
     curr_red = 0;
     curr_green = 0;
     curr_blue = 0;
+    analogWrite(RED, 0);
+    analogWrite(GREEN, 0);
+    analogWrite(BLUE, 0);
   }
-  
-  unsigned long currMillis = millis();
   if (lp_enabled) {
     if((light_on && ((currMillis - prevMillis) >= LIGHT_ON)) || (!light_on && ((currMillis - prevMillis) >= LIGHT_OFF))) {
       light_on = !light_on;
