@@ -155,11 +155,25 @@ void invert_main_color() {
 
 void render_ratio_txt() {
   fill(WHITE, sV1.alpha);
-  text(rgb_ratio[0], sV1.x + (sV1.w/2) - 20, sV1.y + sV1.h + 30);
-  text(":", sV1.x + sV1.w + 3, sV1.y + sV1.h + 30);
-  text(rgb_ratio[1], sV2.x + (sV2.w/2) - 20, sV2.y + sV2.h + 30);
-  text(":", sV2.x + sV2.w + 3, sV2.y + sV2.h + 30);
-  text(rgb_ratio[2], sV3.x + (sV3.w/2) - 20, sV3.y + sV3.h + 30);
+  String r_ratio = str(rgb_ratio[0]);
+  String g_ratio = str(rgb_ratio[1]);
+  String b_ratio = str(rgb_ratio[2]);  
+  
+  if (r_ratio.length() > MAX_RATIO_LENGTH) {
+    r_ratio = r_ratio.substring(0, MAX_RATIO_LENGTH);
+  }
+  if (g_ratio.length() > MAX_RATIO_LENGTH) {
+    g_ratio = g_ratio.substring(0, MAX_RATIO_LENGTH);
+  }
+  if (b_ratio.length() > MAX_RATIO_LENGTH) {
+    b_ratio = b_ratio.substring(0, MAX_RATIO_LENGTH);
+  }
+  
+  text(r_ratio, sV1.x + (sV1.w/2) - r_ratio.length()*3, sV1.y + sV1.h + 30);
+  text(":", sV1.x + sV1.w, sV1.y + sV1.h + 30);
+  text(g_ratio, sV2.x + (sV2.w/2) - g_ratio.length()*3, sV2.y + sV2.h + 30);
+  text(":", sV2.x + sV2.w, sV2.y + sV2.h + 30);
+  text(b_ratio, sV3.x + (sV3.w/2) - b_ratio.length()*3, sV3.y + sV3.h + 30);
 }
 
 void print_keyboard_shortcuts() {

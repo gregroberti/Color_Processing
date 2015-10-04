@@ -152,6 +152,7 @@ int SLIDER_SPACE = 10;
 int SLIDER_WIDTH = 90;
 int SLIDER_HEIGHT = 255;
 
+int MAX_RATIO_LENGTH = 8;
 int MAX_PREVIEW_SIZE = 255;
 int PREVIEW_BTN_SPACE_X = 5;
 int PREVIEW_BTN_SPACE_Y = 15;
@@ -220,11 +221,11 @@ void setup() {
 
   // create 3 instances of the sliderV class
   sV1 = new sliderV(((width-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*0,
-                      SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #FF0000, 0, "Red");
+                      SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #FF0000, 0, "R: ");
   sV2 = new sliderV(((width-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*1,
-                      SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #03FF00, 1, "Green");
+                      SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #03FF00, 1, "G: ");
   sV3 = new sliderV(((width-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*2,
-                      SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #009BFF, 2, "Blue");
+                      SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #009BFF, 2, "B: ");
   
   preview_palette.initialize_color_buttons();
   preset_palette.initialize_color_buttons();

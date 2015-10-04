@@ -28,7 +28,7 @@ class sliderV {
     rect(x-1, y+h+4, w, 15);
     
     fill(WHITE, alpha);
-    text("MIN", x+30, y+h+17);
+    text("MIN", x+w/2-13, y+h+17);
   }
   
   void render_max() {
@@ -36,7 +36,7 @@ class sliderV {
     rect(x-1, y-19, w, 15);
     
     fill(WHITE, alpha);
-    text("MAX", x+30, y-7);
+    text("MAX", x+w/2-13, y-7);
   }
   
   void render_bar() {
@@ -49,7 +49,7 @@ class sliderV {
     rect(x, h-p+y-5, w-2, 13);
     
     fill(WHITE, alpha);
-    text(p + " " + name, x+2, h-p+y+6);
+    text(name + p, x+2, h-p+y+6);
   }
   
   void check_out_of_range() {
