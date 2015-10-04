@@ -108,6 +108,23 @@ void calculate_ratio() {
   }
 }
 
+void shift_rgb_values(int amnt) {
+  int[] rgb = getRGB(main_cor);
+  int[] new_rgb = {0, 0, 0};
+  for(int i = 0; i < 3; i++) {
+    int k = i+amnt;
+    if(k ==3) {
+      k = 0;
+    }
+    else if (k == -1) {
+      k = 2;
+    }
+    new_rgb[i] = rgb[k];
+  }
+  new_cor = color(new_rgb[0], new_rgb[1], new_rgb[2]);
+  println("Shifted RGB values: " + print_color(new_rgb, -1, true));
+}
+
 void invert_main_color() {
   int[] rgb = getRGB(main_cor);
     int high, low;
@@ -160,6 +177,8 @@ void print_keyboard_shortcuts() {
   println("- Enter (or right-click) sets the selected button to the slider values");
   println("- Backspace undoes changes to your selected button");
   println("- Delete (or double-click) 'resets' a button (toggle white/black)");
+  println("- [ shifts the RGB values of the main color B->G->R");
+  println("- ] shifts the RGB values of the main color R->G->B");
   println("- Plus increases the brightness of the main color");
   println("- Minus decreases the brightness of the main color");
   println("- Space bar toggles live preview");

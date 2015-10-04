@@ -134,6 +134,12 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 40) { // DOWN ARROW
    preset_palette.update_clrsel(preset_palette.btn_acr);
   }
+  else if (e.getKeyCode() == 91) { // [
+    shift_rgb_values(1);
+  }
+  else if (e.getKeyCode() == 93) { // ]
+    shift_rgb_values(-1);
+  }
   else if (e.getKeyCode() == 107) { // PLUS
     update_brightness(BRIGHTNESS_MODIFIER);
   }
