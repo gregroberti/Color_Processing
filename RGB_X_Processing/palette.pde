@@ -56,13 +56,18 @@ class palette {
   void adjust_size(int amnt) {
     int num_btns_new = num_btns + amnt;
     int btn_w_padded = (btn_w+btn_sp_x);
+    int btn_h_padded = (btn_h+btn_sp_y);
     
     if (num_btns_new < 1) {
       println("Unable to reduce the size of the color palette below 1");
       return;
     }
-    //this fancy little doo-dad will keep your live preview buttons from going off screen..
+    //these fancy little doo-dads will keep your palettes from going off screen..
     else if (horizontal && (((width-btn_w_padded)-(btn_w_padded*num_btns_new))/btn_w_padded < 0)) {
+      println("Try increasing the form size");
+      return;
+    }
+    else if (!horizontal && btn_h_padded*Math.ceil(float(num_btns_new)/btn_acr_unch) > height - y - btn_h_padded) {
       println("Try increasing the form size");
       return;
     }
