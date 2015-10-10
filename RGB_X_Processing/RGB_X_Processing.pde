@@ -161,6 +161,8 @@ int[] PREVIEW_PALETTE = {0,0,0,0,0,0,0,0,0};
 int PREVIEW_SIZE = PREVIEW_PALETTE.length/3;
 boolean PREVIEW_HORIZONTAL = true;
 
+int NUM_CIRCLES = 12;
+int WHEEL_SEG_SZ = 30;
 int PALETTE_SIZE = 33;
 int COLOR_BTN_WIDTH = 25;
 int COLOR_BTN_HEIGHT = 25;
@@ -180,11 +182,13 @@ boolean connected = false;
 boolean clearpalette = false;
 boolean fillpalette = false;
 boolean live_preview = false;
+boolean use_wheel = false;
 boolean use_image = false;
 boolean use_sliders = true;
 boolean use_picker = false;
 color new_cor = BLACK;
 color main_cor = BLACK;
+ColorWheel color_wheel;
 ColorPicker color_picker;
 ImagePicker image_picker;
 sliderV sV1, sV2, sV3, sInc;
@@ -217,6 +221,7 @@ void setup() {
   import_cp = new importbtn(10, 10);
   export_cp = new exportbtn(width - 50, 10);
   
+  color_wheel = new ColorWheel(0, 0, width, height/3*2);
   color_picker = new ColorPicker(10, 40, width - 20, 300);
   image_picker = new ImagePicker(10, 40, width - 20, 300);
 
@@ -247,6 +252,7 @@ void render_everything() {
   sV2.render();
   sV3.render();
   render_ratio_txt();
+  color_wheel.render();
   
   render_help_txt();
   import_cp.render();

@@ -2,27 +2,37 @@
 // Helper Functions //
 //////////////////////
 
+void disable_use_flags() {
+  color_picker.alpha = 0;
+  image_picker.alpha = 0;
+  use_picker = false;
+  use_sliders = false;
+  use_image = false;
+  use_wheel = false;
+}
+
 void set_view_sliders() {
   sV1.alpha = 0;
   sV2.alpha = 0;
   sV3.alpha = 0;
-  use_picker = false;
+  disable_use_flags();
   use_sliders = true;
-  use_image = false;
 }
 
 void set_view_picker() {
-  color_picker.alpha = 0;
+  disable_use_flags();
   use_picker = true;
-  use_sliders = false;
-  use_image = false;
 }
 
 void set_view_image() {
-  image_picker.alpha = 0;
-  use_picker = false;
-  use_sliders = false;
+  disable_use_flags();
   use_image = true;
+}
+
+void set_view_wheel() {
+  color_picker.alpha = 0;
+  disable_use_flags();
+  use_wheel = true;
 }
 
 String print_color(int[] rgb, int i, boolean last_line) {
