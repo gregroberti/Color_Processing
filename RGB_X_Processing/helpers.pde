@@ -35,6 +35,10 @@ void set_view_wheel() {
   use_wheel = true;
 }
 
+color RGBtoColor(int[] rgb) {
+  return color(rgb[0], rgb[1], rgb[2]);
+}
+
 String print_color(int[] rgb, int i, boolean last_line) {
     String line = rgb[0] + ", " + rgb[1] + ", " + rgb[2];
     if (!last_line) {

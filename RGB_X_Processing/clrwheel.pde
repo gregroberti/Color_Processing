@@ -21,7 +21,7 @@ public class ColorWheel {
   }
   
   void initialize_color_variant_ring() {
-    int radius = 60;
+    int radius = 68;
     int increment = 360/NUM_CIRCLES;
     for (int i = 0; i < ring.length; i++) {
       int px = (int)Math.floor(radius * Math.cos((increment * i) * (Math.PI / 180)));
@@ -57,6 +57,12 @@ public class ColorWheel {
   
   void update_color() {
     center.cor = main_cor;
+    int[] rgb = getRGB(main_cor);
+    float tint_increment = float(1)/ring.length;
+    for (int i = 0; i < ring.length; i++) {
+      int[] new_rgb = {int(rgb[0]*tint_increment*i), int(rgb[1]*tint_increment*i), int(rgb[2]*tint_increment*i)};
+      ring[i].cor = RGBtoColor(new_rgb);
+    }
   }
   
   void update_alpha() {
