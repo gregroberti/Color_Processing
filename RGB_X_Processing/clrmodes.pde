@@ -60,6 +60,7 @@ class clrmode {
   void select() {
     selected = true;
     text_cor = RED;
+    send_live_preview(get_palette());
   }
   
   boolean isOver() {
@@ -107,7 +108,7 @@ class clrmode {
 class clrmodes {
   int x, y, w, h, num_btns;
   int alpha = 0;
-  int selected_mode = -1;
+  int index = -1;
   clrmode[] color_modes;
   
   clrmodes (int _x, int _y, int _w, int _h, int _num_btns) {
@@ -127,34 +128,34 @@ class clrmodes {
     }
   }
   
-  boolean selected_mode_in_bounds() {
-    return selected_mode >= 0 && selected_mode < color_modes.length;
+  boolean index_in_bounds() {
+    return index >= 0 && index < color_modes.length;
   }
   
   void update_selection(int amount) {
-    if (!selected_mode_in_bounds()) {
+    if (!index_in_bounds()) {
       return;
     }
     
-    int new_selection = selected_mode + amount;
-    if (new_selection >= num_btns) {
-      new_selection -= num_btns;
+    int new_index = index + amount;
+    if (new_index >= num_btns) {
+      new_index -= num_btns;
     }
-    else if (new_selection < 0) {
-      new_selection += num_btns;
+    else if (new_index < 0) {
+      new_index += num_btns;
     }
     
-    color_modes[selected_mode].unselect();
-    color_modes[new_selection].select();
-    selected_mode = new_selection;
+    color_modes[index].unselect();
+    color_modes[new_index].select();
+    index = new_index;
   }
   
   int[] get_active_palette() {
-    if(!selected_mode_in_bounds()) {
+    if(!index_in_bounds()) {
       return new int[0];
     }
     else {
-      return color_modes[selected_mode].get_palette();
+      return color_modes[index].get_palette();
     }
   }
   
@@ -162,18 +163,25 @@ class clrmodes {
     if (!use_clrmodes) {
       return;
     }
-    //println("checking clrmodes");
     for (int i = 0; i < color_modes.length; i++) {
       if (color_modes[i].isOver()) {
-        //println("isOver() clrmode " + i);
+        select_mode(i);
         color_modes[i].check_for_btn_clicks();
-        color_modes[i].select();
-        selected_mode = i;
-      }
-      else {
-        color_modes[i].unselect();
+        return;
       }
     }
+    if (index_in_bounds()) {
+      color_modes[index].unselect();
+      index = -1;
+    }
+  }
+  
+  void select_mode(int new_index) {
+    if (index_in_bounds()) {
+      color_modes[index].unselect();
+    }
+    index = new_index;
+    color_modes[index].select();
   }
   
   void render_border(int alpha) {

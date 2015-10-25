@@ -254,6 +254,14 @@ void toggle_live_preview() {
   set_live_preview(live_preview = !live_preview);
 }
 
+void send_live_preview(int[] colors) {
+    port.write('L');
+    for (int i = 0; i < colors.length; i++) {
+      port.write(colors[i]);
+    }
+    port.write('P');
+}
+
 void set_live_preview(boolean _live_preview) {
   live_preview = _live_preview;
   turn_off_light();
@@ -261,20 +269,7 @@ void set_live_preview(boolean _live_preview) {
   if (live_preview) {
     println("Live Preview Enabled");
     if (connected) {
-      int[] color_palette;
-      
-      if (!use_clrmodes) {
-        color_palette = preview_palette.get_palette();
-      }
-      else {
-        color_palette = color_modes.get_active_palette();
-      }
-      
-      port.write('L');
-      for (int i = 0; i < color_palette.length; i++) {
-        port.write(color_palette[i]);
-      }
-      port.write('P');
+      send_live_preview(preview_palette.get_palette());
     }
   }
   else {
