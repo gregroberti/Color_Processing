@@ -21,13 +21,15 @@ class clrbtn {
   int lclk = -1;
   int bor_thk = 1;
   boolean rst = false;
+  boolean display_id = false;
   
-  clrbtn (int _x, int _y, int _w, int _h, int _id) {
+  clrbtn (int _x, int _y, int _w, int _h, int _id, boolean _display_id) {
     x = _x;
     y = _y;
     w = _w;
     h = _h;
     id = _id;
+    display_id = _display_id;
   }
   
   void render_border(int alpha) {
@@ -49,7 +51,9 @@ class clrbtn {
     noStroke();
     render_border(alpha);
     render_fill(alpha);
-    render_text(alpha);
+    if (display_id) {
+      render_text(alpha);
+    }
   }
   
   boolean isOver() {

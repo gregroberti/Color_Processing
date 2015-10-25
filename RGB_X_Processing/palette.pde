@@ -111,10 +111,10 @@ class palette {
     bcp = new clrbtn[num_btns];
     for (int i = 0; i < num_btns; i++) {
       if (i%btn_acr==0) {
-        bcp[i] = new clrbtn(next_left = left_start,  next_top += top_inc, btn_w, btn_h, id++);
+        bcp[i] = new clrbtn(next_left = left_start,  next_top += top_inc, btn_w, btn_h, id++, true);
       }
       else {
-        bcp[i] = new clrbtn(next_left += left_inc,  next_top += 0, btn_w, btn_h, id++);
+        bcp[i] = new clrbtn(next_left += left_inc,  next_top += 0, btn_w, btn_h, id++, true);
       }
       
       bcp[i].clear_history();

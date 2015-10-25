@@ -216,6 +216,7 @@ void print_keyboard_shortcuts() {
   println("- Minus decreases the brightness of the main color");
   println("- Space bar toggles live preview");
   println("- F1 displays this help menu");
+  println("- F2 switches to the color mode builder");
   println("- F4 switches to the RGB sliders");
   println("- F5 switches to the color picker");
   println("- F6 switches to the image color extractor");
