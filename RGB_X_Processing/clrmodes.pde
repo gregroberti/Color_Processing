@@ -288,10 +288,6 @@ class clrmodes {
         }
       }
     }
-    
-    for(int j = 0; j < 64; j++) {
-      println(j+ "="+retval[j]);
-    }
     return retval;
   }
 }

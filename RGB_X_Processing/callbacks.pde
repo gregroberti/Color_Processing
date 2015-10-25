@@ -96,19 +96,22 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 77) { // M
     println();
     println("// Color Modes //");
+    println();
+    int mode = 1;
     int line_count = 1;
     int[] modes_arr = color_modes.get_palette();
-    for(int i = 0; i < 64; i++) {
+    for(int i = 0; i <= 64; i++) {
       if(i > 0 && i % 8 == 0) {
-        int mode = (i+1 / 7);
         print("  0," + line_count++ + "    // Mode " + mode + "  // Prime A");
         println();
-        println("  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0," + line_count++ + ",   // Mode " + mode + "  // Prime B");
+        println("  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0," + line_count++ + ",   // Mode " + mode++ + "  // Prime B");
         println();
       }
-      print("  " + modes_arr[i] + ",0,");
+      if (i < 64) {
+        print("  " + modes_arr[i] + ",0,");
+      }
     }
-    println("\r\n// Color Modes //");
+    println("// Color Modes //");
   }
   else if (e.getKeyCode() == 80) { // P
     println();
