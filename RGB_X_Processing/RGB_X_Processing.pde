@@ -134,6 +134,7 @@ int[] get_default_palette() {
 // OK, BUT DON'T SAY I DIDN'T WARN YOU.. //
 ///////////////////////////////////////////
 
+color RED = color(200, 0, 0);
 color WHITE = color(255, 255, 255);
 color BLACK = color(0, 0, 0);
 color GREY = color(55, 55, 55);
@@ -182,12 +183,14 @@ boolean connected = false;
 boolean clearpalette = false;
 boolean fillpalette = false;
 boolean live_preview = false;
+boolean use_clrmodes = false;
 boolean use_wheel = false;
 boolean use_image = false;
 boolean use_sliders = true;
 boolean use_picker = false;
 color new_cor = BLACK;
 color main_cor = BLACK;
+clrmodes color_modes;
 ColorWheel color_wheel;
 ColorPicker color_picker;
 ImagePicker image_picker;
@@ -221,6 +224,7 @@ void setup() {
   import_cp = new importbtn(10, 10);
   export_cp = new exportbtn(width - 50, 10);
   
+  color_modes = new clrmodes(10, 40, width - 20, 300, 8);
   color_wheel = new ColorWheel(0, 0, width, height/3*2);
   color_picker = new ColorPicker(10, 40, width - 20, 300);
   image_picker = new ImagePicker(10, 40, width - 20, 300);
@@ -258,6 +262,7 @@ void render_everything() {
   import_cp.render();
   export_cp.render();
   
+  color_modes.render();
   preset_palette.render();
   preview_palette.render();
 }

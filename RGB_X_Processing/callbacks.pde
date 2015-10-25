@@ -33,6 +33,7 @@ void mousePressed() {
   fillpalette = false;
   clearpalette = false;
   disable_live_preview();
+  color_modes.check_for_btn_clicks();
   preview_palette.check_for_btn_clicks();
   preset_palette.check_for_btn_clicks();
 
@@ -130,10 +131,12 @@ public void keyPressed(KeyEvent e) {
     preset_palette.update_clrsel(1);
   }
   else if (e.getKeyCode() == 38) { // UP ARROW
-   preset_palette.update_clrsel(-preset_palette.btn_acr);
+    color_modes.update_selection(-1);
+    preset_palette.update_clrsel(-preset_palette.btn_acr);
   }
   else if (e.getKeyCode() == 40) { // DOWN ARROW
-   preset_palette.update_clrsel(preset_palette.btn_acr);
+  color_modes.update_selection(1);
+    preset_palette.update_clrsel(preset_palette.btn_acr);
   }
   else if (e.getKeyCode() == 91) { // [
     shift_rgb_values(1);
@@ -197,9 +200,12 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 112) { // F1
     print_keyboard_shortcuts();
   }
-//  else if (e.getKeyCode() == 114) { // F3
-//    set_view_wheel();
-//  }
+ else if (e.getKeyCode() == 113) { // F2
+   set_view_clrmodes();
+ }
+ else if (e.getKeyCode() == 114) { // F3
+   set_view_wheel();
+ }
   else if (e.getKeyCode() == 115) { // F4
     set_view_sliders();
   }

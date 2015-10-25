@@ -15,7 +15,6 @@ class mycor {
 class clrbtn {
   int x, y, w, h, id;
   Stack<mycor> history = new Stack();
-  int alpha = 255;
   color txt_cor = WHITE;
   color bor_cor = WHITE;
   color cor = WHITE;
@@ -31,26 +30,26 @@ class clrbtn {
     id = _id;
   }
   
-  void render_border() {
+  void render_border(int alpha) {
     fill(bor_cor, alpha);
     rect(x-1*bor_thk, y-1*bor_thk, w+2*bor_thk, h+2*bor_thk);
   }
   
-  void render_fill() {
+  void render_fill(int alpha) {
     fill(cor, alpha);
     rect(x, y, w, h);
   }
   
-  void render_text() {
+  void render_text(int alpha) {
     fill(txt_cor, alpha);
     text(id, x+1, y+10);
   }
   
-  void render() {
+  void render(int alpha) {
     noStroke();
-    render_border();
-    render_fill();
-    render_text();
+    render_border(alpha);
+    render_fill(alpha);
+    render_text(alpha);
   }
   
   boolean isOver() {
@@ -118,13 +117,13 @@ class clrbtn {
   }
   
   void sel() {
-    bor_cor = color(200, 0, 0);
+    bor_cor = RED;
     bor_thk = 2;
     new_cor = cor;
     println(print_color(getRGB(cor), id, true));
   }
   
-  void unsel() {
+  void unselect() {
     bor_cor = WHITE;
     bor_thk = 1;
   }

@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 class palette {
   int y, index = -1;
   clrbtn[] bcp;
+  int alpha = 255;
   boolean horizontal;
   int btn_w, btn_h, btn_sp_x, btn_sp_y, btn_acr, btn_acr_unch;
   int[] color_palette;
@@ -151,7 +152,7 @@ class palette {
 
   void render() {
     for (int i = 0; i < bcp.length; i++) {
-      bcp[i].render();
+      bcp[i].render(alpha);
     }
   }
   
@@ -165,7 +166,7 @@ class palette {
       }
     }
     if(index >= 0 && new_index != index) {
-      bcp[index].unsel();
+      bcp[index].unselect();
     }
     index = new_index;
     render();
@@ -173,7 +174,7 @@ class palette {
   
   void unselect() {
     if (index != -1) {
-      bcp[index].unsel();
+      bcp[index].unselect();
       index = -1;
     }
   }
@@ -289,7 +290,7 @@ class palette {
     }
     
     if (index >= 0 && index < num_btns) {
-      bcp[index].unsel();
+      bcp[index].unselect();
     }
     index = new_cor_index;
     bcp[index].sel();
