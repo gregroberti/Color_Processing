@@ -293,7 +293,7 @@ class palette {
       bcp[index].unselect();
     }
     index = new_cor_index;
-    bcp[index].sel();
+    bcp[index].select();
     new_cor = bcp[index].cor;
   }
   

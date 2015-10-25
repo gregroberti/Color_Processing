@@ -94,7 +94,7 @@ class clrbtn {
     else if (mouseButton == RIGHT) {
       update_color(main_cor, true);
     }
-    sel();
+    select();
   }
   
   void update_color(color _cor, boolean psh_hst) {
@@ -116,7 +116,7 @@ class clrbtn {
     println("Updated: " + _r + ", " + _g + ", " + _b + " // Color #" + id);
   }
   
-  void sel() {
+  void select() {
     bor_cor = RED;
     bor_thk = 2;
     new_cor = cor;

@@ -3,6 +3,7 @@
 /////////////////
 
 class clrmode {
+  int index = -1;
   int x, y, w, h, id, num_btns;
   int btn_w, btn_h, btn_sp_x, btn_sp_y, btn_acr, btn_acr_unch;
   color text_cor = WHITE;
@@ -49,6 +50,7 @@ class clrmode {
       if (color_buttons[i].isOver()) {
         color_buttons[i].click();
         select();
+        index = i;
       }
       else {
         color_buttons[i].unselect();
@@ -70,7 +72,39 @@ class clrmode {
     return false;
   }
   
+  void update_index(int amount) {
+    if (!selected) {
+      return;
+    }
+    
+    int new_index = -1;
+    if (index == -1) {
+      if (amount > 0) {
+        new_index = 0;
+      }
+      else {
+        new_index = color_buttons.length-1;
+      }
+    }
+    else {
+      new_index = index+amount;
+    }
+    if (new_index < 0) {
+      new_index += color_buttons.length;
+    }
+    else if(new_index >= color_buttons.length) {
+      new_index -= color_buttons.length;
+    }
+    
+    if (index != -1) {
+      color_buttons[index].unselect();
+    }
+    index = new_index;
+    color_buttons[index].select();
+  }
+  
   void unselect() {
+    index = -1;
     selected = false;
     text_cor = WHITE;
     for (int i = 0; i < color_buttons.length; i++) {
@@ -132,7 +166,15 @@ class clrmodes {
     return index >= 0 && index < color_modes.length;
   }
   
-  void update_selection(int amount) {
+  void update_mode_color(int amount) {
+    if (!index_in_bounds()) {
+      return;
+    }
+    
+    color_modes[index].update_index(amount);
+  }
+  
+  void update_mode_selection(int amount) {
     if (!index_in_bounds()) {
       return;
     }
@@ -146,8 +188,8 @@ class clrmodes {
     }
     
     color_modes[index].unselect();
-    color_modes[new_index].select();
     index = new_index;
+    color_modes[index].select();
   }
   
   int[] get_active_palette() {

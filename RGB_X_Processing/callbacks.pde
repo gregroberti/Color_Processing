@@ -125,17 +125,19 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 37) {  // LEFT ARROW
     preview_palette.update_clrsel(-1);
     preset_palette.update_clrsel(-1);
+    color_modes.update_mode_color(-1);
   }
   else if (e.getKeyCode() == 39) { // RIGHT ARROW
     preview_palette.update_clrsel(1);
     preset_palette.update_clrsel(1);
+    color_modes.update_mode_color(1);
   }
   else if (e.getKeyCode() == 38) { // UP ARROW
-    color_modes.update_selection(-1);
+    color_modes.update_mode_selection(-1);
     preset_palette.update_clrsel(-preset_palette.btn_acr);
   }
   else if (e.getKeyCode() == 40) { // DOWN ARROW
-  color_modes.update_selection(1);
+    color_modes.update_mode_selection(1);
     preset_palette.update_clrsel(preset_palette.btn_acr);
   }
   else if (e.getKeyCode() == 91) { // [
