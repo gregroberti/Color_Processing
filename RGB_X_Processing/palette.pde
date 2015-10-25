@@ -160,7 +160,7 @@ class palette {
     int new_index = -1;
     for (int i = 0; i < bcp.length; i++) {
       if (bcp[i].isOver()) {
-        bcp[i].click();
+        bcp[i].click(true);
         update_color_palette_arr();
         new_index = i;
       }
@@ -279,6 +279,13 @@ class palette {
       retval[i] = print_color(rgb, i, i == bcp.length - 1);
     }
     return retval;
+  }
+  
+  color get_color(int _index) {
+    if (_index >= 0 && _index < bcp.length) {
+      return bcp[_index].cor;
+    }
+    return BLACK;
   }
   
   void set_index(int new_cor_index) {

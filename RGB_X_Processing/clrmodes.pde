@@ -45,11 +45,16 @@ class clrmode {
   }
   
   boolean check_for_btn_clicks() {
-    //println("checking");
     for (int i = 0; i < color_buttons.length; i++) {
       if (color_buttons[i].isOver()) {
-        color_buttons[i].click();
-        select();
+        if(mouseButton == RIGHT) {
+          if (preset_palette.index != -1) {
+            color_buttons[i].set_id(preset_palette.index);
+          }
+        }
+        else {
+          color_buttons[i].click(false);
+        }
         index = i;
       }
       else {
@@ -134,6 +139,9 @@ class clrmode {
     }
     render_text(alpha);
     for(int i = 0; i < num_btns; i++) {
+      if (color_buttons[i].display_id) {
+        color_buttons[i].cor = preset_palette.get_color(color_buttons[i].id);
+      }
       color_buttons[i].render(alpha);
     }
   }

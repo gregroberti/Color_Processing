@@ -32,6 +32,11 @@ class clrbtn {
     display_id = _display_id;
   }
   
+  void set_id(int new_id) {
+    display_id = true;
+    id = new_id;
+  }
+  
   void render_border(int alpha) {
     fill(bor_cor, alpha);
     rect(x-1*bor_thk, y-1*bor_thk, w+2*bor_thk, h+2*bor_thk);
@@ -87,10 +92,10 @@ class clrbtn {
     println(history.size() + " change(s) left to undo for color #" + id);
   }
   
-  void click() {
+  void click(boolean allow_double_click) {
     if (mouseButton == LEFT) {
       int clk = millis();
-      if (clk-lclk < DOUBLE_CLICK_SPEED) {
+      if (allow_double_click && clk-lclk < DOUBLE_CLICK_SPEED) {
         reset();
       }
       lclk = clk;
