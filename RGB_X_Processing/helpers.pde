@@ -201,6 +201,7 @@ void print_keyboard_shortcuts() {
   println("- Type 'C' to clear the color palette (toggle white/black)");
   println("- Type 'F' to replace the color palette with evenly spaced colors");
   println("- Type 'I' to insert a new button at the current position");
+  println("- Type 'M' to print your color modes");
   println("- Type 'P' to print your color palettes");
   println("- Type 'R' to select a random RGB value");
   println("- Type 'T' to invert the main color's RGB values");

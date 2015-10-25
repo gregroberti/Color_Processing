@@ -268,4 +268,30 @@ class clrmodes {
     }
     return false;
   }
+  
+  int[] get_palette() {
+    int[] retval = new int[64];
+    for(int i = 0; i < 8; i++) {
+      clrmode m = color_modes[i];
+      retval[i*8] = m.color_buttons.length;
+      for(int j = 1; j < 8; j++) {
+        if (j-1 < m.color_buttons.length) {
+          if (m.color_buttons[j-1].id == -1) {
+            retval[i*8 + j] = 0;
+          }
+          else {
+            retval[i*8 + j] = m.color_buttons[j-1].id;
+          }
+        }
+        else {
+          retval[i*8 + j] = 0;
+        }
+      }
+    }
+    
+    for(int j = 0; j < 64; j++) {
+      println(j+ "="+retval[j]);
+    }
+    return retval;
+  }
 }

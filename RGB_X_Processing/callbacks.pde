@@ -93,6 +93,23 @@ public void keyPressed(KeyEvent e) {
     preview_palette.insert_selected();
     preset_palette.insert_selected();
   }
+  else if (e.getKeyCode() == 77) { // M
+    println();
+    println("// Color Modes //");
+    int line_count = 1;
+    int[] modes_arr = color_modes.get_palette();
+    for(int i = 0; i < 64; i++) {
+      if(i > 0 && i % 8 == 0) {
+        int mode = (i+1 / 7);
+        print("  0," + line_count++ + "    // Mode " + mode + "  // Prime A");
+        println();
+        println("  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0," + line_count++ + ",   // Mode " + mode + "  // Prime B");
+        println();
+      }
+      print("  " + modes_arr[i] + ",0,");
+    }
+    println("\r\n// Color Modes //");
+  }
   else if (e.getKeyCode() == 80) { // P
     println();
     println("// Color Palette (" + preset_palette.num_btns + " colors) //");
