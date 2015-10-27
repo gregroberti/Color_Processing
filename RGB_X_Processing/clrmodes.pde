@@ -77,6 +77,23 @@ class clrmode {
     return false;
   }
   
+  void adjust_size(int amount) {
+    int num_btns_new = num_btns + amount;
+    
+    if (num_btns_new < 1) {
+      println("Unable to reduce the size of the color mode below 1");
+      return;
+    }
+    else if (num_btns_new > 7) {
+      println("Unable to expand the size of the color mode above 7");
+      return;
+    }
+    
+    index = -1;
+    num_btns = num_btns_new;
+    initialize_color_buttons();
+  }
+  
   void update_index(int amount) {
     if (!selected) {
       return;
@@ -251,6 +268,12 @@ class clrmodes {
     for(int i = 0; i < color_modes.length; i++) {
       color_modes[i].render(alpha);
     }
+  }
+  
+  void adjust_size(int amount) {
+    color_modes[index].adjust_size(amount);
+    color_modes[index].unselect();
+    index = -1;
   }
   
   void update_alpha() {

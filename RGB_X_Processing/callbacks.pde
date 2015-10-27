@@ -185,12 +185,26 @@ public void keyPressed(KeyEvent e) {
     preset_palette.update_color();
   }
   else if (e.getKeyCode() == 33) { // PAGE UP
-    preview_palette.adjust_size(1);
-    println("Updated Preview Palette Size: " + preview_palette.get_size());
+    if (preview_palette.index != -1) {
+      preview_palette.adjust_size(1);
+      println("Updated Preview Palette Size: " + preview_palette.get_size());
+    }
+    else if(use_clrmodes && color_modes.index != -1) {
+      int mode = color_modes.index;
+      color_modes.adjust_size(1);
+      println("Updated Size of Mode #" + mode);
+    }
   }
   else if (e.getKeyCode() == 34) { // PAGE DOWN
-    preview_palette.adjust_size(-1);
-    println("Updated Preview Palette Size: " + preview_palette.get_size());
+    if (preview_palette.index != -1) {
+      preview_palette.adjust_size(-1);
+      println("Updated Preview Palette Size: " + preview_palette.get_size());
+    }
+    else if(use_clrmodes && color_modes.index != -1) {
+      int mode = color_modes.index;
+      color_modes.adjust_size(-1);
+      println("Updated Size of Mode #" + mode);
+    }
   }
   else if (e.getKeyCode() == 97) { // NUM1
     image_picker.shift_img(-IMAGE_SHIFT, IMAGE_SHIFT); // DOWN LEFT
