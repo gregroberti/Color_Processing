@@ -67,7 +67,6 @@ class clrmode {
   void select() {
     selected = true;
     text_cor = RED;
-    send_live_preview(get_palette());
   }
   
   boolean isOver() {
@@ -164,6 +163,7 @@ class clrmode {
     if (selected) {
       render_border(alpha);
       render_fill(alpha);
+      send_live_preview(get_palette());
     }
     render_text(alpha);
     for(int i = 0; i < num_btns; i++) {
