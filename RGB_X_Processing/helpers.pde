@@ -231,9 +231,7 @@ void print_keyboard_shortcuts() {
 void turn_off_light() {
   unselect_all();
   new_cor = BLACK;
-  main_cor = BLACK;
-  int[] rgb = getRGB(new_cor);
-  update_sliders(rgb);
+  update_sliders(new int[] {0,0,0});
   render_everything();
   
   if (connected) {

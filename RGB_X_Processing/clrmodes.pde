@@ -22,7 +22,7 @@ class clrmodes {
     int top = y - 25;
     color_modes = new clrmode[num_btns];
     for(int i = 0; i < color_modes.length; i++) {
-      color_modes[i] = new clrmode(x, top += 35, w, 35, i, 3);
+      color_modes[i] = new clrmode(x+10, top += 35, w-20, 35, i, 3);
     }
   }
   
@@ -80,6 +80,7 @@ class clrmodes {
       color_modes[index].unselect();
       index = -1;
     }
+    turn_off_light();
   }
   
   void select_mode(int new_index) {
