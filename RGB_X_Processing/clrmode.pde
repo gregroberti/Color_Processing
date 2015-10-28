@@ -160,7 +160,7 @@ class clrmode {
   }
   
   void render(int alpha) {
-    if (selected) {
+    if (selected && use_clrmodes) {
       render_border(alpha);
       render_fill(alpha);
       send_live_preview(get_palette());
