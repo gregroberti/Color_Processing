@@ -102,7 +102,7 @@ public void keyPressed(KeyEvent e) {
     int[] modes_arr = color_modes.get_palette();
     for(int i = 0; i <= 64; i++) {
       if(i > 0 && i % 8 == 0) {
-        print("  0," + line_count++ + "    // Mode " + mode + "  // Prime A");
+        print("  0," + line_count++ + ",    // Mode " + mode + "  // Prime A");
         println();
         println("  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0," + line_count++ + ",   // Mode " + mode++ + "  // Prime B");
         println();
