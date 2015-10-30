@@ -94,7 +94,7 @@ class clrmode {
       println("Unable to expand the size of the color mode above 7");
       return;
     }
-    else if (num_btns_new > num_btns) {
+    else if (num_btns_new > num_btns && num_btns_new > color_buttons.length) {
       clrbtn[] new_color_buttons = new clrbtn[num_btns_new];
       
       for (int i = 0; i < num_btns; i++) {
