@@ -50,6 +50,13 @@ class clrmode {
         if(mouseButton == RIGHT) {
           if (preset_palette.index != -1) {
             color_buttons[i].set_id(preset_palette.index);
+            println("Updated slot to palette #" + preset_palette.index);
+          }
+          else {
+            color_buttons[i].set_id(-1);
+            color_buttons[i].display_id = false;
+            color_buttons[i].cor = BLACK;
+            println("Reset color slot");
           }
         }
         else {
