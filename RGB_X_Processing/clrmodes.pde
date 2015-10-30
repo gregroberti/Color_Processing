@@ -136,9 +136,9 @@ class clrmodes {
     int[] retval = new int[64];
     for(int i = 0; i < 8; i++) {
       clrmode m = color_modes[i];
-      retval[i*8] = m.color_buttons.length;
+      retval[i*8] = m.get_size();
       for(int j = 1; j < 8; j++) {
-        if (j-1 < m.color_buttons.length) {
+        if (j-1 < m.get_size()) {
           if (m.color_buttons[j-1].id == -1) {
             retval[i*8 + j] = 0;
           }

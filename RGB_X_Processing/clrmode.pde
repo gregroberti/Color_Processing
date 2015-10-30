@@ -180,4 +180,8 @@ class clrmode {
       color_buttons[i].render(alpha);
     }
   }
+  
+  int get_size() {
+    return num_btns;
+  }
 }
