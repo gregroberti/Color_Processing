@@ -255,11 +255,13 @@ void toggle_live_preview() {
 }
 
 void send_live_preview(int[] colors) {
+  if (connected) {  
     port.write('L');
     for (int i = 0; i < colors.length; i++) {
       port.write(colors[i]);
     }
     port.write('P');
+  }
 }
 
 void set_live_preview(boolean _live_preview) {
