@@ -32,9 +32,7 @@ void mouseWheel(MouseEvent event) {
 void mousePressed() {
   fillpalette = false;
   clearpalette = false;
-  disable_live_preview();
   color_modes.check_for_btn_clicks();
-  preview_palette.check_for_btn_clicks();
   preset_palette.check_for_btn_clicks();
 
   if (use_sliders) {
@@ -78,9 +76,6 @@ public void keyPressed(KeyEvent e) {
     }
     fillpalette = false;
   }
-  else if (live_preview && e.getKeyCode() != 32) {
-    disable_live_preview();
-  }
   else if (e.getKeyCode() == 67) { // C
     println("Press 'c' again to clear the color preset palette (white/black)");
     clearpalette = true;
@@ -90,7 +85,6 @@ public void keyPressed(KeyEvent e) {
     fillpalette = true;
   }
   else if (e.getKeyCode() == 73) { // I
-    preview_palette.insert_selected();
     preset_palette.insert_selected();
   }
   else if (e.getKeyCode() == 77) { // M
@@ -119,11 +113,6 @@ public void keyPressed(KeyEvent e) {
     print("  ");
     println(String.join("\r\n  ", preset_palette.print_palette()));
     println("// Color Palette (" + preset_palette.num_btns + " colors) //");
-    println();
-    println("// Live Preview (" + preview_palette.num_btns + " colors) //");
-    print("  ");
-    println(String.join("\r\n  ", preview_palette.print_palette()));
-    println("// Live Preview (" + preview_palette.num_btns + " colors) //");
   }
   else if (e.getKeyCode() == 82) { // R
     new_cor = get_random_color();
@@ -132,23 +121,17 @@ public void keyPressed(KeyEvent e) {
     invert_main_color();
   }
   else if (e.getKeyCode() == 88) { // X
-    preview_palette.remove_selected();
     preset_palette.remove_selected();
   }
   else if (e.getKeyCode() == 27) {  // ESC
     println("Bye now");
     turn_off_light();
   }
-  else if (e.getKeyCode() == 32) {  // SPACE
-    toggle_live_preview();
-  }
   else if (e.getKeyCode() == 37) {  // LEFT ARROW
-    preview_palette.update_clrsel(-1);
     preset_palette.update_clrsel(-1);
     color_modes.update_mode_color(-1);
   }
   else if (e.getKeyCode() == 39) { // RIGHT ARROW
-    preview_palette.update_clrsel(1);
     preset_palette.update_clrsel(1);
     color_modes.update_mode_color(1);
   }
@@ -173,34 +156,23 @@ public void keyPressed(KeyEvent e) {
     update_brightness(-1*BRIGHTNESS_MODIFIER);
   }
   else if (e.getKeyCode() == 127) { // DELETE
-    preview_palette.reset_selected();
     preset_palette.reset_selected();
   }
   else if (e.getKeyCode() == 8) { // BACKSPACE
-    preview_palette.undo();
     preset_palette.undo();
   }
   else if (e.getKeyCode() == 10) { // ENTER
-    preview_palette.update_color();
     preset_palette.update_color();
   }
   else if (e.getKeyCode() == 33) { // PAGE UP
-    if (preview_palette.index != -1) {
-      preview_palette.adjust_size(1);
-      println("Updated Preview Palette Size: " + preview_palette.get_size());
-    }
-    else if(use_clrmodes && color_modes.index != -1) {
+    if(use_clrmodes && color_modes.index != -1) {
       int mode = color_modes.index;
       color_modes.adjust_size(1);
       println("Updated Size of Mode #" + mode);
     }
   }
   else if (e.getKeyCode() == 34) { // PAGE DOWN
-    if (preview_palette.index != -1) {
-      preview_palette.adjust_size(-1);
-      println("Updated Preview Palette Size: " + preview_palette.get_size());
-    }
-    else if(use_clrmodes && color_modes.index != -1) {
+    if(use_clrmodes && color_modes.index != -1) {
       int mode = color_modes.index;
       color_modes.adjust_size(-1);
       println("Updated Size of Mode #" + mode);
@@ -258,10 +230,6 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 123) { // F12
     preset_palette.adjust_size(1);
     println("Updated Color Palette Size: " + preset_palette.get_size());
-  }
-  else if (e.getKeyCode() >= 48 && e.getKeyCode() <= 57) { // 0 - 9
-    preset_palette.unselect();
-    preview_palette.set_index(e.getKeyCode() - 48);
   }
   else {
     println("Unbound KeyCode: " + e.getKeyCode());

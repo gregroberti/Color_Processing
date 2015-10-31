@@ -76,7 +76,6 @@ color get_random_color() {
 }
 
 void unselect_all() {
-  preview_palette.unselect();
   preset_palette.unselect();
 }
 
@@ -207,7 +206,6 @@ void print_keyboard_shortcuts() {
   println("- Type 'T' to invert the main color's RGB values");
   println("- Type 'X' to remove the selected button");
   println("- Arrow keys to navigate the color palette");
-  println("- Number keys 0-9 select the corresponding live preview button");
   println("- Enter (or right-click) sets the selected button to the slider values");
   println("- Backspace undoes changes to your selected button");
   println("- Delete (or double-click) 'resets' a button (toggle white/black)");
@@ -215,7 +213,6 @@ void print_keyboard_shortcuts() {
   println("- ] shifts the RGB values of the main color R->G->B");
   println("- Plus increases the brightness of the main color");
   println("- Minus decreases the brightness of the main color");
-  println("- Space bar toggles live preview");
   println("- F1 displays this help menu");
   println("- F2 switches to the color mode builder");
   println("- F4 switches to the RGB sliders");
@@ -223,8 +220,8 @@ void print_keyboard_shortcuts() {
   println("- F6 switches to the image color extractor");
   println("- F11 decreases the size of your color palette");
   println("- F12 increases the size of your color palette");
-  println("- Page Up increases the number of live preview buttons");
-  println("- Page Down decreases the number of live preview buttons");
+  println("- Page Up increases size of the selected color mode");
+  println("- Page Down decreases size of the selected color mode");
   println();
 }
 
@@ -244,16 +241,6 @@ void turn_off_light() {
   }
 }
 
-void disable_live_preview() {
-  if(live_preview) {
-    set_live_preview(false);
-  }
-}
-
-void toggle_live_preview() {
-  set_live_preview(live_preview = !live_preview);
-}
-
 void send_live_preview(int[] colors) {
   if (connected) {  
     port.write('L');
@@ -261,21 +248,6 @@ void send_live_preview(int[] colors) {
       port.write(colors[i]);
     }
     port.write('P');
-  }
-}
-
-void set_live_preview(boolean _live_preview) {
-  live_preview = _live_preview;
-  turn_off_light();
-  
-  if (live_preview) {
-    println("Live Preview Enabled");
-    if (connected) {
-      send_live_preview(preview_palette.get_palette());
-    }
-  }
-  else {
-    println("Live Preview Disabled");
   }
 }
 

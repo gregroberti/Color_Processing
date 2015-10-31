@@ -154,14 +154,6 @@ int SLIDER_WIDTH = 90;
 int SLIDER_HEIGHT = 255;
 
 int MAX_RATIO_LENGTH = 8;
-int MAX_PREVIEW_SIZE = 255;
-int PREVIEW_BTN_SPACE_X = 5;
-int PREVIEW_BTN_SPACE_Y = 15;
-int PREVIEW_TOP = SLIDER_TOP + SLIDER_HEIGHT;
-int[] PREVIEW_PALETTE = {0,0,0,0,0,0,0,0,0};
-int PREVIEW_SIZE = PREVIEW_PALETTE.length/3;
-boolean PREVIEW_HORIZONTAL = true;
-
 int NUM_CIRCLES = 12;
 int WHEEL_SEG_SZ = 30;
 int PALETTE_SIZE = 33;
@@ -170,19 +162,17 @@ int COLOR_BTN_HEIGHT = 25;
 int COLOR_BTN_SPACE_X = 10;
 int COLOR_BTN_SPACE_Y = 10;
 int NUM_BUTTONS_ACROSS = 13;
-int PALETTE_TOP = PREVIEW_TOP + COLOR_BTN_HEIGHT + (COLOR_BTN_SPACE_Y*2);
+int PALETTE_TOP = SLIDER_TOP + SLIDER_HEIGHT + COLOR_BTN_HEIGHT + (COLOR_BTN_SPACE_Y*2);
 int[] PRESET_PALETTE = get_default_palette();
 boolean PRESET_HORIZONTAL = false;
 
 // Look, I took the time to add these dumb variables so you'd know what everything should do.. also so I don't forget either
-palette preview_palette = new palette(PREVIEW_PALETTE, PREVIEW_TOP, PREVIEW_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, PREVIEW_BTN_SPACE_X, PREVIEW_BTN_SPACE_Y, MAX_PREVIEW_SIZE, PREVIEW_HORIZONTAL);
 palette preset_palette = new palette(PRESET_PALETTE, PALETTE_TOP, PALETTE_SIZE, COLOR_BTN_WIDTH, COLOR_BTN_HEIGHT, COLOR_BTN_SPACE_X, COLOR_BTN_SPACE_Y, NUM_BUTTONS_ACROSS, PRESET_HORIZONTAL);
 
 float[] rgb_ratio = {0.0, 0.0, 0.0};
 boolean connected = false;
 boolean clearpalette = false;
 boolean fillpalette = false;
-boolean live_preview = false;
 boolean use_clrmodes = false;
 boolean use_wheel = false;
 boolean use_image = false;
@@ -195,10 +185,11 @@ ColorWheel color_wheel;
 ColorPicker color_picker;
 ImagePicker image_picker;
 sliderV sV1, sV2, sV3, sInc;
-importbtn import_cp;
-exportbtn export_cp;
+importpalette import_cp;
+exportpalette export_cp;
 
 String IMAGES_DIR;
+String COLOR_MODE_DIR;
 String COLOR_PALETTE_DIR;
 
 void setup() {
@@ -219,10 +210,11 @@ void setup() {
   }
   
   IMAGES_DIR = sketchPath("") + "images";
+  COLOR_MODE_DIR = sketchPath("") + "color_modes";
   COLOR_PALETTE_DIR = sketchPath("") + "color_palettes";
   
-  import_cp = new importbtn(10, 10);
-  export_cp = new exportbtn(width - 50, 10);
+  import_cp = new importpalette(10, 360);
+  export_cp = new exportpalette(width - 50, 360);
   
   color_modes = new clrmodes(10, 40, width - 20, 300, 8);
   color_wheel = new ColorWheel(0, 0, width, height/3*2);
@@ -237,7 +229,6 @@ void setup() {
   sV3 = new sliderV(((width-((SLIDER_WIDTH+SLIDER_SPACE)*3))/2) + (SLIDER_WIDTH+SLIDER_SPACE)*2,
                       SLIDER_TOP, SLIDER_WIDTH, SLIDER_HEIGHT, 0, #009BFF, 2, "B: ");
   
-  preview_palette.initialize_color_buttons();
   preset_palette.initialize_color_buttons();
 }
 
@@ -264,27 +255,24 @@ void render_everything() {
   
   color_modes.render();
   preset_palette.render();
-  preview_palette.render();
 }
 
 void draw() {
-  if(!live_preview) {
-    render_everything();
-  
-    if(new_cor != main_cor) {
-      main_cor = new_cor;
-      
-      int[] rgb = getRGB(main_cor);
-      update_sliders(rgb);
-      
-      if (connected) {
-        port.write('R');
-        port.write(rgb[0]);
-        port.write('G');
-        port.write(rgb[1]);
-        port.write('B');
-        port.write(rgb[2]);
-      }
+  render_everything();
+
+  if(new_cor != main_cor) {
+    main_cor = new_cor;
+    
+    int[] rgb = getRGB(main_cor);
+    update_sliders(rgb);
+    
+    if (connected) {
+      port.write('R');
+      port.write(rgb[0]);
+      port.write('G');
+      port.write(rgb[1]);
+      port.write('B');
+      port.write(rgb[2]);
     }
   }
 }
