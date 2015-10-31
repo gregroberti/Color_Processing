@@ -12,14 +12,11 @@ class mycor {
   }
 }
 
-class clrbtn {
-  int x, y, w, h, id;
+class clrbtn extends elembase {
+  int id;
   Stack<mycor> history = new Stack();
   color txt_cor = WHITE;
-  color bor_cor = WHITE;
-  color cor = WHITE;
   int lclk = -1;
-  int bor_thk = 1;
   boolean rst = false;
   boolean display_id = false;
   
@@ -37,16 +34,6 @@ class clrbtn {
     id = new_id;
   }
   
-  void render_border(int alpha) {
-    fill(bor_cor, alpha);
-    rect(x-1*bor_thk, y-1*bor_thk, w+2*bor_thk, h+2*bor_thk);
-  }
-  
-  void render_fill(int alpha) {
-    fill(cor, alpha);
-    rect(x, y, w, h);
-  }
-  
   void render_text(int alpha) {
     fill(txt_cor, alpha);
     text(id, x+1, y+10);
@@ -59,13 +46,6 @@ class clrbtn {
     if (display_id) {
       render_text(alpha);
     }
-  }
-  
-  boolean isOver() {
-    if ((mouseX<x+w) && (mouseX>x) && (mouseY<=y+h) && (mouseY>=y)) {
-      return true;
-    }
-    return false;
   }
   
   void clear_history() {

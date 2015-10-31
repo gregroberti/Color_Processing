@@ -2,9 +2,9 @@
 // Color Mode //
 ////////////////
 
-class clrmode {
+class clrmode extends elembase {
   int index = -1;
-  int x, y, w, h, id, num_btns;
+  int id, num_btns;
   int btn_w, btn_h, btn_sp_x, btn_sp_y, btn_acr, btn_acr_unch;
   color text_cor = WHITE;
   boolean selected = false;
@@ -20,6 +20,7 @@ class clrmode {
     btn_h = 25;
     btn_sp_x = 10;
     btn_sp_y = 10;
+    bor_cor = GREY;
     num_btns = _num_btns;
     initialize_color_buttons();
   }
@@ -74,13 +75,6 @@ class clrmode {
   void select() {
     selected = true;
     text_cor = RED;
-  }
-  
-  boolean isOver() {
-    if ((mouseX<x+w) && (mouseX>x) && (mouseY<=y+h) && (mouseY>=y)) {
-      return true;
-    }
-    return false;
   }
   
   void adjust_size(int amount) {
@@ -149,16 +143,6 @@ class clrmode {
     for (int i = 0; i < color_buttons.length; i++) {
       color_buttons[i].unselect();
     }
-  }
-  
-  void render_border(int alpha) {
-    fill(GREY, alpha);
-    rect(x-1, y-1, w+2, h+2);
-  }
-  
-  void render_fill(int alpha) {
-    fill(BLACK, alpha);
-    rect(x, y, w, h);
   }
   
   void render_text(int alpha) {
