@@ -3,8 +3,8 @@
 /////////////////
 
 
-class clrmodes {
-  int x, y, w, h, num_btns;
+class clrmodes extends elembase {
+  int num_btns;
   int alpha = 0;
   int index = -1;
   clrmode[] color_modes;
@@ -14,6 +14,7 @@ class clrmodes {
     y = _y;
     w = _w;
     h = _h;
+    bor_cor = GREY;
     num_btns = _num_btns;
     initialize_modes();
   }
@@ -91,16 +92,6 @@ class clrmodes {
     color_modes[index].select();
   }
   
-  void render_border(int alpha) {
-    fill(GREY, alpha);
-    rect(x-1, y-1, w+2, h+2);
-  }
-  
-  void render_fill(int alpha) {
-    fill(BLACK, alpha);
-    rect(x, y, w, h);
-  }
-  
   void render() {
     update_alpha();
     render_border(alpha);
@@ -123,13 +114,6 @@ class clrmodes {
     else if (!use_clrmodes && alpha > 0) {
       alpha -= ALPHA_MODIFIER*2;
     }
-  }
-  
-  boolean isOver() {
-    if ((mouseX<x+w) && (mouseX>x) && (mouseY<=y+h) && (mouseY>=y)) {
-      return true;
-    }
-    return false;
   }
   
   int[] get_palette() {

@@ -2,8 +2,7 @@
 // Color Picker //
 //////////////////
 
-public class ColorPicker {
-  int x, y, w, h;
+public class ColorPicker extends elembase {
   int alpha = 0;
   PImage cpImage;
   
@@ -44,13 +43,6 @@ public class ColorPicker {
     }
   }
   
-  boolean isOver() {
-    if ((mouseX>=x) && (mouseX<x+w) && (mouseY >=y) && (mouseY<y+h)) {
-      return true;
-    }
-    return false;
-  }
-  
   void check_for_clicks() {
     if(mousePressed && isOver()) {
       click();
@@ -77,14 +69,9 @@ public class ColorPicker {
     rect(x, y, w, h);
   }
   
-  void render_border() {
-    fill(WHITE, alpha);
-    rect(x-1, y-1, w+2, h+2);
-  }
-  
   void render() {
     update_alpha();
-    render_border();
+    render_border(alpha);
     image(cpImage, x, y);
     render_alpha_cover();
     if (use_picker) {
