@@ -6,10 +6,9 @@
 Slider Class - www.guilhermemartins.net
 based on www.anthonymattox.com slider class
 */
-class sliderV {
-  int x, y, w, h, p, id;
+class sliderV extends elembase {
+  int p, id;
   int alpha = 255;
-  color cor;
   String name;
 
   sliderV (int _x, int _y, int _w, int _h, int _p, color _cor, int _id, String _name) {
@@ -88,14 +87,6 @@ class sliderV {
       p = h-(mouseY-y);
       update_main_color();
     }
-  }
-  
-  boolean isOver() {
-    if ((mouseX>x) && (mouseX<x+w) &&
-        (mouseY>=y-20) && (mouseY<=y+h+20)) {
-      return true;
-    }
-    return false;
   }
   
   void update_main_color() {

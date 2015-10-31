@@ -2,9 +2,9 @@
 // Import Button //
 ///////////////////
 
-class importbtn {
-  int x, y, w, h;
+class importbtn extends elembase {
   int lclk = -1;
+  int alpha = 255;
   
   importbtn (int _x, int _y) {
     x = _x;
@@ -13,34 +13,17 @@ class importbtn {
     h = 18;
   }
   
-  void render_border() {
-    fill(WHITE);
-    rect(x-1, y-1, w+2, h+2);
-  }
-  
-  void render_fill() {
-    fill(GREY);
-    rect(x, y, w, h);
-  }
-  
-  void render_text() {
-    fill(WHITE);
+  void render_text(int alpha) {
+    fill(WHITE, alpha);
     text("Import", x+2, y+13);
   }
  
   void render() {
     noStroke();
     
-    render_border();
-    render_fill();
-    render_text();
-  }
-  
-  boolean isOver() {
-    if ((mouseX<x+w) && (mouseX>x) && (mouseY<=y+h) && (mouseY>=y)) {
-      return true;
-    }
-    return false;
+    render_border(alpha);
+    render_fill(alpha);
+    render_text(alpha);
   }
   
   void click() {
