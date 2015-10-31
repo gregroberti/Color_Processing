@@ -2,12 +2,12 @@
 // Image Picker //
 //////////////////
 
-public class ImagePicker {
-  int x, imgx, y, imgy, w, imgw, h, imgh;
+class ImagePicker extends elembase {
+  int imgx, imgy, imgw, imgh;
   int alpha = 0;
   PImage ipImage;
   
-  public ImagePicker (int _x, int _y, int _w, int _h) {
+  ImagePicker (int _x, int _y, int _w, int _h) {
     x = imgx = _x;
     y = imgy = _y;
     w = imgw = _w;
@@ -76,13 +76,6 @@ public class ImagePicker {
       imgy = new_imgy;
   }
   
-  boolean isOver() {
-    if ((mouseX>=x) && (mouseX<x+w) && (mouseY >=y) && (mouseY<y+h)) {
-      return true;
-    }
-    return false;
-  }
-  
   void check_for_clicks() {
     if(mousePressed && isOver()) {
       click();
@@ -121,11 +114,6 @@ public class ImagePicker {
     rect(_x, _y, _w, _h);
   }
   
-  void render_border() {
-    fill(WHITE, alpha);
-    rect(x-1, y-1, w+2, h+2);
-  }
-  
   void load(File selection) {
     imgx = x;
     imgy = y;
@@ -138,7 +126,7 @@ public class ImagePicker {
   
   void render() {
     update_alpha();
-    render_border();
+    render_border(alpha);
     if (ipImage != null) {
       image(ipImage, imgx, imgy);
     }

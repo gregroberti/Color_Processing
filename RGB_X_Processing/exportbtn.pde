@@ -2,45 +2,29 @@
 // Export Button //
 ///////////////////
 
-class exportbtn {
-  int x, y, w, h;
+class exportbtn extends elembase {
   int lclk = -1;
+  int alpha = 255;
   
   exportbtn (int _x, int _y) {
     x = _x;
     y = _y;
     w = 40;
     h = 18;
+    cor = GREY;
   }
   
-  void render_border() {
-    fill(WHITE);
-    rect(x-1, y-1, w+2, h+2);
-  }
-  
-  void render_fill() {
-    fill(GREY);
-    rect(x, y, w, h);
-  }
-  
-  void render_text() {
-    fill(WHITE);
+  void render_text(int alpha) {
+    fill(WHITE, alpha);
     text("Export", x+2, y+13);
   }
  
   void render() {
     noStroke();
     
-    render_border();
-    render_fill();
-    render_text();
-  }
-  
-  boolean isOver() {
-    if ((mouseX<x+w) && (mouseX>x) && (mouseY<=y+h) && (mouseY>=y)) {
-      return true;
-    }
-    return false;
+    render_border(alpha);
+    render_fill(alpha);
+    render_text(alpha);
   }
   
   void click() {
