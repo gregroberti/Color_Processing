@@ -96,7 +96,7 @@ class clrmode extends elembase {
       }
       for (int i = num_btns; i < num_btns_new; i++) {
         new_color_buttons[i] = new clrbtn(x+50+((btn_w+btn_sp_x)*num_btns)+(btn_w+btn_sp_x),  y + 5, btn_w, btn_h, -1, false);
-        new_color_buttons[num_btns_new-1].cor = BLACK;
+        new_color_buttons[i].cor = BLACK;
       }
       color_buttons = new_color_buttons;
     }
