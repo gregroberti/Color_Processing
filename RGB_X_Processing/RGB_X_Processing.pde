@@ -162,7 +162,7 @@ int COLOR_BTN_HEIGHT = 25;
 int COLOR_BTN_SPACE_X = 10;
 int COLOR_BTN_SPACE_Y = 10;
 int NUM_BUTTONS_ACROSS = 13;
-int PALETTE_TOP = SLIDER_TOP + SLIDER_HEIGHT + COLOR_BTN_HEIGHT + (COLOR_BTN_SPACE_Y*2);
+int PALETTE_TOP = SLIDER_TOP + SLIDER_HEIGHT + COLOR_BTN_HEIGHT;
 int[] PRESET_PALETTE = get_default_palette();
 boolean PRESET_HORIZONTAL = false;
 
@@ -193,7 +193,7 @@ String COLOR_MODE_DIR;
 String COLOR_PALETTE_DIR;
 
 void setup() {
-  size(500, 550);
+  size(500, 560);
   //surface.setResizable(true);
   surface.setTitle("Slider Pro for the OSM by Greg Roberti");
   
@@ -213,8 +213,8 @@ void setup() {
   COLOR_MODE_DIR = sketchPath("") + "color_modes";
   COLOR_PALETTE_DIR = sketchPath("") + "color_palettes";
   
-  import_cp = new importpalette(10, 360);
-  export_cp = new exportpalette(width - 50, 360);
+  import_cp = new importpalette(15, 350);
+  export_cp = new exportpalette(width - 105, 350);
   
   color_modes = new clrmodes(10, 40, width - 20, 300, 8);
   color_wheel = new ColorWheel(0, 0, width, height/3*2);

@@ -8,10 +8,10 @@ class exportpalette extends btnbase {
   exportpalette (int _x, int _y) {
     x = _x;
     y = _y;
-    w = 40;
+    w = 80;
     h = 18;
     cor = GREY;
-    btn_txt = "Export";
+    btn_txt = "Export Palette";
     btn_txt_x = x+2;
     btn_txt_y = y+13;
   }
@@ -28,10 +28,10 @@ class importpalette extends btnbase {
   importpalette (int _x, int _y) {
     x = _x;
     y = _y;
-    w = 40;
+    w = 80;
     h = 18;
     cor = GREY;
-    btn_txt = "Import";
+    btn_txt = "Import Palette";
     btn_txt_x = x+2;
     btn_txt_y = y+13;
   }
@@ -42,17 +42,37 @@ class importpalette extends btnbase {
   }
 }
 
-
-class importbtn extends btnbase {
+class exportclrmodes extends btnbase {
   int lclk = -1;
   
-  importbtn (int _x, int _y) {
+  exportclrmodes (int _x, int _y) {
     x = _x;
     y = _y;
     w = 40;
     h = 18;
     cor = GREY;
-    btn_txt = "Import";
+    btn_txt = "Export Modes";
+    btn_txt_x = x+2;
+    btn_txt_y = y+13;
+  }
+  
+  void click() {
+    File save_file = new File(COLOR_PALETTE_DIR + "\\*.txt");
+    selectOutput("Select a file to process:", "save_palette_callback", save_file);
+  }
+}
+
+
+class importclrmodes extends btnbase {
+  int lclk = -1;
+  
+  importclrmodes (int _x, int _y) {
+    x = _x;
+    y = _y;
+    w = 40;
+    h = 18;
+    cor = GREY;
+    btn_txt = "Import Modes";
     btn_txt_x = x+2;
     btn_txt_y = y+13;
   }
