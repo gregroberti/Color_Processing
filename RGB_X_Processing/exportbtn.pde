@@ -2,9 +2,8 @@
 // Export Button //
 ///////////////////
 
-class exportbtn extends elembase {
+class exportbtn extends btnbase {
   int lclk = -1;
-  int alpha = 255;
   
   exportbtn (int _x, int _y) {
     x = _x;
@@ -12,19 +11,9 @@ class exportbtn extends elembase {
     w = 40;
     h = 18;
     cor = GREY;
-  }
-  
-  void render_text(int alpha) {
-    fill(WHITE, alpha);
-    text("Export", x+2, y+13);
-  }
- 
-  void render() {
-    noStroke();
-    
-    render_border(alpha);
-    render_fill(alpha);
-    render_text(alpha);
+    btn_txt = "Export";
+    btn_txt_x = x+2;
+    btn_txt_y = y+13;
   }
   
   void click() {
