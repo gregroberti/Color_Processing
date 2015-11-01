@@ -135,6 +135,7 @@ int[] get_default_palette() {
 ///////////////////////////////////////////
 
 color RED = color(200, 0, 0);
+color GREEN = color(0, 255, 0);
 color WHITE = color(255, 255, 255);
 color BLACK = color(0, 0, 0);
 color GREY = color(55, 55, 55);

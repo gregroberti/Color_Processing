@@ -7,7 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
 class palette {
-  int y, index = -1;
+  int y;
+  int index = -1;
+  int hindex = -1;
   clrbtn[] bcp;
   int alpha = 255;
   boolean horizontal;
@@ -95,6 +97,7 @@ class palette {
     rgb_arr_size = rgb_arr_size_new;
     color_palette = color_palette_new;
     initialize_color_buttons();
+    unselect_all();
   }
   
   void initialize_color_buttons() {
@@ -172,15 +175,31 @@ class palette {
     render();
   }
   
-  void unselect() {
-    if (index != -1) {
-      bcp[index].unselect();
-      index = -1;
+  void highlight(int _hindex) {
+    unselect();
+    if (index_in_bounds(_hindex)) {
+      hindex = _hindex;
+      bcp[hindex].highlight();
     }
   }
   
+  void unhighlight() {
+    if (index_in_bounds(hindex)) {
+      bcp[hindex].unselect();
+      hindex = -1;
+    }
+  }
+  
+  void unselect() {
+    if (index_in_bounds(index)) {
+      bcp[index].unselect();
+      index = -1;
+    }
+    unhighlight();
+  }
+  
   void insert_selected() {
-    if (index == -1) {
+    if (!index_in_bounds(index)) {
       return;
     }
     println("Inserting Color #" + index);
@@ -311,6 +330,10 @@ class palette {
   
   int get_size() {
     return num_btns;
+  }
+  
+  boolean index_in_bounds(int _index) {
+    return _index >= 0 && _index < bcp.length;
   }
   
   void save_palette(File selection) {

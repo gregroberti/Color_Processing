@@ -105,6 +105,11 @@ class clrbtn extends elembase {
     println("Updated: " + _r + ", " + _g + ", " + _b + " // Color #" + id);
   }
   
+  void highlight() {
+    bor_cor = GREEN;
+    bor_thk = 2;
+  }
+  
   void select() {
     bor_cor = RED;
     bor_thk = 2;

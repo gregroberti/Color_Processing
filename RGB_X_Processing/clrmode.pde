@@ -51,7 +51,7 @@ class clrmode extends elembase {
         if(mouseButton == RIGHT) {
           if (preset_palette.index != -1) {
             color_buttons[i].set_id(preset_palette.index);
-            println("Updated slot to palette #" + preset_palette.index);
+            println("Set color mode slot using palette #" + preset_palette.index);
           }
           else {
             color_buttons[i].set_id(-1);
@@ -62,12 +62,16 @@ class clrmode extends elembase {
         }
         else {
           color_buttons[i].click(false);
+          preset_palette.highlight(color_buttons[i].id);
         }
         index = i;
       }
       else {
         color_buttons[i].unselect();
       }
+    }
+    if (index == -1) {
+      preset_palette.unselect();
     }
     return selected;
   }

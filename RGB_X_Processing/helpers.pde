@@ -3,6 +3,7 @@
 //////////////////////
 
 void disable_use_flags() {
+  unselect_all();
   color_picker.alpha = 0;
   image_picker.alpha = 0;
   use_clrmodes = false;
@@ -79,6 +80,7 @@ color get_random_color() {
 
 void unselect_all() {
   preset_palette.unselect();
+  color_modes.unselect();
 }
 
 void update_sliders(int[] rgb) {

@@ -103,6 +103,13 @@ class clrmodes extends elembase {
     color_modes[index].select();
   }
   
+  void unselect() {
+    if (index_in_bounds()) {
+      color_modes[index].unselect();
+      index = -1;
+    }
+  }
+  
   void render() {
     update_alpha();
     render_border(alpha);
