@@ -17,10 +17,10 @@ void mouseWheel(MouseEvent event) {
     }
     new_cor = color(rgb[0], rgb[1], rgb[2]);
   }
-  else if (use_picker) {
+  else if (use_clrpicker) {
     new_cor = get_random_color();
   }
-  else if (use_image && image_picker.isOver()) {
+  else if (use_imgpicker && image_picker.isOver()) {
     image_picker.zoom(e);
   }
   
@@ -34,6 +34,7 @@ void mousePressed() {
   clearpalette = false;
   color_modes.check_for_btn_clicks();
   preset_palette.check_for_btn_clicks();
+  btn_view_btns.check_for_btn_clicks();
 
   if (use_sliders) {
     if (sV1.isOver()) {
@@ -218,10 +219,10 @@ public void keyPressed(KeyEvent e) {
     set_view_sliders();
   }
   else if (e.getKeyCode() == 116) { // F5
-    set_view_picker();
+    set_view_clrpicker();
   }
   else if (e.getKeyCode() == 117) { // F6
-    set_view_image();
+    set_view_imgpicker();
   }
   else if (e.getKeyCode() == 122) { // F11
     preset_palette.adjust_size(-1);

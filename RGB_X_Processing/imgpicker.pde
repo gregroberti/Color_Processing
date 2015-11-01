@@ -83,7 +83,7 @@ class ImagePicker extends elembase {
   }
   
   void click() {
-    if (use_image) {
+    if (use_imgpicker) {
       if (mouseButton == LEFT) { 
         new_cor = get(mouseX, mouseY);
       }
@@ -96,10 +96,10 @@ class ImagePicker extends elembase {
   }
   
   void update_alpha() {
-    if (use_image && alpha < 255) {
+    if (use_imgpicker && alpha < 255) {
       alpha += ALPHA_MODIFIER;
     }
-    else if (!use_image && alpha > 0) {
+    else if (!use_imgpicker && alpha > 0) {
       alpha -= ALPHA_MODIFIER*2;
     }
   }
@@ -135,7 +135,7 @@ class ImagePicker extends elembase {
       text("Right-click to select an image", x+(w/2)-80, y+(h/2));
     }
     render_alpha_cover();
-    if (use_image) {
+    if (use_imgpicker) {
       check_for_clicks();
     }
     

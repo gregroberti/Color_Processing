@@ -2,7 +2,7 @@
 // Button Base Class //
 ///////////////////////
 
-class btnbase extends elembase {
+abstract class btnbase extends elembase {
   int lclk = -1;
   String btn_txt = "";
   int btn_txt_x = 0;
@@ -19,4 +19,16 @@ class btnbase extends elembase {
     render_fill(alpha);
     render_text(alpha);
   }
+  
+  void select() {
+    bor_thk = 2;
+    bor_cor = RED;
+  }
+  
+  void unselect() {
+    bor_thk = 1;
+    bor_cor = WHITE;
+  }
+  
+  abstract void click();
 }

@@ -175,9 +175,9 @@ boolean clearpalette = false;
 boolean fillpalette = false;
 boolean use_clrmodes = false;
 boolean use_wheel = false;
-boolean use_image = false;
+boolean use_imgpicker = false;
 boolean use_sliders = true;
-boolean use_picker = false;
+boolean use_clrpicker = false;
 color new_cor = BLACK;
 color main_cor = BLACK;
 clrmodes color_modes;
@@ -187,6 +187,7 @@ ImagePicker image_picker;
 sliderV sV1, sV2, sV3, sInc;
 importpalette import_cp;
 exportpalette export_cp;
+btn_view btn_view_btns;
 
 String IMAGES_DIR;
 String COLOR_MODE_DIR;
@@ -216,6 +217,8 @@ void setup() {
   import_cp = new importpalette(10, height-30);
   export_cp = new exportpalette(width-90, height-30);
   
+  btn_view_btns = new btn_view(width/2 - 100, height-30, 120);
+  
   color_modes = new clrmodes(10, 40, width - 20, 300, 8);
   color_wheel = new ColorWheel(0, 0, width, height/3*2);
   color_picker = new ColorPicker(10, 40, width - 20, 300);
@@ -235,11 +238,11 @@ void setup() {
 void render_everything() {
   background(BLACK);
   
-  if (use_picker) {
+  if (use_clrpicker) {
     color_picker.render();
   }
   
-  if (use_image) {
+  if (use_imgpicker) {
     image_picker.render();
   }
   
@@ -252,6 +255,7 @@ void render_everything() {
   render_help_txt();
   import_cp.render(255);
   export_cp.render(255);
+  btn_view_btns.render(255);
   
   color_modes.render();
   preset_palette.render();

@@ -6,37 +6,39 @@ void disable_use_flags() {
   color_picker.alpha = 0;
   image_picker.alpha = 0;
   use_clrmodes = false;
-  use_picker = false;
+  use_clrpicker = false;
   use_sliders = false;
-  use_image = false;
+  use_imgpicker = false;
   use_wheel = false;
 }
 
 void set_view_sliders() {
-  sV1.alpha = 0;
-  sV2.alpha = 0;
-  sV3.alpha = 0;
   disable_use_flags();
+  btn_view_btns.index = 1;
   use_sliders = true;
 }
 
-void set_view_picker() {
+void set_view_clrpicker() {
   disable_use_flags();
-  use_picker = true;
+  btn_view_btns.index = 2;
+  use_clrpicker = true;
 }
 
-void set_view_image() {
+void set_view_imgpicker() {
   disable_use_flags();
-  use_image = true;
+  btn_view_btns.index = 3;
+  use_imgpicker = true;
 }
 
 void set_view_wheel() {
   disable_use_flags();
+  btn_view_btns.index = -1;
   use_wheel = true;
 }
 
 void set_view_clrmodes() {
   disable_use_flags();
+  btn_view_btns.index = 0;
   use_clrmodes = true;
 }
 

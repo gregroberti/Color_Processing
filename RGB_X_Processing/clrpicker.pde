@@ -50,16 +50,16 @@ public class ColorPicker extends elembase {
   }
   
   void click() {
-    if (use_picker) {
+    if (use_clrpicker) {
       new_cor = get(mouseX, mouseY);
     }
   }
   
   void update_alpha() {
-    if (use_picker && alpha < 255) {
+    if (use_clrpicker && alpha < 255) {
       alpha += ALPHA_MODIFIER;
     }
-    else if (!use_picker && alpha > 0) {
+    else if (!use_clrpicker && alpha > 0) {
       alpha -= ALPHA_MODIFIER*2;
     }
   }
@@ -74,7 +74,7 @@ public class ColorPicker extends elembase {
     render_border(alpha);
     image(cpImage, x, y);
     render_alpha_cover();
-    if (use_picker) {
+    if (use_clrpicker) {
       check_for_clicks();
     }
   }
