@@ -116,8 +116,6 @@ class clrmodes extends elembase {
   
   void adjust_size(int amount) {
     color_modes[index].adjust_size(amount);
-    color_modes[index].unselect();
-    index = -1;
   }
   
   void update_alpha() {

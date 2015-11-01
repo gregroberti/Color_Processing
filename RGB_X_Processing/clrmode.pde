@@ -35,8 +35,8 @@ class clrmode extends elembase {
   }
   
   int[] get_palette() {
-    int[] color_palette = new int[color_buttons.length*3];
-    for(int i = 0; i < color_buttons.length; i++) {
+    int[] color_palette = new int[num_btns*3];
+    for(int i = 0; i < num_btns; i++) {
       int[] rgb = getRGB(color_buttons[i].cor);
       color_palette[i*3+0] = rgb[0];
       color_palette[i*3+1] = rgb[1];
@@ -46,7 +46,7 @@ class clrmode extends elembase {
   }
   
   boolean check_for_btn_clicks() {
-    for (int i = 0; i < color_buttons.length; i++) {
+    for (int i = 0; i < num_btns; i++) {
       if (color_buttons[i].isOver()) {
         if(mouseButton == RIGHT) {
           if (preset_palette.index != -1) {
@@ -117,17 +117,17 @@ class clrmode extends elembase {
         new_index = 0;
       }
       else {
-        new_index = color_buttons.length-1;
+        new_index = num_btns-1;
       }
     }
     else {
       new_index = index+amount;
     }
     if (new_index < 0) {
-      new_index += color_buttons.length;
+      new_index += num_btns;
     }
-    else if(new_index >= color_buttons.length) {
-      new_index -= color_buttons.length;
+    else if(new_index >= num_btns) {
+      new_index -= num_btns;
     }
     
     if (index != -1) {
@@ -141,7 +141,7 @@ class clrmode extends elembase {
     index = -1;
     selected = false;
     text_cor = WHITE;
-    for (int i = 0; i < color_buttons.length; i++) {
+    for (int i = 0; i < num_btns; i++) {
       color_buttons[i].unselect();
     }
   }
