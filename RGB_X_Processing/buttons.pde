@@ -48,7 +48,7 @@ class exportclrmodes extends btnbase {
   exportclrmodes (int _x, int _y) {
     x = _x;
     y = _y;
-    w = 40;
+    w = 80;
     h = 18;
     cor = GREY;
     btn_txt = "Export Modes";
@@ -57,8 +57,8 @@ class exportclrmodes extends btnbase {
   }
   
   void click() {
-    File save_file = new File(COLOR_PALETTE_DIR + "\\*.txt");
-    selectOutput("Select a file to process:", "save_palette_callback", save_file);
+    File save_file = new File(COLOR_MODE_DIR + "\\*.txt");
+    selectOutput("Select a file to process:", "save_modes_callback", save_file);
   }
 }
 
@@ -69,7 +69,7 @@ class importclrmodes extends btnbase {
   importclrmodes (int _x, int _y) {
     x = _x;
     y = _y;
-    w = 40;
+    w = 80;
     h = 18;
     cor = GREY;
     btn_txt = "Import Modes";
@@ -78,7 +78,7 @@ class importclrmodes extends btnbase {
   }
  
   void click() {
-    File save_file = new File(COLOR_PALETTE_DIR + "\\*.txt");
-    selectInput("Select a file to process:", "load_palette_callback", save_file);
+    File save_file = new File(COLOR_MODE_DIR + "\\*.txt");
+    selectInput("Select a file to process:", "load_modes_callback", save_file);
   }
 }

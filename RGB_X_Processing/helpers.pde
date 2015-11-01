@@ -276,3 +276,27 @@ void update_brightness(int amnt) {
   }
   new_cor = color(new_rgb[0], new_rgb[1], new_rgb[2]);
 }
+
+StringBuilder read_file(File selection) {
+  StringBuilder sb = new StringBuilder();
+  try {
+    InputStream input = new FileInputStream(selection);
+    int data = input.read();
+    while(data != -1) {
+      sb.append((char)data);
+      data = input.read();
+    }
+    sb.append((char)data);
+    input.close();
+  }
+  catch (FileNotFoundException e) {
+   println("FileNotFoundException: " + e);
+  }
+  catch (IOException e) {
+  println("IOException: " + e);
+  }
+  catch (Exception e) {
+  println("Exception: " + e);
+  }
+  return sb;
+}

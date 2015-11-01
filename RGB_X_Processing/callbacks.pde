@@ -265,3 +265,23 @@ void save_palette_callback(File selection) {
   }
   mousePressed = false;
 }
+
+void load_modes_callback(File selection) {
+  if (selection == null) {
+    println("No file selected to load color modes");
+  }
+  else {
+    color_modes.load_modes(selection);
+  }
+  mousePressed = false;
+}
+
+void save_modes_callback(File selection) {
+  if (selection == null) {
+    println("No file selected to save color modes");
+  }
+  else {
+    color_modes.save_modes(selection);
+  }
+  mousePressed = false;
+}

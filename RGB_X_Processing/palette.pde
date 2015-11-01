@@ -313,14 +313,6 @@ class palette {
     return num_btns;
   }
   
-void fileSelected(File selection) {
-  if (selection == null) {
-    println("Window was closed or the user hit cancel.");
-  } else {
-    println("User selected " + selection.getAbsolutePath());
-  }
-}
-  
   void save_palette(File selection) {
     try {
       PrintWriter writer = new PrintWriter(selection, "UTF-8");
@@ -337,64 +329,45 @@ void fileSelected(File selection) {
   }
   
   void load_palette(File selection) {
-    StringBuilder sb = new StringBuilder();
-    try {
-      InputStream input = new FileInputStream(selection);
-      int data = input.read();
-      while(data != -1) {
-       sb.append((char)data);
-       data = input.read();
-      }
-      sb.append((char)data);
-      input.close();
+    StringBuilder sb = read_file(selection);
       
-      int rgb_arr_size_new = 0;
-      String[] rows = sb.toString().replace(" ", "").replace("\r\n", "\n").split("\n");
-      for(int i = 0; i < rows.length; i++) {
-        String[] row = rows[i].split("//")[0].split(",");
-        if(row.length == 3 || row.length == 4) {
-          for(int j = 0; j < row.length; j++) {
-            rgb_arr_size_new++;
-          }
+    int rgb_arr_size_new = 0;
+    String[] rows = sb.toString().replace(" ", "").replace("\r\n", "\n").split("\n");
+    for(int i = 0; i < rows.length; i++) {
+      String[] row = rows[i].split("//")[0].split(",");
+      if(row.length == 3 || row.length == 4) {
+        for(int j = 0; j < row.length; j++) {
+          rgb_arr_size_new++;
         }
       }
-      int[] color_palette_new = new int[rgb_arr_size_new];
-      
-      //println("rgb_arr_size_new="+rgb_arr_size_new);
-      //println("rows.length="+rows.length);
-      //println("color_palette_new.length="+color_palette_new.length);
-      
-      for(int i = 0; i < rows.length; i++) {
-        //println("rows[i]="+rows[i]);
-        String[] row = rows[i].split("//")[0].split(",");
-        if(row.length == 3 || row.length == 4) {
-          color_palette_new[(i*3)+0] = int(row[0]);
-          //println("R="+int(row[0]));
-          color_palette_new[(i*3)+1] = int(row[1]);
-          //println("G="+int(row[1]));
-          color_palette_new[(i*3)+2] = int(row[2]);
-          //println("B="+int(row[2]));
-        }
-        //else {
-        //  println("Invalid row: " + row);
-        //}
+    }
+    int[] color_palette_new = new int[rgb_arr_size_new];
+    
+    //println("rgb_arr_size_new="+rgb_arr_size_new);
+    //println("rows.length="+rows.length);
+    //println("color_palette_new.length="+color_palette_new.length);
+    
+    for(int i = 0; i < rows.length; i++) {
+      //println("rows[i]="+rows[i]);
+      String[] row = rows[i].split("//")[0].split(",");
+      if(row.length == 3 || row.length == 4) {
+        color_palette_new[(i*3)+0] = int(row[0]);
+        //println("R="+int(row[0]));
+        color_palette_new[(i*3)+1] = int(row[1]);
+        //println("G="+int(row[1]));
+        color_palette_new[(i*3)+2] = int(row[2]);
+        //println("B="+int(row[2]));
       }
-      
-      btn_acr = btn_acr_unch;
-      num_btns = rgb_arr_size_new/3;
-      rgb_arr_size = rgb_arr_size_new;
-      color_palette = color_palette_new;
-      initialize_color_buttons();
-      println("Successfully loaded color palette from: " + selection.getAbsolutePath());
+      //else {
+      //  println("Invalid row: " + row);
+      //}
     }
-    catch (FileNotFoundException e) {
-      println("FileNotFoundException: " + e);
-    }
-    catch (IOException e) {
-     println("IOException: " + e);
-    }
-    catch (Exception e) {
-     println("Exception: " + e);
-    }
+    
+    btn_acr = btn_acr_unch;
+    num_btns = rgb_arr_size_new/3;
+    rgb_arr_size = rgb_arr_size_new;
+    color_palette = color_palette_new;
+    initialize_color_buttons();
+    println("Successfully loaded color palette from: " + selection.getAbsolutePath());
   }
 }

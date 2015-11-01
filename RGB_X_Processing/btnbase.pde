@@ -3,7 +3,6 @@
 ///////////////////////
 
 class btnbase extends elembase {
-  int alpha = 255;
   int lclk = -1;
   String btn_txt = "";
   int btn_txt_x = 0;
@@ -14,7 +13,7 @@ class btnbase extends elembase {
     text(btn_txt, btn_txt_x, btn_txt_y);
   }
   
-  void render() {
+  void render(int alpha) {
     noStroke();
     render_border(alpha);
     render_fill(alpha);
