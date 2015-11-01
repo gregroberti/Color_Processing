@@ -212,9 +212,9 @@ public void keyPressed(KeyEvent e) {
  else if (e.getKeyCode() == 113) { // F2
    set_view_clrmodes();
  }
- else if (e.getKeyCode() == 114) { // F3
-   set_view_wheel();
- }
+ //else if (e.getKeyCode() == 114) { // F3
+ //  set_view_wheel();
+ //}
   else if (e.getKeyCode() == 115) { // F4
     set_view_sliders();
   }
