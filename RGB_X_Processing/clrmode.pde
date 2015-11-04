@@ -136,9 +136,11 @@ class clrmode extends elembase {
     
     if (index != -1) {
       color_buttons[index].unselect();
+      preset_palette.unhighlight();
     }
     index = new_index;
     color_buttons[index].select();
+    preset_palette.highlight(color_buttons[index].id);
   }
   
   void unselect() {
