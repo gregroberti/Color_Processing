@@ -246,7 +246,8 @@ void turn_off_light() {
 }
 
 void send_live_preview(int[] colors) {
-  if (connected) {  
+  if (connected) {
+    new_cor = main_cor = BLACK;
     port.write('L');
     for (int i = 0; i < colors.length; i++) {
       port.write(colors[i]);
