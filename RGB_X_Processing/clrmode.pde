@@ -142,11 +142,16 @@ class clrmode extends elembase {
   }
   
   void unselect() {
+    unselect_color_button();
     index = -1;
     selected = false;
     text_cor = WHITE;
-    for (int i = 0; i < num_btns; i++) {
-      color_buttons[i].unselect();
+  }
+  
+  void unselect_color_button() {
+    if (index_in_bounds()) {
+      color_buttons[index].unselect();
+      preset_palette.unhighlight();
     }
   }
   
@@ -172,5 +177,9 @@ class clrmode extends elembase {
   
   int get_size() {
     return num_btns;
+  }
+  
+  boolean index_in_bounds() {
+    return index >= 0 && index < num_btns;
   }
 }

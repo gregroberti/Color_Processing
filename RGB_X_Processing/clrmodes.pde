@@ -33,7 +33,7 @@ class clrmodes extends elembase {
   }
   
   boolean index_in_bounds() {
-    return index >= 0 && index < color_modes.length;
+    return index >= 0 && index < num_modes;
   }
   
   void update_mode_color(int amount) {
@@ -122,6 +122,7 @@ class clrmodes extends elembase {
   }
   
   void adjust_size(int amount) {
+    color_modes[index].unselect_color_button();
     color_modes[index].adjust_size(amount);
   }
   
