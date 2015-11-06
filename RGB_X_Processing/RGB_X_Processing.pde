@@ -253,13 +253,11 @@ void render_everything() {
   render_ratio_txt();
   color_wheel.render();
   btn_view_btns.render(255);
-  
-  import_cp.render(255);
-  export_cp.render(255);
-  
   color_modes.render();
   preset_palette.render();
   render_help_txt();
+  import_cp.render(255);
+  export_cp.render(255);
 }
 
 void draw() {
