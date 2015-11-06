@@ -5,20 +5,19 @@
 
 class clrmodes extends elembase {
   int num_modes = 8;
-  int num_btns;
   int alpha = 0;
   int index = -1;
   clrmode[] color_modes;
   exportclrmodes export_cm;
   importclrmodes import_cm;
   
-  clrmodes (int _x, int _y, int _w, int _h, int _num_btns) {
+  clrmodes (int _x, int _y, int _w, int _h, int _num_modes) {
     x = _x;
     y = _y;
     w = _w;
     h = _h;
     bor_cor = GREY;
-    num_btns = _num_btns;
+    num_modes = _num_modes;
     initialize_modes();
     export_cm = new exportclrmodes(x + w - 80, y - 30);
     import_cm = new importclrmodes(x, y - 30);
@@ -26,8 +25,8 @@ class clrmodes extends elembase {
   
   void initialize_modes() {
     int top = y - 25;
-    color_modes = new clrmode[num_btns];
-    for(int i = 0; i < color_modes.length; i++) {
+    color_modes = new clrmode[num_modes];
+    for(int i = 0; i < num_modes; i++) {
       color_modes[i] = new clrmode(x+10, top += 35, w-20, 35, i, 3);
     }
   }
@@ -50,11 +49,11 @@ class clrmodes extends elembase {
     }
     
     int new_index = index + amount;
-    if (new_index >= num_btns) {
-      new_index -= num_btns;
+    if (new_index >= num_modes) {
+      new_index -= num_modes;
     }
     else if (new_index < 0) {
-      new_index += num_btns;
+      new_index += num_modes;
     }
     
     color_modes[index].unselect();
@@ -81,7 +80,7 @@ class clrmodes extends elembase {
     else if (import_cm.isOver()) {
       import_cm.click();
     }
-    for (int i = 0; i < color_modes.length; i++) {
+    for (int i = 0; i < num_modes; i++) {
       if (color_modes[i].isOver()) {
         select_mode(i);
         color_modes[i].check_for_btn_clicks();
@@ -116,7 +115,7 @@ class clrmodes extends elembase {
     render_fill(alpha);
     export_cm.render(alpha);
     import_cm.render(alpha);
-    for(int i = 0; i < color_modes.length; i++) {
+    for(int i = 0; i < num_modes; i++) {
       color_modes[i].render(alpha);
     }
   }
