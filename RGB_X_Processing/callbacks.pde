@@ -132,20 +132,36 @@ public void keyPressed(KeyEvent e) {
     turn_off_light();
   }
   else if (e.getKeyCode() == 37) {  // LEFT ARROW
-    preset_palette.update_clrsel(-1);
-    color_modes.update_mode_color(-1);
+    if (preset_palette.index != -1) {
+      preset_palette.update_clrsel(-1);
+    }
+    else if (color_modes.index != -1) {
+      color_modes.update_mode_color(-1);
+    }
   }
   else if (e.getKeyCode() == 39) { // RIGHT ARROW
-    preset_palette.update_clrsel(1);
-    color_modes.update_mode_color(1);
+    if (preset_palette.index != -1) {
+      preset_palette.update_clrsel(1);
+    }
+    else if (color_modes.index != -1) {
+      color_modes.update_mode_color(1);
+    }
   }
   else if (e.getKeyCode() == 38) { // UP ARROW
-    color_modes.update_mode_selection(-1);
-    preset_palette.update_clrsel(-preset_palette.btn_acr);
+    if (preset_palette.index != -1) {
+      preset_palette.update_clrsel(-preset_palette.btn_acr);
+    }
+    else if (color_modes.index != -1) {
+      color_modes.update_mode_selection(-1);
+    }
   }
   else if (e.getKeyCode() == 40) { // DOWN ARROW
-    color_modes.update_mode_selection(1);
-    preset_palette.update_clrsel(preset_palette.btn_acr);
+    if (preset_palette.index != -1) {
+      preset_palette.update_clrsel(preset_palette.btn_acr);
+    }
+    else if (color_modes.index != -1) {
+      color_modes.update_mode_selection(1);
+    }
   }
   else if (e.getKeyCode() == 91) { // [
     shift_rgb_values(1);
