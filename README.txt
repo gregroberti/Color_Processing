@@ -1,17 +1,43 @@
+1) Download and Install Processing IDE:
+https://processing.org/download/
 
-Processing Download: https://processing.org/download/
+2) Download Slider Pro:
 
-This is your "Hello World" for Arduino + Processing with the OSM
+	Choice 1: Clone the master branch:
+		- Download and Install Git for Windows (or your git client of choice):
+				https://git-for-windows.github.io/
+		- Type the following into Git Bash:
+			git clone https://github.com/gregroberti/Slider-Pro.git
 
-1) Upload RGB_X_Arduino.ino to the OSM with the Arduino IDE
+	Choice 2: Download and extract the zip file:
+		https://github.com/gregroberti/Slider-Pro/archive/master.zip
+	
 
-2) Close the Arduino IDE
+3) Compile and Upload RGB_X_Arduino.ino to one of your chips:
+- Open ~\Color_Processing\RGB_X_Arduino\RGB_X_Arduino.ino
+- Compile (to ensure no errors exist)
+- Upload (to one of your chips)
 
-3) Open RGB_X_Processing.pde with Processing
+4) Open Slider Pro:
+- Open ~\Color_Processing\RGB_X_Processing\RGB_X_Processing.pde
 
-4) Change the line #15 on "RGB_X_Processing.pde" from  
+5) Set your COM Port (default is "COM5"):
+- Update the following line in RGB_X_Processing.pde:
+  String com_port = "COM5";
+  
+6) Run Slider Pro:
+- Click Run button (play)
 
-port = new Serial(this, "COM4", 9600); // Change "COM4" to your COM# of your programmer.
 
-5) NOTE: I don't have my mac here, COM# must be changed to a different format on Mac... please google it... I have no access to google now.
+Links for quick reference:
+  - Download Git for Windows:
+	https://git-for-windows.github.io/
 
+  - Download Processing:
+	https://processing.org/download/
+
+  - Color_Processing Git Website:
+	https://github.com/gregroberti/Slider-Pro
+
+  - Slider Pro:
+	http://osm.codes/web/slider-pro/
