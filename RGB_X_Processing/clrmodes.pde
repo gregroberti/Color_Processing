@@ -4,7 +4,8 @@
 
 
 class clrmodes extends elembase {
-  int num_modes = 8;
+  float scroll_amnt = 0;
+  int num_modes;
   int alpha = 0;
   int index = -1;
   clrmode[] color_modes;
@@ -109,20 +110,44 @@ class clrmodes extends elembase {
     }
   }
   
+  void render_perimeter_mask(int _x, int _y, int _w, int _h) {
+    fill(BLACK);
+    rect(_x, _y, _w, _h);
+  }
+  
   void render() {
     update_alpha();
     render_border(alpha);
     render_fill(alpha);
-    export_cm.render(alpha);
-    import_cm.render(alpha);
+    
     for(int i = 0; i < num_modes; i++) {
       color_modes[i].render(alpha);
     }
+    
+    render_perimeter_mask(0, 0, width, y-1);
+    render_perimeter_mask(0, y+h+1, width, height-y+h);
+    render_perimeter_mask(0, 0, x-1, height);
+    render_perimeter_mask(x+w+1, 0, width-y-h, height);
+    
+    export_cm.render(alpha);
+    import_cm.render(alpha);
   }
   
   void adjust_size(int amount) {
     color_modes[index].unselect_color_button();
     color_modes[index].adjust_size(amount);
+  }
+  
+  void scroll(float amnt) {
+    if ((amnt < 0 && scroll_amnt <= -28) || 
+        (amnt > 0 && scroll_amnt >= 0)) {
+      return;
+    }
+    
+    scroll_amnt += amnt;
+    for (int i = 0; i < num_modes; i++) {
+      color_modes[i].scroll(amnt*10);
+    }
   }
   
   void update_alpha() {
@@ -138,7 +163,7 @@ class clrmodes extends elembase {
     int[] retval = new int[64];
     for(int i = 0; i < num_modes; i++) {
       clrmode m = color_modes[i];
-      retval[i*8] = m.get_size();
+      retval[i*num_modes] = m.get_size();
       for(int j = 1; j < num_modes; j++) {
         if (j-1 < m.get_size()) {
           if (m.color_buttons[j-1].id == -1) {

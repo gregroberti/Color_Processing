@@ -220,7 +220,7 @@ void setup() {
   
   btn_view_btns = new btn_view(width/2 - 100, height-30, 120);
   
-  color_modes = new clrmodes(10, 40, width - 20, 300, 8);
+  color_modes = new clrmodes(10, 40, width - 20, 300, 16);
   color_wheel = new ColorWheel(0, 0, width, height/3*2);
   color_picker = new ColorPicker(10, 40, width - 20, 300);
   image_picker = new ImagePicker(10, 40, width - 20, 300);
@@ -252,14 +252,14 @@ void render_everything() {
   sV3.render();
   render_ratio_txt();
   color_wheel.render();
+  btn_view_btns.render(255);
   
-  render_help_txt();
   import_cp.render(255);
   export_cp.render(255);
-  btn_view_btns.render(255);
   
   color_modes.render();
   preset_palette.render();
+  render_help_txt();
 }
 
 void draw() {

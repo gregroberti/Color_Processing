@@ -177,6 +177,13 @@ class clrmode extends elembase {
     }
   }
   
+  void scroll(float amnt) {
+    y += amnt;
+    for (int i = 0; i < color_buttons.length; i++) {
+      color_buttons[i].scroll(amnt);
+    }
+  }
+  
   int get_size() {
     return num_btns;
   }

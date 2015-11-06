@@ -122,6 +122,10 @@ class clrbtn extends elembase {
     bor_thk = 1;
   }
   
+  void scroll(float amnt) {
+    y += amnt;
+  }
+  
   void update_text_color() {
     int total = 0;
     int[] rgb = getRGB(cor);
