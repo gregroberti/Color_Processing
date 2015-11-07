@@ -51,16 +51,19 @@ class clrmodes extends elembase {
     
     int new_index = index + amount;
     if (new_index >= num_modes) {
-      new_index -= num_modes;
+      //new_index -= num_modes;
+      return;
     }
     else if (new_index < 0) {
-      new_index += num_modes;
+      //new_index += num_modes;
+      return;
     }
+    
+    keep_index_on_screen(index, new_index);
     
     color_modes[index].unselect();
     index = new_index;
     color_modes[index].select();
-    keep_index_on_screen();
   }
   
   int[] get_active_palette() {
@@ -102,7 +105,6 @@ class clrmodes extends elembase {
     }
     index = new_index;
     color_modes[index].select();
-    keep_index_on_screen();
   }
   
   void unselect() {
@@ -140,29 +142,20 @@ class clrmodes extends elembase {
     color_modes[index].adjust_size(amount);
   }
   
-  void keep_index_on_screen() {
-    println("scroll_amnt="+scroll_amnt);
-    
-    float increase = (index-7) + (-4.5*(index-7));
-    float decrease = (index-7) + (-4.5*(index-7));
-    println("decrease="+decrease);
-    if (scroll_amnt >= increase) {
-      scroll(increase - scroll_amnt);
+  void keep_index_on_screen(int old_index, int new_index) {
+    int index_diff = old_index - new_index;
+    if (color_modes[new_index].y >= (y + h-20)) {
+      scroll(35*index_diff);
     }
-    //else if (index <= 7 && scroll_amnt <= decrease) {
-    //  scroll(decrease - scroll_amnt);
-    //}
+    else if (color_modes[new_index].y < y) {
+      scroll(35*index_diff);
+    }
   }
   
   void scroll(float amnt) {
-    if ((amnt < 0 && scroll_amnt <= -28) || 
-        (amnt > 0 && scroll_amnt >= 0)) {
-      return;
-    }
-    
     scroll_amnt += amnt;
     for (int i = 0; i < num_modes; i++) {
-      color_modes[i].scroll(amnt*10);
+      color_modes[i].scroll(amnt);
     }
   }
   
