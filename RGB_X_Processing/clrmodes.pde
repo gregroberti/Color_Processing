@@ -66,15 +66,6 @@ class clrmodes extends elembase {
     color_modes[index].select();
   }
   
-  int[] get_active_palette() {
-    if(!index_in_bounds()) {
-      return new int[0];
-    }
-    else {
-      return color_modes[index].get_palette();
-    }
-  }
-  
   void check_for_btn_clicks() {
     if (!use_clrmodes) {
       return;
