@@ -229,7 +229,7 @@ class clrmodes extends elembase {
     String[] rows = sb.toString().replace(" ", "").replace("\r\n", "\n").split("\n");
     
     int current_mode = 0;
-    int[][] mode_array = new int[num_modes][8];
+    int[][] mode_array = new int[num_modes][MAX_CLR_PER_MODE];
     for(int i = 0; i < rows.length; i++) {
       if (rows[i].length() == 0) {
         continue;

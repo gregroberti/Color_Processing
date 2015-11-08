@@ -149,7 +149,7 @@ int DOUBLE_CLICK_SPEED = 150;
 int RAINBOW_PALETTE_BRIGHTNESS = 75;
 int RAINBOW_PALETTE_CONTRAST = 127;
 int MODE_HEIGHT = 35;
-int MAX_CLR_PER_MODE = 16;
+int MAX_CLR_PER_MODE = 12;
 
 int SLIDER_TOP = 65;
 int SLIDER_SPACE = 10;
@@ -222,7 +222,7 @@ void setup() {
   
   btn_view_btns = new btn_view(width/2 - 100, height-30, 120);
   
-  color_modes = new clrmodes(10, 40, width - 20, 300, 16);
+  color_modes = new clrmodes(10, 40, width - 20, 300, 8);
   color_wheel = new ColorWheel(0, 0, width, height/3*2);
   color_picker = new ColorPicker(10, 40, width - 20, 300);
   image_picker = new ImagePicker(10, 40, width - 20, 300);

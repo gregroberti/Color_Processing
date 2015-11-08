@@ -18,7 +18,7 @@ class clrmode extends elembase {
     id = _id;
     btn_w = 25;
     btn_h = 25;
-    btn_sp_x = 10;
+    btn_sp_x = 5;
     btn_sp_y = 10;
     bor_cor = GREY;
     num_btns = _num_btns;
@@ -88,8 +88,8 @@ class clrmode extends elembase {
       println("Unable to reduce the size of the color mode below 1");
       return;
     }
-    else if (num_btns_new > 7) {
-      println("Unable to expand the size of the color mode above 7");
+    else if (num_btns_new > MAX_CLR_PER_MODE) {
+      println("Unable to expand the size of the color mode above " + MAX_CLR_PER_MODE);
       return;
     }
     else if (num_btns_new > num_btns && num_btns_new > color_buttons.length) {
