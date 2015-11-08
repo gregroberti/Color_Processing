@@ -126,9 +126,9 @@ class clrmodes extends elembase {
   }
   
   void adjust_num_modes(int amount) {
-    println("adjust_num_modes");
     int new_num_modes = num_modes + amount;
     if (new_num_modes < 1) return;
+    unselect();
     if (new_num_modes > color_modes.length) {
       clrmode[] new_color_modes = new clrmode[new_num_modes];
       for (int i = 0; i < num_modes; i++) {
