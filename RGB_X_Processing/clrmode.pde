@@ -29,7 +29,7 @@ class clrmode extends elembase {
     int left = x + 50;
     color_buttons = new clrbtn[num_btns];
     for (int i = 0; i < num_btns; i++) {
-      color_buttons[i] = new clrbtn(left += 35,  y + 5, btn_w, btn_h, -1, false);
+      color_buttons[i] = new clrbtn(left += btn_w + btn_sp_x,  y + 5, btn_w, btn_h, -1, false);
       color_buttons[i].cor = BLACK;
     }
   }
@@ -100,7 +100,7 @@ class clrmode extends elembase {
       }
       int left = color_buttons[num_btns-1].x;
       for (int i = num_btns; i < num_btns_new; i++) {
-        new_color_buttons[i] = new clrbtn(left += 35,  y + 5, btn_w, btn_h, -1, false);
+        new_color_buttons[i] = new clrbtn(left += btn_sp_x + btn_w,  y + 5, btn_w, btn_h, -1, false);
         new_color_buttons[i].cor = BLACK;
       }
       color_buttons = new_color_buttons;

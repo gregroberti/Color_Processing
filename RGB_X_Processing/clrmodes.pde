@@ -28,7 +28,7 @@ class clrmodes extends elembase {
     int top = y - 25;
     color_modes = new clrmode[num_modes];
     for(int i = 0; i < num_modes; i++) {
-      color_modes[i] = new clrmode(x+10, top += 35, w-20, 35, i, 3);
+      color_modes[i] = new clrmode(x+10, top += MODE_HEIGHT, w-20, MODE_HEIGHT, i, 3);
     }
   }
   
@@ -51,16 +51,13 @@ class clrmodes extends elembase {
     
     int new_index = index + amount;
     if (new_index >= num_modes) {
-      //new_index -= num_modes;
       return;
     }
     else if (new_index < 0) {
-      //new_index += num_modes;
       return;
     }
     
     keep_index_on_screen(index, new_index);
-    
     color_modes[index].unselect();
     index = new_index;
     color_modes[index].select();
@@ -136,17 +133,17 @@ class clrmodes extends elembase {
   void keep_index_on_screen(int old_index, int new_index) {
     int index_diff = old_index - new_index;
     if (color_modes[new_index].y >= (y + h-20)) {
-      scroll(35*index_diff);
+      scroll(MODE_HEIGHT*index_diff);
     }
     else if (color_modes[new_index].y < y) {
-      scroll(35*index_diff);
+      scroll(MODE_HEIGHT*index_diff);
     }
   }
   
   void scroll(float amnt) {
     int new_scroll_amnt = int(scroll_amnt + amnt);
     if (new_scroll_amnt > 0) return;
-    if (new_scroll_amnt <= -(num_modes-7)*35) return;
+    if (new_scroll_amnt <= -(num_modes-7)*MODE_HEIGHT) return;
     for (int i = 0; i < num_modes; i++) {
       color_modes[i].scroll(amnt);
     }
