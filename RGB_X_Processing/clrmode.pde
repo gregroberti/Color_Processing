@@ -18,7 +18,7 @@ class clrmode extends elembase {
     id = _id;
     btn_w = 25;
     btn_h = 25;
-    btn_sp_x = 5;
+    btn_sp_x = 6;
     btn_sp_y = 10;
     bor_cor = GREY;
     num_btns = _num_btns;
@@ -26,7 +26,7 @@ class clrmode extends elembase {
   }
   
   void initialize_color_buttons() {
-    int left = x + 50;
+    int left = x + btn_w + btn_sp_x;
     color_buttons = new clrbtn[num_btns];
     for (int i = 0; i < num_btns; i++) {
       color_buttons[i] = new clrbtn(left += btn_w + btn_sp_x,  y + 5, btn_w, btn_h, -1, false);
@@ -159,7 +159,7 @@ class clrmode extends elembase {
   
   void render_text(int alpha) {
     fill(text_cor, alpha);
-    text("Mode #" + id + ":" , x+15, y+20);
+    text("Mode #" + id + ":" , x + 2, y+20);
   }
   
   void render(int alpha) {

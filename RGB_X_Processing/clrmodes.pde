@@ -8,6 +8,7 @@ class clrmodes extends elembase {
   int num_modes;
   int alpha = 0;
   int index = -1;
+  int buff_x = 5;
   clrmode[] color_modes;
   exportclrmodes export_cm;
   importclrmodes import_cm;
@@ -28,7 +29,7 @@ class clrmodes extends elembase {
     int top = y - 25;
     color_modes = new clrmode[num_modes];
     for(int i = 0; i < num_modes; i++) {
-      color_modes[i] = new clrmode(x+10, top += MODE_HEIGHT, w-20, MODE_HEIGHT, i, 3);
+      color_modes[i] = new clrmode(x+buff_x, top += MODE_HEIGHT, w-buff_x*2, MODE_HEIGHT, i, 3);
     }
   }
   
@@ -135,7 +136,7 @@ class clrmodes extends elembase {
         new_color_modes[i] = color_modes[i];
       }
       for (int i = num_modes; i < new_num_modes; i++) {
-        new_color_modes[i] = new clrmode(x+10, color_modes[num_modes-1].y + MODE_HEIGHT, w-20, MODE_HEIGHT, i, 3);
+        new_color_modes[i] = new clrmode(x+buff_x, color_modes[num_modes-1].y + MODE_HEIGHT, w-buff_x*2, MODE_HEIGHT, i, 3);
       }
       color_modes = new_color_modes;
     }
