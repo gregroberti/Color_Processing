@@ -125,7 +125,24 @@ class clrmodes extends elembase {
     import_cm.render(alpha);
   }
   
-  void adjust_size(int amount) {
+  void adjust_num_modes(int amount) {
+    println("adjust_num_modes");
+    int new_num_modes = num_modes + amount;
+    if (new_num_modes < 1) return;
+    if (new_num_modes > color_modes.length) {
+      clrmode[] new_color_modes = new clrmode[new_num_modes];
+      for (int i = 0; i < num_modes; i++) {
+        new_color_modes[i] = color_modes[i];
+      }
+      for (int i = num_modes; i < new_num_modes; i++) {
+        new_color_modes[i] = new clrmode(x+10, color_modes[num_modes-1].y + MODE_HEIGHT, w-20, MODE_HEIGHT, i, 3);
+      }
+      color_modes = new_color_modes;
+    }
+    num_modes = new_num_modes;
+  }
+  
+  void adjust_mode_size(int amount) {
     color_modes[index].unselect_color_button();
     color_modes[index].adjust_size(amount);
   }

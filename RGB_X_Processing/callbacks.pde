@@ -170,10 +170,20 @@ public void keyPressed(KeyEvent e) {
     shift_rgb_values(-1);
   }
   else if (e.getKeyCode() == 107) { // PLUS
-    update_brightness(BRIGHTNESS_MODIFIER);
+    if (use_clrmodes) {
+      color_modes.adjust_num_modes(1);
+    }
+    else {
+      update_brightness(BRIGHTNESS_MODIFIER);
+    }
   }
   else if (e.getKeyCode() == 109) { // MINUS
-    update_brightness(-1*BRIGHTNESS_MODIFIER);
+    if (use_clrmodes) {
+      color_modes.adjust_num_modes(-1);
+    }
+    else {
+      update_brightness(-1*BRIGHTNESS_MODIFIER);
+    }
   }
   else if (e.getKeyCode() == 127) { // DELETE
     preset_palette.reset_selected();
@@ -187,14 +197,14 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 33) { // PAGE UP
     if(use_clrmodes && color_modes.index != -1) {
       int mode = color_modes.index;
-      color_modes.adjust_size(1);
+      color_modes.adjust_mode_size(1);
       println("Updated Size of Mode #" + mode);
     }
   }
   else if (e.getKeyCode() == 34) { // PAGE DOWN
     if(use_clrmodes && color_modes.index != -1) {
       int mode = color_modes.index;
-      color_modes.adjust_size(-1);
+      color_modes.adjust_mode_size(-1);
       println("Updated Size of Mode #" + mode);
     }
   }
