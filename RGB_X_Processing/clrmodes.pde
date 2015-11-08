@@ -153,10 +153,13 @@ class clrmodes extends elembase {
   }
   
   void scroll(float amnt) {
-    scroll_amnt += amnt;
+    int new_scroll_amnt = int(scroll_amnt + amnt);
+    if (new_scroll_amnt > 0) return;
+    if (new_scroll_amnt <= -(num_modes-7)*35) return;
     for (int i = 0; i < num_modes; i++) {
       color_modes[i].scroll(amnt);
     }
+    scroll_amnt = new_scroll_amnt;
   }
   
   void update_alpha() {

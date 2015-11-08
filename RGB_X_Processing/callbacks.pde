@@ -24,7 +24,7 @@ void mouseWheel(MouseEvent event) {
     image_picker.zoom(e);
   }
   else if (use_clrmodes && color_modes.isOver()) {
-    color_modes.scroll(-1*e);
+    color_modes.scroll(-35*e);
   }
   
   if (new_cor != main_cor) {
