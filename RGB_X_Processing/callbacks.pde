@@ -91,26 +91,26 @@ public void keyPressed(KeyEvent e) {
   else if (e.getKeyCode() == 73) { // I
     preset_palette.insert_selected();
   }
-  else if (e.getKeyCode() == 77) { // M
-    println();
-    println("// Color Modes //");
-    println();
-    int mode = 1;
-    int line_count = 1;
-    int[] modes_arr = color_modes.get_palette();
-    for(int i = 0; i <= 64; i++) {
-      if(i > 0 && i % 8 == 0) {
-        print("  0," + line_count++ + ",    // Mode " + mode + "  // Prime A");
-        println();
-        println("  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0," + line_count++ + ",   // Mode " + mode++ + "  // Prime B");
-        println();
-      }
-      if (i < 64) {
-        print("  " + modes_arr[i] + ",0,");
-      }
-    }
-    println("// Color Modes //");
-  }
+  //else if (e.getKeyCode() == 77) { // M
+  //  println();
+  //  println("// Color Modes //");
+  //  println();
+  //  int mode = 1;
+  //  int line_count = 1;
+  //  int[][] modes_arr = color_modes.get_modes();
+  //  for(int i = 0; i <= 64; i++) {
+  //    if(i > 0 && i % 8 == 0) {
+  //      print("  0," + line_count++ + ",    // Mode " + mode + "  // Prime A");
+  //      println();
+  //      println("  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0," + line_count++ + ",   // Mode " + mode++ + "  // Prime B");
+  //      println();
+  //    }
+  //    if (i < 64) {
+  //      print("  " + modes_arr[i] + ",0,");
+  //    }
+  //  }
+  //  println("// Color Modes //");
+  //}
   else if (e.getKeyCode() == 80) { // P
     println();
     println("// Color Palette (" + preset_palette.num_btns + " colors) //");

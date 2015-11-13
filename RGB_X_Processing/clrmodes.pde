@@ -177,22 +177,23 @@ class clrmodes extends elembase {
     }
   }
   
-  int[] get_palette() {
-    int[] retval = new int[64];
+  int[][] get_modes() {
+    int[][] retval = new int[num_modes][MAX_CLR_PER_MODE+1];
     for(int i = 0; i < num_modes; i++) {
       clrmode m = color_modes[i];
-      retval[i*num_modes] = m.get_size();
-      for(int j = 1; j < num_modes; j++) {
-        if (j-1 < m.get_size()) {
-          if (m.color_buttons[j-1].id == -1) {
-            retval[i*num_modes + j] = 0;
+      retval[i][0] = m.get_size();
+      for(int j = 1; j <= MAX_CLR_PER_MODE; j++) {
+        int clr_index = j-1;
+        if (clr_index < m.get_size()) {
+          if (m.color_buttons[clr_index].id == -1) {
+            retval[i][j] = 0;
           }
           else {
-            retval[i*num_modes + j] = m.color_buttons[j-1].id;
+            retval[i][j] = m.color_buttons[clr_index].id;
           }
         }
         else {
-          retval[i*num_modes + j] = 0;
+          retval[i][j] = 0;
         }
       }
     }
@@ -202,17 +203,12 @@ class clrmodes extends elembase {
   void save_modes(File selection) {
     try {
       PrintWriter writer = new PrintWriter(selection, "UTF-8");
-      int mode = 1;
-      int line_count = 1;
-      int[] modes_arr = get_palette();
-      for(int i = 0; i <= 64; i++) {
-        if(i > 0 && i % 8 == 0) {
-          writer.print("  0," + line_count++ + ",    // Mode " + mode + "  // Prime A\r\n");
-          writer.print("  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0,0,  0," + line_count++ + ",   // Mode " + mode++ + "  // Prime B\r\n");
+      int[][] modes_arr = get_modes();
+      for(int i = 0; i <= num_modes; i++) {
+        for(int j = 1; j <= modes_arr[i][0]; i++) {
+          writer.print("  " + modes_arr[i][j] + ",");
         }
-        if (i < 64) {
-          writer.print("  " + modes_arr[i] + ",0,");
-        }
+        writer.println();
       }
       writer.close();
       println("Saved color palette to: " + selection);
