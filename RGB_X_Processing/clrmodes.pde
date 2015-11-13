@@ -204,16 +204,18 @@ class clrmodes extends elembase {
     try {
       PrintWriter writer = new PrintWriter(selection, "UTF-8");
       int[][] modes_arr = get_modes();
-      for(int i = 0; i <= num_modes; i++) {
-        for(int j = 1; j <= modes_arr[i][0]; i++) {
-          writer.print("  " + modes_arr[i][j] + ",");
+      writer.println(num_modes + "|" + MAX_CLR_PER_MODE);
+      for(int i = 0; i < num_modes; i++) {
+        writer.print(modes_arr[i][0] + ":");
+        for(int j = 1; j <= modes_arr[i][0]; j++) {
+          writer.print(modes_arr[i][j] + ",");
         }
         writer.println();
       }
       writer.close();
       println("Saved color palette to: " + selection);
     }
-    catch (FileNotFoundException e) {
+   catch (FileNotFoundException e) {
      println("FileNotFoundException: " + e);
     }
     catch (UnsupportedEncodingException e) {
@@ -224,35 +226,17 @@ class clrmodes extends elembase {
   void load_modes(File selection) {
     StringBuilder sb = read_file(selection);
     String[] rows = sb.toString().replace(" ", "").replace("\r\n", "\n").split("\n");
-    
-    int current_mode = 0;
-    int[][] mode_array = new int[num_modes][MAX_CLR_PER_MODE];
-    for(int i = 0; i < rows.length; i++) {
-      if (rows[i].length() == 0) {
-        continue;
+    String[] header = rows[0].split("|");
+    int new_num_modes = int(header[0]);
+    for(int i = 0; i < new_num_modes; i++) {
+      String[] row_meta = rows[i+1].split(":");
+      int num_colors = int(row_meta[0]);
+      if (num_colors < MAX_CLR_PER_MODE && num_colors != color_modes[i].get_size()) {
+        color_modes[i].adjust_size(num_colors - color_modes[i].get_size());
       }
-      
-      if (i % 2 == 0 && current_mode < num_modes) { // Prime A
-        String[] row = rows[i].split("//")[0].split(",");
-        int num_colors = int(row[0]);
-        
-        for(int j = 1; j <= num_colors; j++) {
-          mode_array[current_mode][j] = int(row[j*2]);
-        }
-        mode_array[current_mode][0] = num_colors;
-        current_mode++;
-      }
-    }
-    
-    for (int i = 0; i < num_modes; i++) {
-      int num_colors = int(mode_array[i][0]);
-      int size = color_modes[i].get_size();
-      if (num_colors != size) {
-        color_modes[i].adjust_size(num_colors - size);
-      }
-      
-      for (int j = 1; j <= num_colors; j++) {
-        color_modes[i].color_buttons[j-1].set_id(mode_array[i][j]);
+      String[] row = row_meta[1].split(",");
+      for(int j = 0; j < num_colors; j++) {
+        color_modes[i].color_buttons[j].set_id(int(row[j]));
       }
     }
     println("Successfully loaded color modes from: " + selection.getAbsolutePath());
